@@ -153,6 +153,14 @@ public class Login extends BaseActivity implements OnClickListener{
 //        app.remove(this);
 		TelApplication.remove(this);
 	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		TelApplication.finishAll();
+		this.finish();
+	}
 	
 	
 	

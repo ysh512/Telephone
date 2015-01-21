@@ -241,7 +241,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		ll_numPad = (LinearLayout)telView.findViewById(R.id.ll_tel_numpad);
 		vp_t_ad = (ViewPager)telView.findViewById(R.id.vp_t_ad);
 		this.mImageViews = new ImageView[3];
-		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3,R.drawable.ad4};
+		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3,R.drawable.ad20};
 		for(int i=0;i<mImageViews.length;i++)
 		{
 			mImageViews[i] = new ImageView(this);
@@ -446,7 +446,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private void initMenuview(View menuView) {
 		vp_menu_ad = (ViewPager) menuView.findViewById(R.id.vp_m_ad); 
 		this.mImageViews = new ImageView[3];
-		int resIds[]= {R.drawable.ad30,R.drawable.ad31,R.drawable.ad32};
+		int resIds[]= {R.drawable.ad30,R.drawable.ad32,R.drawable.ad20};
 		for(int i=0;i<mImageViews.length;i++)
 		{
 			mImageViews[i] = new ImageView(this);
@@ -849,9 +849,9 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			startActivity(it);
 			break;
 		case 1:
-			Uri uri = Uri.parse(Variable.MAIN_PAGE_URL);
-			Intent it1 = new Intent(Intent.ACTION_VIEW,uri);
-			startActivity(it1);
+//			Uri uri = Uri.parse(Variable.MAIN_PAGE_URL);
+//			Intent it1 = new Intent(Intent.ACTION_VIEW,uri);
+//			startActivity(it1);
 			break;
 		case 2:
 			Intent it2 = new Intent(Container.this,QueryBalance.class);
@@ -866,7 +866,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		case 5:
 			break;
 		case 6:
-			callCustomService();
+//			callCustomService();
 			break;
 		case 7:
 			Intent it7 = new Intent(this,Setting.class);

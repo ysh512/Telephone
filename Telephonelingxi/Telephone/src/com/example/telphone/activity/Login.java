@@ -122,8 +122,8 @@ public class Login extends BaseActivity implements OnClickListener{
 			if(login)
 			{
 				
-				Intent it = new Intent(Login.this,Container.class);
-				startActivity(it);
+//				Intent it = new Intent(Login.this,Container.class);
+//				startActivity(it);
 				//实例化SharedPreferences对象（第一步） 
 				SharedPreferences mySharedPreferences= getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE); 
 				//实例化SharedPreferences.Editor对象（第二步） 

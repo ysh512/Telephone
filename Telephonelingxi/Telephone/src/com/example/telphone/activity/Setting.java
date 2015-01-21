@@ -74,7 +74,7 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
 //			TelApplication app = (TelApplication)getApplicationContext();
 //			app.finishAll();
 			TelApplication.finishAll();
-			Intent it = new Intent(this,Login.class);
+			Intent it = new Intent(this,Container.class);
 			startActivity(it);
 
 			break;

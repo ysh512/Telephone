@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/dialpad" android:paddingLeft="@dimen/dimen_15dip" android:paddingRight="@dimen/dimen_15dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText android:textSize="30.0sp" android:textColor="@color/white" android:id="@id/et_dtmf" android:background="@null" android:paddingLeft="@dimen/dimen_15dip" android:paddingRight="@dimen/dimen_15dip" android:paddingBottom="@dimen/dimen_15dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="" android:singleLine="true" android:inputType="phone" />
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_1" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_1" />
+        </LinearLayout>
+        <LinearLayout android:background="@drawable/bg_line_v_top" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_2" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:layout_marginBottom="12.0dip" android:src="@drawable/ic_d_key_2" />
+        </LinearLayout>
+        <LinearLayout android:background="@drawable/bg_line_v_top" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_3" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_3" />
+        </LinearLayout>
+    </LinearLayout>
+    <View android:background="@drawable/bg_line_h" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_4" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_4" />
+        </LinearLayout>
+        <LinearLayout android:background="#66c7c6cb" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_5" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:layout_marginBottom="12.0dip" android:src="@drawable/ic_d_key_5" />
+        </LinearLayout>
+        <LinearLayout android:background="#66c7c6cb" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_6" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_6" />
+        </LinearLayout>
+    </LinearLayout>
+    <View android:background="@drawable/bg_line_h" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_7" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_7" />
+        </LinearLayout>
+        <LinearLayout android:background="#66c7c6cb" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_8" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:layout_marginBottom="12.0dip" android:src="@drawable/ic_d_key_8" />
+        </LinearLayout>
+        <LinearLayout android:background="#66c7c6cb" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_9" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_9" />
+        </LinearLayout>
+    </LinearLayout>
+    <View android:background="@drawable/bg_line_h" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_xing" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_xing" />
+        </LinearLayout>
+        <LinearLayout android:background="@drawable/bg_line_v_buttom" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_0" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:layout_marginBottom="12.0dip" android:src="@drawable/ic_d_key_0" />
+        </LinearLayout>
+        <LinearLayout android:background="@drawable/bg_line_v_buttom" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:id="@id/iv_dial_jing" android:background="@drawable/sl_bg_key" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_d_key_jing" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

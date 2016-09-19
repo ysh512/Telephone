@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="drawable" name="key_bg">#ffbbbec3</item>
+    <item type="drawable" name="line_bg">#ffc8c7cc</item>
+    <item type="drawable" name="line_bg_two">#ffe5e5e5</item>
+    <item type="drawable" name="green_n">#ff3ab47a</item>
+    <item type="drawable" name="green_p">#ff2e9f69</item>
+    <item type="drawable" name="dial_p">#ff379a27</item>
+    <item type="drawable" name="dial_n">#ff1ac02e</item>
+    <item type="drawable" name="item_bg">#ffbff2e8</item>
+    <item type="drawable" name="tab_bg">#ff1a9c78</item>
+    <item type="drawable" name="tab_bg_p">#33000000</item>
+    <item type="drawable" name="keyboard_bg">#96f8f8f8</item>
+    <item type="drawable" name="keyboard">#ff14a761</item>
+    <item type="drawable" name="keyboard_default">#fff8f8f8</item>
+    <item type="drawable" name="white">#ffffffff</item>
+    <item type="drawable" name="gray_light">#fff9f9f9</item>
+</resources>

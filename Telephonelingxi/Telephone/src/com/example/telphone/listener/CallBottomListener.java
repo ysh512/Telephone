@@ -118,9 +118,6 @@ public class CallBottomListener implements OnClickListener{
 		}
 		
 	}
-	private void startActivity(Intent it) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.telphone.tool;
 
+
 public class Variable {
 	public static final String MAIN_PAGE_URL="http://www.100996.net";
 	public static final String CUSTOM_SERVICE_NUMBER="037156006060";

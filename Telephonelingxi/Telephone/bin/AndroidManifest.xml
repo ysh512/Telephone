@@ -58,7 +58,12 @@
         <activity
             android:name="com.example.telphone.activity.Lottery"></activity>
         
-        
+        <activity 
+            android:name="com.example.telphone.activity.FindPass"
+            ></activity>
+		<activity 
+		    android:name="com.example.telphone.activity.Register"
+		    ></activity>        
         
          <receiver android:name="com.example.telphone.receiver.PhoneReceiver">
             <intent-filter>   

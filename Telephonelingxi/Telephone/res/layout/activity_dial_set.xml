@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/layout_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/include_activity_title" />
+    <ScrollView android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_height">
+                <View style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_keyboard_voice" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:paddingTop="15.0dip" android:paddingRight="16.0dip" android:paddingBottom="15.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="@dimen/more_item_height">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_keyboard_voice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="按键音" android:layout_centerVertical="true" />
+                    <ImageView android:id="@id/iv_arr" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_arrow_profile" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/gray" android:id="@id/tv_curr_keyboard_voice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="无" android:layout_toLeftOf="@id/iv_arr" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View android:id="@id/view_line_wifi" android:layout_marginLeft="20.0dip" style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_keyboard_bg" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:paddingTop="15.0dip" android:paddingRight="16.0dip" android:paddingBottom="15.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="@dimen/more_item_height">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="键盘背景" android:layout_centerVertical="true" />
+                    <ImageView android:id="@id/iv_arr" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_arrow_profile" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                    <ImageView android:id="@id/iv_curr_keyboard_bg" android:background="#ff000000" android:layout_width="36.0dip" android:layout_height="25.0dip" android:layout_marginRight="10.0dip" android:layout_toLeftOf="@id/iv_arr" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View android:id="@id/view_line_wifi" android:layout_marginLeft="20.0dip" style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_localecode" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:paddingTop="15.0dip" android:paddingRight="16.0dip" android:paddingBottom="15.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="@dimen/more_item_height">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tva" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="区号设置" android:layout_centerVertical="true" />
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/gray" android:gravity="right" android:id="@id/tv_localecode" android:paddingLeft="10.0dip" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0755" android:drawableRight="@drawable/ic_arrow_profile" android:drawablePadding="10.0dip" android:layout_toRightOf="@id/tva" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View style="@style/line_h" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_height">
+                <View style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_media" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:paddingTop="15.0dip" android:paddingRight="16.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/more_item_height">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="拨号等待音" android:layout_centerVertical="true" />
+                    <com.zqcall.mobile.view.togglebutton.ToggleButton android:id="@id/toggle_button_media" android:layout_width="44.0dip" android:layout_height="25.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View android:layout_marginLeft="20.0dip" style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_display" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:paddingTop="15.0dip" android:paddingRight="16.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/more_item_height">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="显示本机" android:layout_centerVertical="true" />
+                    <com.zqcall.mobile.view.togglebutton.ToggleButton android:id="@id/toggle_button_display" android:layout_width="44.0dip" android:layout_height="25.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View android:visibility="gone" android:layout_marginLeft="20.0dip" style="@style/line_h" />
+                <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/rlyt_viber" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:paddingTop="10.0dip" android:paddingRight="16.0dip" android:paddingBottom="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="拨号按键震动" android:drawableRight="@drawable/sl_cb_switch" />
+                <View style="@style/line_h" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_height">
+                <View style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_wifi" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:visibility="gone" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/wifi_title" android:paddingTop="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WIFI网络优先直拨" />
+                    <TextView android:textSize="@dimen/textsize12" android:textColor="@color/gray" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="60.0dip" android:text="如果您的手机接听收费(例如国内外漫游),使用直拨可节省漫游费" android:layout_below="@id/wifi_title" />
+                    <com.zqcall.mobile.view.togglebutton.ToggleButton android:id="@id/toggle_button_wifi" android:layout_width="44.0dip" android:layout_height="25.0dip" android:layout_marginRight="16.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View android:visibility="visible" android:layout_marginLeft="20.0dip" style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_3g" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:visibility="visible" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/e_title" android:paddingTop="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3G/4G网络优先直拨" />
+                    <TextView android:textSize="@dimen/textsize12" android:textColor="@color/gray" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="直拨方式将耗用您的手机上网流量以进行通话" android:layout_toLeftOf="@id/toggle_button_3g" android:layout_below="@id/e_title" />
+                    <com.zqcall.mobile.view.togglebutton.ToggleButton android:id="@id/toggle_button_3g" android:layout_width="44.0dip" android:layout_height="25.0dip" android:layout_marginRight="16.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View android:layout_marginLeft="20.0dip" style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_autoring" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_autoring" android:paddingTop="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="自动接听" />
+                    <TextView android:textSize="@dimen/textsize12" android:textColor="@color/gray" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="@string/dial_set" android:layout_toLeftOf="@id/toggle_button_autoring" android:layout_below="@id/tv_autoring" />
+                    <com.zqcall.mobile.view.togglebutton.ToggleButton android:id="@id/toggle_button_autoring" android:layout_width="44.0dip" android:layout_height="25.0dip" android:layout_marginRight="16.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View android:layout_marginLeft="20.0dip" style="@style/line_h" />
+                <RelativeLayout android:id="@id/rlyt_blackscreen" android:background="@drawable/sl_bg_item" android:paddingLeft="20.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_blackscreen" android:paddingTop="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/dialset_blackscreen" />
+                    <TextView android:textSize="@dimen/textsize12" android:textColor="@color/gray" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="@string/dialset_blackscreen_des" android:layout_toLeftOf="@id/toggle_button_blackscreen" android:layout_below="@id/tv_blackscreen" />
+                    <com.zqcall.mobile.view.togglebutton.ToggleButton android:id="@id/toggle_button_blackscreen" android:layout_width="44.0dip" android:layout_height="25.0dip" android:layout_marginRight="16.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+                <View style="@style/line_h" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingLeft="@dimen/dimen_15dip" android:paddingTop="@dimen/dimen_10dip" android:paddingRight="@dimen/dimen_15dip" android:paddingBottom="@dimen/dimen_10dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:gravity="center_vertical" android:id="@id/tv_convert_type" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:drawablePadding="@dimen/dimen_5dip" />
+    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_convert_account" android:paddingTop="@dimen/dimen_5dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_convert_name" android:paddingTop="@dimen/dimen_5dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_convert_bank" android:paddingTop="@dimen/dimen_5dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_convert_bank_branch" android:paddingTop="@dimen/dimen_5dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    <FrameLayout android:paddingTop="@dimen/dimen_15dip" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_tip" />
+        <TextView android:textSize="@dimen/textsize12" android:textColor="@color/gray" android:id="@id/tv_convert_tip" android:paddingLeft="@dimen/dimen_5dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:lineSpacingExtra="1.0dip" />
+    </FrameLayout>
+</LinearLayout>

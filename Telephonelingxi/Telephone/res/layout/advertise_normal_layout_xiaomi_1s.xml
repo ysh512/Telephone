@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/notification_background" android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/content_head_bar" android:layout_width="fill_parent" android:layout_height="@dimen/notification_height">
+        <ImageView android:id="@id/notification_icon" android:layout_width="@dimen/largeIcon_height_width" android:layout_height="@dimen/largeIcon_height_width" android:layout_marginTop="@dimen/largeIcon_Top_Margin" android:layout_marginBottom="@dimen/largeIcon_Top_Margin" android:src="@drawable/ic_launcher" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/title_when_topMargin" android:layout_toRightOf="@id/notification_icon" android:layout_centerVertical="true">
+            <TextView android:ellipsize="end" android:id="@id/notification_title" android:paddingLeft="@dimen/title_content_leftMargin" android:layout_width="220.0dip" android:layout_height="wrap_content" android:singleLine="true" style="@style/Common.TextTitle" />
+            <TextView android:ellipsize="end" android:id="@id/notification_content" android:paddingLeft="@dimen/title_content_leftMargin" android:layout_width="240.0dip" android:layout_height="wrap_content" android:maxEms="12" android:singleLine="true" android:layout_below="@id/notification_title" style="@style/Common.TextContent" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/title_when_topMargin" android:layout_marginRight="@dimen/img_when_rightMargin" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+            <TextView android:id="@id/notification_when" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="time" style="@style/Common.TextWhen" />
+            <ImageView android:id="@id/notification_img" android:paddingLeft="@dimen/content_img_topMargin" android:layout_width="@dimen/img_height_width" android:layout_height="@dimen/img_height_width" android:layout_marginTop="@dimen/content_img_topMargin" android:src="@drawable/ic_launcher" android:layout_below="@id/notification_when" android:layout_alignRight="@id/notification_when" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="5.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:id="@id/ll_call_control1" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <ImageButton android:id="@id/ib_calling" android:background="@drawable/sl_keyboard" android:layout_width="60.0dip" android:layout_height="60.0dip" />
+            <TextView android:textSize="@dimen/textsize16" android:textColor="#ff666666" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="接听" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <ImageButton android:id="@id/ib_hungup" android:background="@drawable/sl_hungup_selector" android:layout_width="60.0dip" android:layout_height="60.0dip" />
+            <TextView android:textSize="@dimen/textsize16" android:textColor="#ff666666" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="挂断" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/ll_call_control2" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/ll_threebutton" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <ImageView android:id="@id/iv_speakerphone_on" android:layout_width="50.0dip" android:layout_height="50.0dip" android:src="@drawable/sl_bt_speaker" />
+                <TextView android:textSize="@dimen/textsize16" android:textColor="#ff666666" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="免提" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <ImageView android:id="@id/iv_show_pad" android:layout_width="50.0dip" android:layout_height="50.0dip" android:src="@drawable/sl_keyboard" />
+                <TextView android:textSize="@dimen/textsize16" android:textColor="#ff666666" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="键盘" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <ImageView android:id="@id/iv_microphone_mute" android:layout_width="50.0dip" android:layout_height="50.0dip" android:src="@drawable/ic_mute_off" />
+                <TextView android:textSize="@dimen/textsize16" android:textColor="#ff666666" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="静音" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/ll_end_linecall" android:layout_width="fill_parent" android:layout_height="100.0dip" android:layout_alignParentBottom="true">
+            <LinearLayout android:gravity="center" android:paddingLeft="20.0dip" android:paddingTop="20.0dip" android:paddingRight="20.0dip" android:paddingBottom="20.0dip" android:layout_width="fill_parent" android:layout_height="100.0dip" android:layout_weight="1.0">
+                <Button android:textSize="@dimen/textsize16" android:textColor="@color/white" android:id="@id/bt_hungup" android:background="@drawable/sl_hungup_selector" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="结束通话" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:paddingLeft="20.0dip" android:paddingTop="20.0dip" android:paddingRight="20.0dip" android:paddingBottom="20.0dip" android:layout_width="fill_parent" android:layout_height="100.0dip" android:layout_weight="1.0">
+                <Button android:textSize="@dimen/textsize16" android:textColor="@color/white" android:id="@id/bt_line_call" android:background="@drawable/sl_gone_pad_selector" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="切换至专线" />
+            </LinearLayout>
+        </LinearLayout>
+        <Button android:textSize="@dimen/textsize16" android:textColor="@color/white" android:id="@id/bt_hungup2" android:background="@drawable/sl_hungup_selector" android:visibility="gone" android:layout_width="150.0dip" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:text="结束通话" />
+    </LinearLayout>
+</LinearLayout>

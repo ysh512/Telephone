@@ -1,25 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+    <style name="AppBaseTheme" parent="@android:style/Theme.Light" />
+    <style name="AppTheme" parent="@style/AppBaseTheme" />
+    <style name="umeng_socialize_action_bar_itemlayout">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">4.0dip</item>
+        <item name="android:paddingTop">4.0dip</item>
+        <item name="android:paddingRight">4.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1.0</item>
     </style>
-
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="umeng_socialize_action_bar_item_im">
+        <item name="android:layout_width">25.0dip</item>
+        <item name="android:layout_height">25.0dip</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
-    
-    <style name="Theme.AppStartLoad" parent="android:Theme">
-        <item name="android:windowBackground">@drawable/appstart</item>
+    <style name="umeng_socialize_action_bar_item_tv">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginLeft">5.0dip</item>
+        <item name="android:text">999</item>
+    </style>
+    <style name="umeng_socialize_popup_dialog_anim" parent="@style/umeng_socialize_popup_dialog">
+        <item name="android:windowAnimationStyle">@style/umeng_socialize_dialog_animations</item>
+    </style>
+    <style name="umeng_socialize_popup_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:backgroundDimAmount">0.6</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="umeng_socialize_dialog_animations">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_slide_out_from_bottom</item>
+    </style>
+    <style name="umeng_socialize_dialog_anim_fade">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_fade_out</item>
+    </style>
+    <style name="umeng_socialize_shareboard_animation">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_shareboard_animation_in</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_shareboard_animation_out</item>
+    </style>
+    <style name="Theme.UMDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-    
+    <style name="Theme.UMDefault" parent="@android:style/Theme.NoTitleBar" />
+    <style name="umeng_socialize_divider">
+        <item name="android:background">@color/umeng_socialize_divider</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1.0dip</item>
+    </style>
+    <style name="umeng_socialize_list_item">
+        <item name="android:background">@color/umeng_socialize_list_item_bgcolor</item>
+        <item name="android:paddingTop">5.0dip</item>
+        <item name="android:paddingBottom">5.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">55.0dip</item>
+    </style>
+    <style name="umeng_socialize_edit_padding">
+        <item name="android:background">@color/umeng_socialize_list_item_bgcolor</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginLeft">6.0dip</item>
+        <item name="android:layout_marginTop">6.0dip</item>
+        <item name="android:layout_marginRight">6.0dip</item>
+        <item name="android:layout_marginBottom">6.0dip</item>
+    </style>
+    <style name="Common" />
+    <style name="Common.TextTitle" parent="@style/Common">
+        <item name="android:textSize">@dimen/common_text_size_title</item>
+    </style>
+    <style name="Common.TextContent" parent="@style/Common">
+        <item name="android:textSize">@dimen/common_text_size_content</item>
+    </style>
+    <style name="Common.TextWhen" parent="@style/Common">
+        <item name="android:textSize">@dimen/common_text_size_when</item>
+        <item name="android:textColor">@color/common_text_color_when</item>
+    </style>
+    <style name="Theme.ActivitySwitch" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/ActivitySwitchTheme</item>
+    </style>
+    <style name="ContentOverlay" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="tab_text">
+        <item name="android:textSize">@dimen/textsize10</item>
+        <item name="android:textColor">@drawable/sl_color_b_w</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">7.5dip</item>
+        <item name="android:paddingBottom">7.5dip</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="line_h">
+        <item name="android:background">@drawable/line_bg_two</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.5dip</item>
+    </style>
+    <style name="line_v">
+        <item name="android:background">@drawable/line_bg_two</item>
+        <item name="android:layout_width">0.5dip</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="line_h3">
+        <item name="android:background">@drawable/line_bg</item>
+        <item name="android:layout_width">1.0px</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="line_h2">
+        <item name="android:background">@drawable/line_bg_two</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1.0px</item>
+    </style>
+    <style name="button_once">
+        <item name="android:textSize">@dimen/textsize16</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="button_double">
+        <item name="android:textSize">@dimen/textsize16</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">45.0dip</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="anim_pop_dialpad" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/translucent_upin</item>
+        <item name="android:windowExitAnimation">@anim/translucent_downout</item>
+    </style>
+    <style name="custom_dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:panelBackground">@color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/animtranslucent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="animtranslucent">
+        <item name="android:windowEnterAnimation">@anim/translucent_enter</item>
+        <item name="android:windowExitAnimation">@anim/translucent_exit</item>
+    </style>
+    <style name="ActivitySwitchTheme" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_out_from_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_in_from_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_out_from_right</item>
+    </style>
+    <style name="Theme.UPPay" parent="@android:style/Theme.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="fullHeightDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/bg_loading_bg</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="griditem">
+        <item name="android:textSize">@dimen/textsize14</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/sl_bg_item</item>
+        <item name="android:paddingTop">@dimen/dimen_15dip</item>
+        <item name="android:paddingBottom">@dimen/dimen_15dip</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/dimen_10dip</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="menu_labels_style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/fab_label_background</item>
+    </style>
+    <style name="TransparentStyleBottom">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 </resources>

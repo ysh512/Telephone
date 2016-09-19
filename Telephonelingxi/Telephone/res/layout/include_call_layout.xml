@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/sl_bg_item1" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/dimen_16sp" android:textColor="@color/text6_color" android:id="@id/tv_phone" android:paddingLeft="@dimen/dimen_15dip" android:paddingTop="@dimen/dimen_10dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <TextView android:textSize="@dimen/dimen_14sp" android:textColor="@color/text3_color" android:id="@id/tv_area" android:paddingLeft="@dimen/dimen_15dip" android:paddingTop="@dimen/dimen_3dip" android:paddingBottom="@dimen/dimen_10dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/tv_phone" />
+    <ImageView android:id="@id/iv_call" android:paddingRight="@dimen/dimen_15dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/bt_call" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <View android:background="@color/line_bg2" android:layout_width="fill_parent" android:layout_height="@dimen/dimen_0.5dip" android:layout_below="@id/tv_area" />
+</RelativeLayout>

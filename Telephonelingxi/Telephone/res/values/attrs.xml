@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="commont_text_length">
+        <flag name="common_text_length_title" value="0x0000000a" />
+        <flag name="common_text_length_content" value="0x0000000c" />
+    </attr>
+    <attr name="pstsIndicatorColor" format="color" />
+    <attr name="pstsUnderlineColor" format="color" />
+    <attr name="pstsDividerColor" format="color" />
+    <attr name="pstsIndicatorHeight" format="dimension" />
+    <attr name="pstsUnderlineHeight" format="dimension" />
+    <attr name="pstsDividerPadding" format="dimension" />
+    <attr name="pstsTabPaddingLeftRight" format="dimension" />
+    <attr name="pstsScrollOffset" format="dimension" />
+    <attr name="pstsTabBackground" format="reference" />
+    <attr name="pstsShouldExpand" format="boolean" />
+    <attr name="pstsTextAllCaps" format="boolean" />
+    <attr name="right_width" format="dimension" />
+    <attr name="name" format="string" />
+    <attr name="icon_t" format="reference" />
+    <attr name="city_name" format="string" />
+    <attr name="type">
+        <enum name="circles" value="0" />
+        <enum name="water_drop" value="1" />
+        <enum name="ring" value="2" />
+    </attr>
+    <attr name="colors" format="reference" />
+    <attr name="corner_radius" format="dimension" />
+    <attr name="border_width" format="dimension" />
+    <attr name="border_color" format="color" />
+    <attr name="mutate_background" format="boolean" />
+    <attr name="oval" format="boolean" />
+    <attr name="cpv_progress" format="float" />
+    <attr name="cpv_maxProgress" format="float" />
+    <attr name="cpv_animDuration" format="integer" />
+    <attr name="cpv_animSwoopDuration" format="integer" />
+    <attr name="cpv_animSyncDuration" format="integer" />
+    <attr name="cpv_color" format="color" />
+    <attr name="cpv_thickness" format="dimension" />
+    <attr name="cpv_indeterminate" format="boolean" />
+    <attr name="cpv_animAutostart" format="boolean" />
+    <attr name="cpv_animSteps" format="integer" />
+    <attr name="fab_colorPressed" format="color" />
+    <attr name="fab_colorNormal" format="color" />
+    <attr name="fab_icon" format="reference" />
+    <attr name="fab_size">
+        <enum name="normal" value="0" />
+        <enum name="mini" value="1" />
+    </attr>
+    <attr name="fab_title" format="string" />
+    <attr name="fab_stroke_visible" format="boolean" />
+    <attr name="fab_plusIconColor" format="color" />
+    <attr name="fab_addButtonColorPressed" format="color" />
+    <attr name="fab_addButtonColorNormal" format="color" />
+    <attr name="fab_addButtonPlusIconColor" format="color" />
+    <attr name="fab_addButtonStrokeVisible" format="boolean" />
+    <attr name="fab_labelStyle" format="reference" />
+    <attr name="fab_expandDirection">
+        <enum name="up" value="0" />
+        <enum name="down" value="1" />
+        <enum name="left" value="2" />
+        <enum name="right" value="3" />
+    </attr>
+    <attr name="borderWidth" format="dimension" />
+    <attr name="offBorderColor" format="reference|color" />
+    <attr name="offColor" format="reference|color" />
+    <attr name="onColor" format="reference|color" />
+    <attr name="spotColor" format="reference|color" />
+    <attr name="animate" format="reference|boolean" />
+    <attr name="vpiCirclePageIndicatorStyle" format="reference" />
+    <attr name="vpiIconPageIndicatorStyle" format="reference" />
+    <attr name="vpiLinePageIndicatorStyle" format="reference" />
+    <attr name="vpiTitlePageIndicatorStyle" format="reference" />
+    <attr name="vpiTabPageIndicatorStyle" format="reference" />
+    <attr name="vpiUnderlinePageIndicatorStyle" format="reference" />
+    <attr name="centered" format="boolean" />
+    <attr name="selectedColor" format="color" />
+    <attr name="strokeWidth" format="dimension" />
+    <attr name="unselectedColor" format="color" />
+    <attr name="fillColor" format="color" />
+    <attr name="pageColor" format="color" />
+    <attr name="radius" format="dimension" />
+    <attr name="snap" format="boolean" />
+    <attr name="strokeColor" format="color" />
+    <attr name="lineWidth" format="dimension" />
+    <attr name="gapWidth" format="dimension" />
+    <attr name="clipPadding" format="dimension" />
+    <attr name="footerColor" format="color" />
+    <attr name="footerLineHeight" format="dimension" />
+    <attr name="footerIndicatorStyle">
+        <enum name="none" value="0" />
+        <enum name="triangle" value="1" />
+        <enum name="underline" value="2" />
+    </attr>
+    <attr name="footerIndicatorHeight" format="dimension" />
+    <attr name="footerIndicatorUnderlinePadding" format="dimension" />
+    <attr name="footerPadding" format="dimension" />
+    <attr name="linePosition">
+        <enum name="bottom" value="0" />
+        <enum name="top" value="1" />
+    </attr>
+    <attr name="selectedBold" format="boolean" />
+    <attr name="titlePadding" format="dimension" />
+    <attr name="topPadding" format="dimension" />
+    <attr name="fades" format="boolean" />
+    <attr name="fadeDelay" format="integer" />
+    <attr name="fadeLength" format="integer" />
+</resources>

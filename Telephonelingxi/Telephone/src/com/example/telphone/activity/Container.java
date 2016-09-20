@@ -76,12 +76,12 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	//-----------------UI------------------------
 	
 	private ViewPager viewPager;
-	private ImageButton im_call;
-	private ImageButton im_record;
-	private ImageButton im_contacts;
-	private ImageButton im_meun;
+	private TextView im_call;
+	private TextView im_record;
+	private TextView im_contacts;
+	private TextView im_meun;
 	
-	private LinearLayout ll_c_bottom;
+//	private LinearLayout ll_c_bottom;
 	
 	//page call
 	private LinearLayout ll_numPad;
@@ -100,11 +100,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private ImageButton num_x;
 	
 	//page call bottom
-	private RelativeLayout ll_call_pad;
-	private ImageView iv_del;
-	private ImageView iv_call;
-	private ImageView iv_hideKb;
-	
+	private RelativeLayout ll_call_pad;	
 	
 	//page records
 	private ListView lv_records;
@@ -190,19 +186,16 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 		this.tv_title.setText(R.string.company_name);
 		this.setLinearView(R.layout.container);
-		im_call = (ImageButton)findViewById(R.id.ib_c_call);
-		im_record = (ImageButton)findViewById(R.id.ib_c_record);
-		im_contacts = (ImageButton)findViewById(R.id.ib_c_contacts);
-		im_meun = (ImageButton)findViewById(R.id.ib_c_menu);
-		ll_call_pad = (RelativeLayout)findViewById(R.id.ll_call_pad);
+		im_call = (TextView)findViewById(R.id.tv_dial);
+		im_record = (TextView)findViewById(R.id.tv_contact);
+		im_contacts = (TextView)findViewById(R.id.tv_recmd);
+		im_meun = (TextView)findViewById(R.id.tv_account);
+//		ll_call_pad = (RelativeLayout)findViewById(R.id.ll_call_pad);
 		im_call.setOnClickListener(this);
 		this.im_contacts.setOnClickListener(this);
 		this.im_record.setOnClickListener(this);
 		this.im_meun.setOnClickListener(this);
 
-				
-		
-		ll_c_bottom = (LinearLayout)findViewById(R.id.ll_c_bottom);
 
 		viewPager = (ViewPager)findViewById(R.id.vp_c_pager);
 		
@@ -223,7 +216,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		viewPager.setOnPageChangeListener(this);
 		
 		String ts = this.getString(R.string.company_name);
-		setCurrentPager(0,ts,R.drawable.call_press,im_call);
+		setCurrentPager(0,ts,R.drawable.call_press);
 		
 
 		recordsList = Utils.getContacts(this);
@@ -421,17 +414,9 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 				tv_title.setText(tag);
 
 				//hidekeyboard  tel  delnumber three imageViews on the bottom(default gone)				
-				iv_hideKb =(ImageView)findViewById(R.id.iv_cb_keyboard);
-				iv_call = (ImageView) findViewById(R.id.iv_cb_call);
-				iv_del = (ImageView)findViewById(R.id.iv_cb_del);
-				
-				
-				ll_c_bottom.setVisibility(View.GONE);
-				ll_call_pad.setVisibility(View.VISIBLE);
-				CallBottomListener listener = new CallBottomListener(Container.this,tv_title,ll_c_bottom,ll_call_pad,ll_numPad);
-				iv_hideKb.setOnClickListener(listener);
-				iv_call.setOnClickListener(listener);
-				iv_del.setOnClickListener(listener);
+
+//				ll_call_pad.setVisibility(View.VISIBLE);
+
 			}
 			else
 			{
@@ -762,40 +747,40 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	}
 	
 	
-	private void setCurrentPager(int num,String title,int picId,ImageButton btn)
+	private void setCurrentPager(int num,String title,int picId)
 	{
-		this.im_call.setImageResource(R.drawable.call);
-		this.im_contacts.setImageResource(R.drawable.contact);
-		this.im_record.setImageResource(R.drawable.record);
-		this.im_meun.setImageResource(R.drawable.menu);
+//		this.im_call.setBackgroundResource(R.drawable.call);
+//		this.im_contacts.setBackgroundResource(R.drawable.contact);
+//		this.im_record.setBackgroundResource(R.drawable.record);
+//		this.im_meun.setBackgroundResource(R.drawable.menu);
 		
 		tv_title.setText(title);
 		viewPager.setCurrentItem(num);
 		
-		btn.setImageResource(picId);
+//		btn.setImageResource(picId);
 	}
 
 	@Override
 	public void onClick(View arg0) {
 		switch(arg0.getId())
 		{
-		case R.id.ib_c_call:
+		case R.id.tv_dial:
 			super.showTitle();
 			String s = this.getString(R.string.company_name);
-			setCurrentPager(0,s,R.drawable.call_press,im_call);
+			setCurrentPager(0,s,R.drawable.call_press);
 			break;
 		
-		case R.id.ib_c_record:
+		case R.id.tv_contact:
 			super.showTitle();
-			setCurrentPager(1,"通话记录",R.drawable.record_press,im_record);
+			setCurrentPager(1,"通话记录",R.drawable.record_press);
 			break;
-		case R.id.ib_c_contacts:
+		case R.id.tv_recmd:
 			super.showTitle();
-			setCurrentPager(2,"通讯录",R.drawable.contact_press,im_contacts);
+			setCurrentPager(2,"通讯录",R.drawable.contact_press);
 			break;
-		case R.id.ib_c_menu:
+		case R.id.tv_account:
 			super.hideTitle();
-			setCurrentPager(3,"",R.drawable.menu_press,im_meun);
+			setCurrentPager(3,"",R.drawable.menu_press);
 			break;
 			default:
 				break;
@@ -875,19 +860,19 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		case 0:
 			super.showTitle();
 			String s = this.getString(R.string.company_name);
-			setCurrentPager(0,s,R.drawable.call_press,im_call);
+			setCurrentPager(0,s,R.drawable.call_press);
 			break;
 		case 1:
 			super.showTitle();
-			setCurrentPager(1,"通话记录",R.drawable.record_press,im_record);
+			setCurrentPager(1,"通话记录",R.drawable.record_press);
 			break;
 		case 2:
 			super.showTitle();
-			setCurrentPager(2,"通讯录",R.drawable.contact_press,im_contacts);
+			setCurrentPager(2,"通讯录",R.drawable.contact_press);
 			break;
 		case 3:
 			super.hideTitle();
-			setCurrentPager(3,"",R.drawable.menu_press,im_meun);
+			setCurrentPager(3,"",R.drawable.menu_press);
 			break;
 		default:
 			break;

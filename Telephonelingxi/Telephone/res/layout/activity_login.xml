@@ -54,7 +54,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:hint="@string/reg_pwd"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:maxLength="15"
             android:singleLine="true"
             android:textColor="@drawable/sl_color_facus_w"
@@ -86,7 +86,7 @@
                 android:text="@string/find_pwd"
                 android:textColor="@color/red"
                 android:textSize="@dimen/textsize14"
-                android:visibility="visible" />
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@id/tv_help"

@@ -102,10 +102,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	//page call bottom
 	private RelativeLayout ll_call_pad;	
 	
-	//page records
-	private ListView lv_records;
-	
-	
 	private List<View> views ;
 	
 	//contacts page
@@ -204,11 +200,12 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		View telView = inflater.inflate(R.layout.tel, null);		
 		views.add(telView);	
 		initTelView(telView);
-		View recordsView = inflater.inflate(R.layout.records, null);
-		views.add(recordsView);		
+		
 		View contactsView = inflater.inflate(R.layout.activity_add_friends, null);
 		views.add(contactsView);
 		initContactsView(contactsView);
+		View recommendview = inflater.inflate(R.layout.fragment_recommend, null);
+		views.add(recommendview);		
 		View menuView = inflater.inflate(R.layout.menu, null);
 		views.add(menuView);
 		initMenuview(menuView);
@@ -220,11 +217,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 
 		recordsList = Utils.getContacts(this);
-		lv_records = (ListView)recordsView.findViewById(R.id.lv_r_records);
-		RecordAdapter lv_adapter = new RecordAdapter(this,recordsList);
-		lv_records.setAdapter(lv_adapter);
-		
-		
 		
 	}
 	

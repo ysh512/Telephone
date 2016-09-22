@@ -1,6 +1,5 @@
 package com.example.telphone.activity;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
@@ -9,6 +8,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -23,13 +24,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.telphone.Constants;
 import com.example.telphone.R;
 import com.example.telphone.TelApplication;
 import com.example.telphone.tool.Variable;
 
 public class Login extends BaseActivity implements OnClickListener{
 	
-	private static final String TAG= "Login";
+	private static final String TAG= Login.class.getSimpleName();
 	
 	//---------------------UI-----------------------
 	
@@ -39,15 +41,14 @@ public class Login extends BaseActivity implements OnClickListener{
 	private TextView tv_find;
 	
 	private EditText et_login_phone;
+	private EditText et_login_pwd;
 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
-		
-		
+				
 		initView();
 		
 		TelApplication.add(this);
@@ -60,7 +61,8 @@ public class Login extends BaseActivity implements OnClickListener{
 		tv_find=(TextView)findViewById(R.id.tv_find);
 		
 		et_login_phone = (EditText)findViewById(R.id.et_login_phone);
-
+		et_login_pwd = (EditText)findViewById(R.id.et_login_pwd);
+		
 		tv_find.setOnClickListener(this);
 		btn_register.setOnClickListener(this);
 		btn_login.setOnClickListener(this);
@@ -90,7 +92,7 @@ public class Login extends BaseActivity implements OnClickListener{
 		}
 	}
 	
-	class LoginTask extends AsyncTask<Integer, Integer, String>
+	class LoginTask extends AsyncTask<Void, Void, Boolean>
 	{
 		boolean login = false;
 		
@@ -104,40 +106,23 @@ public class Login extends BaseActivity implements OnClickListener{
 		}
 
 		@Override
-		protected String doInBackground(Integer... params) {
+		protected Boolean doInBackground(Void...params) {
 			
-			HttpClient client = new DefaultHttpClient();  
-	        HttpGet get = new HttpGet("http://121.40.100.250:99/CallReqRet.php?UserID="+et_login_phone.getText().toString()+"&CallTo=auth");  
-	        HttpResponse response= null;
-			try {
-				response = client.execute(get);
-				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-					login = true;
-					String result = EntityUtils.toString(response.getEntity());
-
-					Log.d(TAG, result);
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	         
-			
-			
-			return null;
+			return refreshLogin();
 		}
+
 		
-		protected void onPostExecute(String result) 
+		protected void onPostExecute(Boolean result) 
 		{
+			Log.d(TAG, "[onPostExecute] result:"+result);
 			dialog.dismiss();
-			if(login)
+			if(result)
 			{
 				Intent it = new Intent(Login.this,Container.class);
 				startActivity(it);
 				SharedPreferences mySharedPreferences= getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE); 
 				SharedPreferences.Editor editor = mySharedPreferences.edit(); 
 				editor.putString("login", "true"); 
-//				editor.putString("phone", et_account.getText().toString()); 
 				editor.commit(); 
 				finish();
 
@@ -168,6 +153,50 @@ public class Login extends BaseActivity implements OnClickListener{
 		this.finish();
 	}
 	
-	
+	private Boolean refreshLogin() {
+		HttpClient client = new DefaultHttpClient();  
+		String url = String.format(Constants.LOGIN_URL,et_login_phone.getText().toString(),et_login_pwd.getText().toString() );
+        
+		Log.d(TAG, "[doInBackground] login url:"+url);
+		HttpGet get = new HttpGet(url);  
+        HttpResponse response= null;
+		try {
+			response = client.execute(get);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				String result = EntityUtils.toString(response.getEntity());
+				
+				try {
+					JSONObject object = new JSONObject(result);
+					
+					int id = object.getInt("id");
+					if(0==id)
+					{
+						return false;
+					}else
+					{
+						String upper = object.getString("upper");
+						String chengjiu = object.getString("chengjiu");
+						chengjiu = chengjiu.replace("[", "").replace("]","");
+						String chengjius[]=chengjiu.split(",");
+						
+						String chongzhi = object.getString("chongzhi");
+						chongzhi = chongzhi.replace("[", "").replace("]", "");
+						String chongzhis[]=chongzhi.split(",");
+						
+						return true;
+					}
+					
+				} catch (JSONException e) {
+					e.printStackTrace();
+					return false;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+         
+		return false;
+	}
 	
 }

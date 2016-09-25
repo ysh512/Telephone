@@ -1,24 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@color/layout_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/layout_bg" >
+
     <include layout="@layout/include_activity_title" />
-    <ScrollView android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/view_title">
-        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
-            <RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:id="@id/tt" android:paddingLeft="16.0dip" android:paddingTop="16.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="充值账号　" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" />
-                <EditText android:textSize="@dimen/textsize16" android:textColor="@color/text3_color" android:gravity="bottom" android:id="@id/et_account" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:ems="10" android:maxLength="15" android:layout_toRightOf="@id/tt" android:layout_alignTop="@id/tt" android:layout_alignBottom="@id/tt" android:inputType="number" />
-                <TextView android:textSize="@dimen/textsize14" android:textColor="@color/text6_color" android:id="@id/tty" android:paddingLeft="16.0dip" android:paddingTop="10.0dip" android:paddingRight="16.0dip" android:paddingBottom="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/charge_pro" android:layout_below="@id/tt" />
-                <ImageView android:id="@id/tv_tips" android:paddingLeft="6.0dip" android:paddingTop="10.0dip" android:paddingRight="16.0dip" android:paddingBottom="4.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_help" android:layout_alignParentRight="true" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/view_title"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@id/tt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:paddingLeft="16.0dip"
+                    android:paddingTop="16.0dip"
+                    android:text="充值账号　"
+                    android:textColor="@color/text6_color"
+                    android:textSize="@dimen/textsize16" />
+
+                <EditText
+                    android:id="@id/et_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tt"
+                    android:layout_alignTop="@id/tt"
+                    android:layout_toRightOf="@id/tt"
+                    android:background="@null"
+                    android:paddingTop="16.0dip"
+                    android:ems="10"
+                    android:gravity="bottom"
+                    android:inputType="number"
+                    android:maxLength="15"
+                    android:textColor="@color/text3_color"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@id/tty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tt"
+                    android:paddingBottom="10.0dip"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingTop="10.0dip"
+                    android:text="@string/charge_pro"
+                    android:textColor="@color/text6_color"
+                    android:textSize="@dimen/textsize14" />
+
+                <ImageView
+                    android:id="@id/tv_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingBottom="4.0dip"
+                    android:paddingLeft="6.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingTop="10.0dip"
+                    android:src="@drawable/ic_help"
+                    android:visibility="invisible" />
             </RelativeLayout>
-            <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="-6.0dip" android:src="@drawable/recharge_lv" />
-            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_height">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-6.0dip"
+                android:src="@drawable/recharge_lv" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_height"
+                android:orientation="vertical" >
+
                 <View style="@style/line_h" />
-                <LinearLayout android:orientation="vertical" android:id="@id/llyt_meal" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text7_color" android:gravity="center" android:id="@id/tv_mealfail" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/mealfail" />
+
+                <LinearLayout
+                    android:id="@id/llyt_meal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical" >
+                    
+                    <TextView
+                        android:id="@+id/tv_charge_100"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/charge_amount_100"
+                        android:paddingLeft="16.0dip"
+                    	android:paddingTop="16.0dip"
+                    	android:textColor="@color/text6_color"
+                        ></TextView>
+                    
+                    <TextView
+                        android:id="@+id/tv_charge_200"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16.0dip"
+                    	android:paddingTop="16.0dip"
+                        android:text="@string/charge_amount_200"
+                        android:textColor="@color/text6_color"
+                        ></TextView>
+                    
+                    <TextView
+                        android:id="@+id/tv_charge_400"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16.0dip"
+                    	android:paddingTop="16.0dip"
+                        android:text="@string/charge_amount_400"
+                        android:textColor="@color/text6_color"
+                        ></TextView>
+                    
                 </LinearLayout>
+
                 <View style="@style/line_h" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <com.zqcall.mobile.view.TipView android:id="@id/tip_recharge2" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
 </RelativeLayout>

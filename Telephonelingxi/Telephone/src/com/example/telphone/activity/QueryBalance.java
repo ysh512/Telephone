@@ -62,10 +62,9 @@ public class QueryBalance extends BaseActivity{
 			SharedPreferences sp = QueryBalance.this.getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE);
 			
 			String phone = sp.getString("phone", "");
-			HttpGet get = new HttpGet("http://121.40.100.250:99/CallReqRet.php?UserID="
+			HttpGet get = new HttpGet("http://60.205.168.68:88/CallReqRet.php?UserID="
 					+phone+"&CallTo=balance&Wap=json");  
 			HttpResponse response = null;
-			BufferedReader in = null;
 			try {
 				response = client.execute(get);
 				String result = EntityUtils.toString(response.getEntity());
@@ -92,13 +91,13 @@ public class QueryBalance extends BaseActivity{
 			  }
 			  if(!query)
 			  {
-				  Toast.makeText(QueryBalance.this, "²éÑ¯Ê§°Ü£¬Çë¼ì²éÍøÂçºóÖØÊÔ", 5).show();
+				  Toast.makeText(QueryBalance.this, "æŸ¥è¯¢å¤±è´¥ï¼Œè¯·ç¨å€™é‡è¯•",Toast.LENGTH_SHORT).show();
 			  }
 			  
 		}
 
 		protected void onPreExecute() {
-			dialog = ProgressDialog.show(QueryBalance.this, "Óà¶î²éÑ¯", "ÕıÔÚ²éÑ¯,ÇëÉÔºò");
+			dialog = ProgressDialog.show(QueryBalance.this, "ï¿½ï¿½ï¿½ï¿½Ñ¯", "ï¿½ï¿½ï¿½Ú²ï¿½Ñ¯,ï¿½ï¿½ï¿½Ôºï¿½");
 			
 			
 		}

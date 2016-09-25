@@ -47,7 +47,8 @@
                     android:padding="@dimen/dimen_15dip"
                     android:text="@string/rcmd_achievement_detail"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/textsize16" />
+                    android:textSize="@dimen/textsize16" 
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@id/tv_rcmd_achievement"
@@ -166,7 +167,8 @@
                     android:layout_height="20.0dip"
                     android:layout_marginTop="12.0dip"
                     android:layout_toLeftOf="@id/tv_rcmd_share"
-                    android:background="@color/red" />
+                    android:background="@color/red"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@id/tv_rcmd_share"
@@ -180,7 +182,8 @@
                     android:paddingTop="@dimen/dimen_10dip"
                     android:text="@string/rcmd_share_url"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/textsize16" />
+                    android:textSize="@dimen/textsize16"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@id/tv_rcmd_url"

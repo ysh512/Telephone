@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">帝讯通</string>
+    <string name="app_name">帝迅通</string>
     
-    <string name="company_name">帝讯通</string>
+    <string name="company_name">帝迅通</string>
     
     <string name="gd_1">充值</string>
     <string name="gd_2">公司主页</string>
@@ -619,6 +619,10 @@ Copyright 全民赚©2013-2020"</string>
     <string name="act_pwd_set">修改密码</string>
     <string name="superior_start">★</string>
     <string name="superior">我的上级</string>
+    
+    <string name="charge_amount_100">充100到帐500元话费</string>
+    <string name="charge_amount_200">充200到帐1000元话费</string>
+    <string name="charge_amount_400">充400到帐2000元话费</string>
     
     
 </resources>

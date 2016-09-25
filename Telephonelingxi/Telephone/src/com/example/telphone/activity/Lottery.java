@@ -58,7 +58,7 @@ public class Lottery extends Activity{
 
 	private class WebViewClientDemo extends WebViewClient {
 	    @Override
-	    // ÔÚWebViewÖÐ¶ø²»ÊÇÄ¬ÈÏä¯ÀÀÆ÷ÖÐÏÔÊ¾Ò³Ãæ
+	    // ï¿½ï¿½WebViewï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ò³ï¿½ï¿½
 	    public boolean shouldOverrideUrlLoading(WebView view, String url) {
 	        view.loadUrl(url);
 	        return true;
@@ -76,7 +76,7 @@ public class Lottery extends Activity{
 			SharedPreferences sp = Lottery.this.getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE);
 			
 			String phone = sp.getString("phone", "");
-			HttpGet get = new HttpGet("http://121.40.100.250:99/CallReqRet.php?UserID="
+			HttpGet get = new HttpGet("http://60.205.168.68:88/CallReqRet.php?UserID="
 					+phone+"&CallTo=choujiang&Wap=json");  
 	        HttpResponse response= null;
 	        BufferedReader in = null;  

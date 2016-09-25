@@ -54,7 +54,7 @@ public class QueryInfo implements Runnable{
 		sp = context.getSharedPreferences(Variable.SHARE_PRE_NAME,
 				Activity.MODE_PRIVATE);
 		
-		String ad_pic_url = "http://121.40.100.250:99/CallReqRet.php?UserID="
+		String ad_pic_url = "http://60.205.168.68:88/CallReqRet.php?UserID="
 				+ phone + "&CallTo=dialpan&Wap=json";
 
 		String result = getQueryResult(ad_pic_url);
@@ -80,7 +80,7 @@ public class QueryInfo implements Runnable{
 			JSONObject jo = (JSONObject) json.nextValue();
 			int i = 0;
 
-			// ad10-ad19 tel pad ad picture£»
+			// ad10-ad19 tel pad ad pictureï¿½ï¿½
 			while (jo.has(String.valueOf(i))) {
 				JSONObject sub = (JSONObject) jo.get(String.valueOf(i));
 				String imageUrl = sub.getString("imgurl");
@@ -134,7 +134,7 @@ public class QueryInfo implements Runnable{
 	
 	private void updateMenuAdPic() {
 
-		String picUrl = "http://121.40.100.250:99/CallReqRet.php?UserID"+phone+"&CallTo=more&Wap=json";
+		String picUrl = "http://60.205.168.68:88/CallReqRet.php?UserID"+phone+"&CallTo=more&Wap=json";
 		String result = getQueryResult(picUrl);
 		
 		
@@ -187,7 +187,7 @@ public class QueryInfo implements Runnable{
 
 	private void updateCallingAdPic() {
 
-		String picUrl = "http://121.40.100.250:99/CallReqRet.php?UserID="+phone+"&CallTo=dialadv&Wap=json";
+		String picUrl = "http://60.205.168.68:88/CallReqRet.php?UserID="+phone+"&CallTo=dialadv&Wap=json";
 		String result = getQueryResult(picUrl);
 		
 		
@@ -224,7 +224,7 @@ public class QueryInfo implements Runnable{
 //			
 //		}
 		//http://121.40.100.250:99/CallReqRet.php?UserID=13262878009&CallTo=marquee&Wap=json
-		String queryUrl = "http://121.40.100.250:99/CallReqRet.php?UserID="+phone+"&CallTo=marquee&Wap=json";
+		String queryUrl = "http://60.205.168.68:88/CallReqRet.php?UserID="+phone+"&CallTo=marquee&Wap=json";
 		String result = getQueryResult(queryUrl);
 		if(null!=result)
 		{

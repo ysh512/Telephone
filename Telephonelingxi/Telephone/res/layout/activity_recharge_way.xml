@@ -1,56 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@color/layout_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/layout_bg" >
+
     <include layout="@layout/include_activity_title" />
-    <ScrollView android:scrollbars="none" android:fadingEdge="none" android:fadingEdgeLength="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/view_title">
-        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
-            <LinearLayout android:orientation="vertical" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
-                    <TextView android:textSize="@dimen/textsize14" android:textColor="@color/text6_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="充值账号　" />
-                    <TextView android:textSize="@dimen/textsize14" android:textColor="@color/text6_color" android:id="@id/tv_account" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_title"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0.0dip"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="10.0dip"
+                android:paddingLeft="15.0dip"
+                android:paddingTop="10.0dip" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="充值账号　"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize14" />
+
+                    <TextView
+                        android:id="@id/tv_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize14" />
                 </LinearLayout>
-                <TextView android:textSize="@dimen/textsize14" android:textColor="@color/text6_color" android:id="@id/tv_rctype" android:paddingTop="4.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+
+                <TextView
+                    android:id="@id/tv_rctype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4.0dip"
+                    android:text=""
+                    android:textColor="@color/text6_color"
+                    android:textSize="@dimen/textsize14" />
             </LinearLayout>
-            <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="-6.0dip" android:src="@drawable/recharge_lv" />
-            <View android:layout_marginTop="@dimen/margin_height" style="@style/line_h" />
-            <LinearLayout android:orientation="vertical" android:id="@id/tip_goal" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <RelativeLayout android:id="@id/rlyt_deyx" android:background="@drawable/sl_bg_title" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <ImageView android:id="@id/iv1" android:padding="15.0dip" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@drawable/ic_logo_dialog" />
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:id="@id/tv1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/card_deyx" android:layout_toRightOf="@id/iv1" android:layout_centerVertical="true" />
-                    <View android:id="@id/line1" android:layout_below="@id/iv1" android:layout_alignLeft="@id/tv1" style="@style/line_h" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-6.0dip"
+                android:src="@drawable/recharge_lv" />
+
+            <View
+                style="@style/line_h"
+                android:layout_marginTop="@dimen/margin_height" />
+
+            <LinearLayout
+                android:id="@id/tip_goal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@id/rlyt_deyx"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_title" >
+
+                    <ImageView
+                        android:id="@id/iv1"
+                        android:layout_width="55.0dip"
+                        android:layout_height="55.0dip"
+                        android:padding="15.0dip"
+                        android:src="@drawable/ic_logo_dialog" />
+
+                    <TextView
+                        android:id="@id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv1"
+                        android:text="@string/card_deyx"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize16" />
+
+                    <View
+                        android:id="@id/line1"
+                        style="@style/line_h"
+                        android:layout_alignLeft="@id/tv1"
+                        android:layout_below="@id/iv1" />
                 </RelativeLayout>
-                <RelativeLayout android:id="@id/rlyt_cmcc" android:background="@drawable/sl_bg_title" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <ImageView android:id="@id/iv2" android:padding="15.0dip" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@drawable/ic_yidong" />
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:id="@id/tv2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/card_cmcc" android:layout_toRightOf="@id/iv2" android:layout_centerVertical="true" />
-                    <View android:id="@id/line2" android:layout_below="@id/iv2" android:layout_alignLeft="@id/tv2" style="@style/line_h" />
+
+                <RelativeLayout
+                    android:id="@id/rlyt_cmcc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_title"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@id/iv2"
+                        android:layout_width="55.0dip"
+                        android:layout_height="55.0dip"
+                        android:padding="15.0dip"
+                        android:src="@drawable/ic_yidong" />
+
+                    <TextView
+                        android:id="@id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv2"
+                        android:text="@string/card_cmcc"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize16" />
+
+                    <View
+                        android:id="@id/line2"
+                        style="@style/line_h"
+                        android:layout_alignLeft="@id/tv2"
+                        android:layout_below="@id/iv2" />
                 </RelativeLayout>
-                <RelativeLayout android:id="@id/rlyt_unicom" android:background="@drawable/sl_bg_title" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <ImageView android:id="@id/iv3" android:padding="15.0dip" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@drawable/ic_union" />
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:id="@id/tv3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/card_unicom" android:layout_toRightOf="@id/iv3" android:layout_centerVertical="true" />
-                    <View android:id="@id/line3" android:layout_below="@id/iv3" android:layout_alignLeft="@id/tv3" style="@style/line_h" />
+
+                <RelativeLayout
+                    android:id="@id/rlyt_unicom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_title"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@id/iv3"
+                        android:layout_width="55.0dip"
+                        android:layout_height="55.0dip"
+                        android:padding="15.0dip"
+                        android:src="@drawable/ic_union" />
+
+                    <TextView
+                        android:id="@id/tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv3"
+                        android:text="@string/card_unicom"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize16" />
+
+                    <View
+                        android:id="@id/line3"
+                        style="@style/line_h"
+                        android:layout_alignLeft="@id/tv3"
+                        android:layout_below="@id/iv3" />
                 </RelativeLayout>
-                <RelativeLayout android:id="@id/rlyt_alipay" android:background="@drawable/sl_bg_title" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <ImageView android:id="@id/iv4" android:padding="15.0dip" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@drawable/ic_alipay" />
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:id="@id/tv4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="支付宝充值" android:layout_toRightOf="@id/iv4" android:layout_centerVertical="true" />
-                    <View android:id="@id/line4" android:layout_below="@id/iv4" android:layout_alignLeft="@id/tv4" style="@style/line_h" />
+
+                <RelativeLayout
+                    android:id="@id/rlyt_alipay"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_title" >
+
+                    <ImageView
+                        android:id="@id/iv4"
+                        android:layout_width="55.0dip"
+                        android:layout_height="55.0dip"
+                        android:padding="15.0dip"
+                        android:src="@drawable/ic_alipay" />
+
+                    <TextView
+                        android:id="@id/tv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv4"
+                        android:text="支付宝充值"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize16" />
+
+                    <View
+                        android:id="@id/line4"
+                        style="@style/line_h"
+                        android:layout_alignLeft="@id/tv4"
+                        android:layout_below="@id/iv4" />
                 </RelativeLayout>
-                <RelativeLayout android:id="@id/rlyt_weixin" android:background="@drawable/sl_bg_title" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <ImageView android:id="@id/iv7" android:padding="15.0dip" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@drawable/ic_weixin" />
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:gravity="center_vertical" android:id="@id/tv7" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="微信充值" android:drawableRight="@drawable/ic_recom" android:layout_toRightOf="@id/iv7" android:layout_centerVertical="true" />
-                    <View android:id="@id/line7" android:layout_below="@id/iv7" android:layout_alignLeft="@id/tv7" style="@style/line_h" />
+
+                <RelativeLayout
+                    android:id="@id/rlyt_weixin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_title" 
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@id/iv7"
+                        android:layout_width="55.0dip"
+                        android:layout_height="55.0dip"
+                        android:padding="15.0dip"
+                        android:src="@drawable/ic_weixin" />
+
+                    <TextView
+                        android:id="@id/tv7"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv7"
+                        android:drawableRight="@drawable/ic_recom"
+                        android:gravity="center_vertical"
+                        android:paddingRight="15.0dip"
+                        android:text="微信充值"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize16" />
+
+                    <View
+                        android:id="@id/line7"
+                        style="@style/line_h"
+                        android:layout_alignLeft="@id/tv7"
+                        android:layout_below="@id/iv7" />
                 </RelativeLayout>
-                <RelativeLayout android:id="@id/rlyt_union" android:background="@drawable/sl_bg_title" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <ImageView android:id="@id/iv5" android:padding="15.0dip" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@drawable/ic_unicom" />
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:gravity="center_vertical" android:id="@id/tv5" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="银行卡充值" android:drawableRight="@drawable/ic_recom" android:layout_toRightOf="@id/iv5" android:layout_centerVertical="true" />
-                    <View android:id="@id/line5" android:layout_below="@id/iv5" android:layout_alignLeft="@id/tv5" style="@style/line_h" />
+
+                <RelativeLayout
+                    android:id="@id/rlyt_union"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_title"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@id/iv5"
+                        android:layout_width="55.0dip"
+                        android:layout_height="55.0dip"
+                        android:padding="15.0dip"
+                        android:src="@drawable/ic_unicom" />
+
+                    <TextView
+                        android:id="@id/tv5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv5"
+                        android:drawableRight="@drawable/ic_recom"
+                        android:gravity="center_vertical"
+                        android:paddingRight="15.0dip"
+                        android:text="银行卡充值"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize16" />
+
+                    <View
+                        android:id="@id/line5"
+                        style="@style/line_h"
+                        android:layout_alignLeft="@id/tv5"
+                        android:layout_below="@id/iv5" />
                 </RelativeLayout>
-                <RelativeLayout android:id="@id/rlyt_belive" android:background="@drawable/sl_bg_title" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <ImageView android:id="@id/iv6" android:padding="15.0dip" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@drawable/ic_belive" />
-                    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/text6_color" android:gravity="center_vertical" android:id="@id/tv6" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="信用卡充值" android:drawableRight="@drawable/ic_recom" android:layout_toRightOf="@id/iv6" android:layout_centerVertical="true" />
+
+                <RelativeLayout
+                    android:id="@id/rlyt_belive"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_title"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@id/iv6"
+                        android:layout_width="55.0dip"
+                        android:layout_height="55.0dip"
+                        android:padding="15.0dip"
+                        android:src="@drawable/ic_belive" />
+
+                    <TextView
+                        android:id="@id/tv6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv6"
+                        android:drawableRight="@drawable/ic_recom"
+                        android:gravity="center_vertical"
+                        android:paddingRight="15.0dip"
+                        android:text="信用卡充值"
+                        android:textColor="@color/text6_color"
+                        android:textSize="@dimen/textsize16" />
                 </RelativeLayout>
+
                 <View style="@style/line_h" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <com.zqcall.mobile.view.TipView android:id="@id/tip_recharge3" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
 </RelativeLayout>

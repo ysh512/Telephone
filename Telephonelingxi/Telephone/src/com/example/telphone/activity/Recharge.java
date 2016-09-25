@@ -51,7 +51,7 @@ public class Recharge extends BaseActivity implements OnClickListener{
 
 	private void initView() {
 		this.setLinearView(R.layout.recharge);
-		tv_title.setText("¹Ù·½³äÖµ¿¨");
+		tv_title.setText("ï¿½Ù·ï¿½ï¿½ï¿½Öµï¿½ï¿½");
 		
 		btn_recharge = (Button)findViewById(R.id.btn_r_charge);
 		et_phone = (EditText)findViewById(R.id.et_telnumber);
@@ -88,7 +88,7 @@ public class Recharge extends BaseActivity implements OnClickListener{
 			if(ready)
 			{
 				HttpClient client = new DefaultHttpClient();  
-		        HttpGet get = new HttpGet("http://121.40.100.250:99/CallReqRet.php?UserID="
+		        HttpGet get = new HttpGet("http://60.205.168.68:88/CallReqRet.php?UserID="
 				+et_phone.getText().toString()+"&CallTo=regdeal&Cardpwd="+et_pass.getText().toString()+"&Wap=json");  
 		        HttpResponse response= null;
 				BufferedReader in = null;
@@ -119,23 +119,23 @@ public class Recharge extends BaseActivity implements OnClickListener{
 			dialog.dismiss();
 			if(charge)
 			{
-				Toast.makeText(Recharge.this, "³äÖµ³É¹¦", 5).show();
+				Toast.makeText(Recharge.this, "ï¿½ï¿½Öµï¿½É¹ï¿½", 5).show();
 			}
 			else
 			{
-				Toast.makeText(Recharge.this, "³äÖµÊ§°Ü", 5).show();
+				Toast.makeText(Recharge.this, "ï¿½ï¿½ÖµÊ§ï¿½ï¿½", 5).show();
 			}
 		}
 		protected void onPreExecute() {  
 			if(et_phone.getText()==null || et_card.getText()==null)
 			{
-				Toast.makeText(Recharge.this, "ÇëÌîÐ´ÊÖ»úºÅ¡¢¿¨ºÅ", 8).show();
+				Toast.makeText(Recharge.this, "ï¿½ï¿½ï¿½ï¿½Ð´ï¿½Ö»ï¿½ï¿½Å¡ï¿½ï¿½ï¿½ï¿½ï¿½", 8).show();
 				
 			}
 			else
 			{
 				ready = true;
-				dialog = ProgressDialog.show(Recharge.this, "³äÖµ", "ÕýÔÚ³äÖµ£¬ÇëÉÔºó...");
+				dialog = ProgressDialog.show(Recharge.this, "ï¿½ï¿½Öµ", "ï¿½ï¿½ï¿½Ú³ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Ôºï¿½...");
 				dialog.show();
 				
 				

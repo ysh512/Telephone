@@ -123,6 +123,8 @@ public class Login extends BaseActivity implements OnClickListener{
 				SharedPreferences mySharedPreferences= getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE); 
 				SharedPreferences.Editor editor = mySharedPreferences.edit(); 
 				editor.putString("login", "true"); 
+				editor.putString("phone", et_login_phone.getText().toString());
+				editor.putString("pass", et_login_pwd.getText().toString());
 				editor.commit(); 
 				finish();
 

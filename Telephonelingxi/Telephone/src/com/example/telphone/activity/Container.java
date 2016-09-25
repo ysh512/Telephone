@@ -1,11 +1,21 @@
 package com.example.telphone.activity;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.example.sortlistview.CharacterParser;
 import com.example.sortlistview.ClearEditText;
@@ -14,6 +24,7 @@ import com.example.sortlistview.PinyinComparator;
 import com.example.sortlistview.SideBar;
 import com.example.sortlistview.SortGroupMemberAdapter;
 import com.example.sortlistview.SideBar.OnTouchingLetterChangedListener;
+import com.example.telphone.Constants;
 import com.example.telphone.QueryInfo;
 import com.example.telphone.R;
 import com.example.telphone.TelApplication;
@@ -26,6 +37,7 @@ import com.example.telphone.model.MenuGridviewAdapter;
 import com.example.telphone.model.RecordAdapter;
 import com.example.telphone.property.ContractInfo;
 import com.example.telphone.property.SingleRecord;
+import com.example.telphone.tool.PreferenceUtils;
 import com.example.telphone.tool.Utils;
 import com.example.telphone.tool.Variable;
 
@@ -39,6 +51,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -48,6 +61,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -55,6 +69,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -81,8 +96,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private TextView im_contacts;
 	private TextView im_meun;
 	
-//	private LinearLayout ll_c_bottom;
-	
 	//page call
 	private LinearLayout ll_numPad;
 	private ViewPager vp_t_ad;
@@ -100,7 +113,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private ImageButton num_x;
 	
 	//page call bottom
-	private RelativeLayout ll_call_pad;	
+	private LinearLayout ll_call_pad;	
 	
 	private List<View> views ;
 	
@@ -146,6 +159,25 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 //	private SharedPreferences mySharedPreferences;
 	private HashMap<String, SoftReference<Bitmap>> imageCache;
 	
+	private LinearLayout ll_tab;
+	
+	private ImageView iv_cb_keyboard;
+	private ImageView iv_cb_call;
+	private ImageView iv_cb_del;
+	
+	private TextView tv_rcmd_amt1;
+	private TextView tv_rcmd_amt2;
+	private TextView tv_rcmd_amt3;
+	
+	private TextView tv_rcmd_people_1;
+	private TextView tv_rcmd_people_2;
+	private TextView tv_rcmd_people_3;
+	
+	private TextView tv_rcmd_url;
+	private TextView tv_rcmd_info;
+	private TextView tv_rcmd_copy;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -162,17 +194,11 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		}
 		
 		TelApplication.init(this);
-		
-		
-		
-		
-//		mySharedPreferences = this.getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE);
+
 		initView();
 		
 		TelApplication.add(this);
-//		TelApplication app = (TelApplication)getApplicationContext();
-//		app.add(this);
-		
+
 	}
 
 	
@@ -186,13 +212,21 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		im_record = (TextView)findViewById(R.id.tv_contact);
 		im_contacts = (TextView)findViewById(R.id.tv_recmd);
 		im_meun = (TextView)findViewById(R.id.tv_account);
-//		ll_call_pad = (RelativeLayout)findViewById(R.id.ll_call_pad);
+		ll_call_pad = (LinearLayout)findViewById(R.id.ll_call_pad);
 		im_call.setOnClickListener(this);
 		this.im_contacts.setOnClickListener(this);
 		this.im_record.setOnClickListener(this);
 		this.im_meun.setOnClickListener(this);
+		this.ll_tab = (LinearLayout)findViewById(R.id.tabbar);
 
-
+		iv_cb_keyboard = (ImageView)findViewById(R.id.iv_cb_keyboard);
+		iv_cb_call = (ImageView)findViewById(R.id.iv_cb_call);
+		iv_cb_del = (ImageView)findViewById(R.id.iv_cb_del);
+		
+		iv_cb_keyboard.setOnClickListener(this);
+		iv_cb_call.setOnClickListener(this);
+		iv_cb_del.setOnClickListener(this);
+		
 		viewPager = (ViewPager)findViewById(R.id.vp_c_pager);
 		
 		views = new ArrayList();
@@ -218,6 +252,19 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 
 		recordsList = Utils.getContacts(this);
 		
+		tv_rcmd_amt1=(TextView) recommendview.findViewById(R.id.tv_rcmd_amt_1);
+		tv_rcmd_amt2=(TextView) recommendview.findViewById(R.id.tv_rcmd_amt_2);
+		tv_rcmd_amt3=(TextView) recommendview.findViewById(R.id.tv_rcmd_amt_3);
+		
+		tv_rcmd_people_1= (TextView)recommendview.findViewById(R.id.tv_rcmd_people_1);
+		tv_rcmd_people_2= (TextView)recommendview.findViewById(R.id.tv_rcmd_people_2);
+		tv_rcmd_people_3= (TextView)recommendview.findViewById(R.id.tv_rcmd_people_3);
+		
+		tv_rcmd_url=(TextView)recommendview.findViewById(R.id.tv_rcmd_url);
+		tv_rcmd_info = (TextView)recommendview.findViewById(R.id.tv_rcmd_info);
+		tv_rcmd_copy = (TextView)recommendview.findViewById(R.id.tv_rcmd_copy);
+		tv_rcmd_copy.setOnClickListener(this);
+		
 	}
 	
 	private void initTelView(View telView) {
@@ -225,7 +272,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		ll_numPad = (LinearLayout)telView.findViewById(R.id.ll_tel_numpad);
 		vp_t_ad = (ViewPager)telView.findViewById(R.id.vp_t_ad);
 		this.mImageViews = new ImageView[3];
-		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3,R.drawable.ad20};
+		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3};
 		for(int i=0;i<mImageViews.length;i++)
 		{
 			mImageViews[i] = new ImageView(this);
@@ -401,28 +448,36 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		public void onClick(View v) {
 			String tag = (String)v.getTag();
 			String current = Container.this.tv_title.getText().toString();
-			if(current.contains("讯"))
+			if(current.contains("迅通"))
 			{
 				tv_title.setText(tag);
 
 				//hidekeyboard  tel  delnumber three imageViews on the bottom(default gone)				
 
-//				ll_call_pad.setVisibility(View.VISIBLE);
+				ll_call_pad.setVisibility(View.VISIBLE);
+				ll_tab.setVisibility(View.GONE);
 
 			}
 			else
 			{
+//				ll_tab.setVisibility(View.VISIBLE);
 				tv_title.setText(current+tag);
 			}
-	
+
+			if(View.VISIBLE!=ll_call_pad.getVisibility())
+			{
+				ll_call_pad.setVisibility(View.VISIBLE);
+				ll_tab.setVisibility(View.GONE);
+			}
 		}
 		
 	}
 	
 	private void initMenuview(View menuView) {
 		vp_menu_ad = (ViewPager) menuView.findViewById(R.id.vp_m_ad); 
-		this.mImageViews = new ImageView[3];
-		int resIds[]= {R.drawable.ad30,R.drawable.ad32,R.drawable.ad20};
+		
+		int resIds[]= {R.drawable.ad30,R.drawable.ad32};
+		this.mImageViews = new ImageView[resIds.length];
 		for(int i=0;i<mImageViews.length;i++)
 		{
 			mImageViews[i] = new ImageView(this);
@@ -632,12 +687,18 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		View v = inflater.inflate(R.layout.dialog_tel, null);
+		
+		
 		builder.setView(v);
 		Button bt_tel = (Button)v.findViewById(R.id.bt_dt_tel);
 		Button bt_cancel = (Button)v.findViewById(R.id.bt_dt_cancel);
 		
 		final Dialog dialog = builder.show();
-		
+		WindowManager m = getWindowManager();
+		Display display = m.getDefaultDisplay();
+		WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+		lp.width = (int)(display.getWidth()*0.8); //设置宽度
+		dialog.getWindow().setAttributes(lp);
 		bt_tel.setOnClickListener(this);
 		bt_cancel.setOnClickListener(new OnClickListener(){
 
@@ -652,12 +713,11 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 
 			@Override
 			public void onClick(View arg0) {
-				Intent it = new Intent(Container.this,Calling.class);
-				it.putExtra("number", phoneNumber);
-				it.putExtra("name", name);
-				Container.this.startActivity(it);
+				call(phoneNumber, name);
 				dialog.dismiss();
 			}
+
+
 			
 		});
 	}
@@ -764,15 +824,35 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 		case R.id.tv_contact:
 			super.showTitle();
-			setCurrentPager(1,"通话记录",R.drawable.record_press);
+			setCurrentPager(1,"通讯录",R.drawable.record_press);
 			break;
 		case R.id.tv_recmd:
 			super.showTitle();
-			setCurrentPager(2,"通讯录",R.drawable.contact_press);
+			setCurrentPager(2,"我的成就",R.drawable.contact_press);
 			break;
 		case R.id.tv_account:
 			super.hideTitle();
 			setCurrentPager(3,"",R.drawable.menu_press);
+			break;
+			
+		case R.id.iv_cb_call:
+			String phone = PreferenceUtils.getPhone();
+			call(phone,this.tv_title.getText().toString());
+			break;
+		case R.id.iv_cb_keyboard:
+			this.ll_tab.setVisibility(View.VISIBLE);
+			this.ll_call_pad.setVisibility(View.GONE);
+			break;
+		case R.id.iv_cb_del:
+			int end = tv_title.getText().toString().length()>=1?tv_title.getText().toString().length()-1:0;
+			this.tv_title.setText(this.tv_title.getText().toString().subSequence(0, end));
+			if(0==end)
+			{
+				tv_title.setText(R.string.company_name);
+			}
+			break;
+		case R.id.tv_rcmd_copy:
+			Utils.copy(tv_rcmd_url.getText().toString());
 			break;
 			default:
 				break;
@@ -798,7 +878,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		case 0:
 //			url = "http://121.40.100.250:88/reg/";
 //			startWebView(url);
-			Intent it = new Intent(Container.this,Recharge.class);
+			Intent it = new Intent(Container.this,ChargeCenter.class);
 			startActivity(it);
 			break;
 		case 1:
@@ -811,8 +891,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			startActivity(it2);		
 			break;
 		case 3:
-			Intent it3 = new Intent(Container.this,Lottery.class);
-			startActivity(it3);
+//			Intent it3 = new Intent(Container.this,Lottery.class);
+//			startActivity(it3);
 			break;
 		case 4:
 			break;
@@ -856,11 +936,11 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			break;
 		case 1:
 			super.showTitle();
-			setCurrentPager(1,"通话记录",R.drawable.record_press);
+			setCurrentPager(1,"通讯录",R.drawable.record_press);
 			break;
 		case 2:
 			super.showTitle();
-			setCurrentPager(2,"通讯录",R.drawable.contact_press);
+			setCurrentPager(2,"我的成就",R.drawable.contact_press);
 			break;
 		case 3:
 			super.hideTitle();
@@ -895,9 +975,99 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
-//		this.getWindow().setBackgroundDrawableResource(0);
 		super.onResume();
+		GetInfoTask task = new GetInfoTask();
+		task.execute();
+	
 	}
 	
+	private void call(final String phoneNumber, final String name) {
+		Intent it = new Intent(Container.this,Calling.class);
+		it.putExtra("number", phoneNumber);
+		it.putExtra("name", name);
+		Container.this.startActivity(it);
+	}
+	
+	
+	class GetInfoTask extends AsyncTask<Void,Void,Boolean>{
+
+		
+		private String chengjius[];
+		private String chongzhis[];
+		private String upper;
+		private int id;
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			return refreshLogin();
+		}
+		private Boolean refreshLogin() {
+			HttpClient client = new DefaultHttpClient();  
+			String url = String.format(Constants.LOGIN_URL,PreferenceUtils.getPhone(),PreferenceUtils.getPass());
+	        
+			Log.d(TAG, "[doInBackground] login url:"+url);
+			HttpGet get = new HttpGet(url);  
+	        HttpResponse response= null;
+			try {
+				response = client.execute(get);
+				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+					String result = EntityUtils.toString(response.getEntity());
+					Log.d(TAG, "[refreshLogin] result:"+result);
+					try {
+						JSONObject object = new JSONObject(result);
+						
+						int id = object.getInt("id");
+						this.id = id;
+						if(0==id)
+						{
+							return false;
+						}else
+						{
+							String upper = object.getString("upper");
+							this.upper = upper;
+							String chengjiu = object.getString("chengjiu");
+							chengjiu = chengjiu.replace("[", "").replace("]","");
+							String chengjius[]=chengjiu.split(",");
+							this.chengjius = chengjius;
+							String chongzhi = object.getString("chongzhi");
+							chongzhi = chongzhi.replace("[", "").replace("]", "");
+							String chongzhis[]=chongzhi.split(",");
+							this.chongzhis = chongzhis;
+							
+							return true;
+						}
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+						return false;
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+	         
+			return false;
+		}
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			tv_rcmd_url.setText(String.format(Constants.RECOMMEND_URL, String.valueOf(id)));
+			String company_name = Container.this.getResources().getString(R.string.company_name);
+			tv_rcmd_info.setText(String.format(Constants.MES, PreferenceUtils.getPhone(),company_name,upper));
+			if(result)
+			{
+				Log.d(TAG, "[onPostExecute] chengjius"+chengjius.toString()+"---chongzhis:"+chongzhis.toString());
+				tv_rcmd_amt1.setText(Constants.LEVEL_ONE+":"+chengjius[0]);
+				tv_rcmd_amt2.setText(Constants.LEVEL_TWO+":"+chengjius[1]);
+				tv_rcmd_amt3.setText(Constants.LEVEL_THREE+":"+chengjius[2]);
+				
+				tv_rcmd_people_1.setText(Constants.LEVEL_ONE+":"+chongzhis[0]);
+				tv_rcmd_people_2.setText(Constants.LEVEL_TWO+":"+chongzhis[2]);
+				tv_rcmd_people_3.setText(Constants.LEVEL_THREE+":"+chongzhis[2]);
+			}
+		}
+		
+	}
 	
 }

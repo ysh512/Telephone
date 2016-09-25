@@ -78,7 +78,7 @@ public class Calling extends Activity{
 		tv_phone.setText(phone);
 		
 		String name = it.getStringExtra("name");
-		if(name == null || name=="Î´Öª" )
+		if(name == null || name=="" )
 		{
 			name = phone;
 		}
@@ -123,7 +123,7 @@ public class Calling extends Activity{
 			@Override
 			public void handleMessage(Message msg) {
 				super.handleMessage(msg);
-				tv_count.setText(i+"Ãë");
+				tv_count.setText(i+"ç§’");
 				i++;
 				
 				iv_loading.setImageResource(0);
@@ -170,7 +170,7 @@ public class Calling extends Activity{
 			String from = sharedPreferences.getString("phone","");
 			
 			HttpClient client = new DefaultHttpClient();  
-	        HttpGet get = new HttpGet("http://121.40.100.250:99/CallReqRet.php?UserID="+from+"&CallTo="+phone);
+	        HttpGet get = new HttpGet("http://60.205.168.68:88/CallReqRet.php?UserID="+from+"&CallTo="+phone);
 	        HttpResponse response= null;
 	        BufferedReader in = null;  
 	        try {

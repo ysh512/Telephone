@@ -34,7 +34,7 @@
             android:singleLine="true"
             android:textSize="26sp"
             android:textColor="#ffff00"
-            android:text="亿讯通贺岁版隆重推出，敬请试用！"
+            android:text="帝迅通贺岁版隆重推出，敬请试用！"
             android:background="#000000"
             android:textStyle="bold" />
 

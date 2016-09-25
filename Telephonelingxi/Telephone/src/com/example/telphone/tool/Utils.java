@@ -10,9 +10,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.example.telphone.TelApplication;
 import com.example.telphone.property.ContractInfo;
 import com.example.telphone.property.SingleRecord;
 
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -36,12 +38,12 @@ public class Utils {
 	if(cursor.moveToFirst()){                                                                                
 	    do{                                                                                                  
 //	        CallsLog calls =new CallsLog();                                                                  
-	        //ºÅÂë                                                                                     
+	        //ï¿½ï¿½ï¿½ï¿½                                                                                     
 	    	
 	    	SingleRecord ci = new SingleRecord();
 	    	
 	        String number = cursor.getString(cursor.getColumnIndex(Calls.NUMBER));                           
-	        //ºô½ĞÀàĞÍ                                                                                           
+	        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½                                                                                           
 	        int type;                                                                                     
 	        switch (Integer.parseInt(cursor.getString(cursor.getColumnIndex(Calls.TYPE)))) {                 
 	        case Calls.INCOMING_TYPE:                                                                        
@@ -54,16 +56,16 @@ public class Utils {
 	            type = Calls.MISSED_TYPE;                                                                                 
 	            break;                                                                                       
 	        default:                                                                                         
-	            type = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Calls.TYPE))) ;//Ó¦¸ÃÊÇ¹Ò¶Ï.¸ù¾İÎÒÊÖ»úÀàĞÍÅĞ¶Ï³öµÄ                                                              
+	            type = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Calls.TYPE))) ;//Ó¦ï¿½ï¿½ï¿½Ç¹Ò¶ï¿½.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¶Ï³ï¿½ï¿½ï¿½                                                              
 	            break;                                                                                       
 	        }                                                                                                
 	        SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");                              
 	        Date date = new Date(Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(Calls.DATE))));
-	        //ºô½ĞÊ±¼ä                                                                                           
+	        //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½                                                                                           
 	        String time = sfd.format(date);                                                                  
-	        //ÁªÏµÈË                                                                                            
+	        //ï¿½ï¿½Ïµï¿½ï¿½                                                                                            
 	        String name = cursor.getString(cursor.getColumnIndexOrThrow(Calls.CACHED_NAME));                 
-	        //Í¨»°Ê±¼ä,µ¥Î»:s                                                                                      
+	        //Í¨ï¿½ï¿½Ê±ï¿½ï¿½,ï¿½ï¿½Î»:s                                                                                      
 //	        String duration = cursor.getString(cursor.getColumnIndexOrThrow(Calls.DURATION));                
 	        
 	        ci.name = name;
@@ -83,25 +85,25 @@ public class Utils {
 	}
 	
 	
-	//È¡±¾»úÍ¨Ñ¶Â¼
+	//È¡ï¿½ï¿½ï¿½ï¿½Í¨Ñ¶Â¼
 	public static HashMap<String, ContractInfo> getPhoneContracts(
 			Context mContext) {
 		HashMap<String, ContractInfo> map = new HashMap<String, ContractInfo>();
 		ContentResolver resolver = mContext.getContentResolver();
-		// »ñÈ¡ÊÖ»úÁªÏµÈË
+		// ï¿½ï¿½È¡ï¿½Ö»ï¿½ï¿½ï¿½Ïµï¿½ï¿½
 		Cursor phoneCursor = resolver.query(Phone.CONTENT_URI, null, null,
-				null, null); // ´«ÈëÕıÈ·µÄuri
+				null, null); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½uri
 		if (phoneCursor != null) {
 			while (phoneCursor.moveToNext()) {
-				int nameIndex = phoneCursor.getColumnIndex(Phone.DISPLAY_NAME); // »ñÈ¡ÁªÏµÈËname
+				int nameIndex = phoneCursor.getColumnIndex(Phone.DISPLAY_NAME); // ï¿½ï¿½È¡ï¿½ï¿½Ïµï¿½ï¿½name
 				String name = phoneCursor.getString(nameIndex);
 
 				String phoneNumber = phoneCursor.getString(phoneCursor
-						.getColumnIndex(Phone.NUMBER)); // »ñÈ¡ÁªÏµÈËnumber
+						.getColumnIndex(Phone.NUMBER)); // ï¿½ï¿½È¡ï¿½ï¿½Ïµï¿½ï¿½number
 				if (TextUtils.isEmpty(phoneNumber)) {
 					continue;
 				}
-				// ÒÔÏÂÊÇÎÒ×Ô¼ºµÄÊı¾İ·â×°¡£
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ·ï¿½×°ï¿½ï¿½
 				
 //				if(map.containsKey(name))
 //				{
@@ -127,10 +129,10 @@ public class Utils {
 		return map;
 	}
 
-	// ½ÓÏÂÀ´¿´»ñÈ¡sim¿¨µÄ·½·¨£¬sim¿¨µÄuriÓĞÁ½ÖÖ¿ÉÄÜcontent://icc/adnÓëcontent://sim/adn
-	// £¨Ò»°ãÇé¿öÏÂÊÇµÚÒ»ÖÖ£©
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡simï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½simï¿½ï¿½ï¿½ï¿½uriï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½content://icc/adnï¿½ï¿½content://sim/adn
+	// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½Ò»ï¿½Ö£ï¿½
 	public static HashMap<String, ContractInfo> getSimContracts(Context mContext) {
-		// ¶ÁÈ¡SIM¿¨ÊÖ»úºÅ,ÓĞÁ½ÖÖ¿ÉÄÜ:content://icc/adnÓëcontent://sim/adn
+		// ï¿½ï¿½È¡SIMï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½:content://icc/adnï¿½ï¿½content://sim/adn
 		HashMap<String, ContractInfo> map = new HashMap<String, ContractInfo>();
 
 		ContentResolver resolver = mContext.getContentResolver();
@@ -145,7 +147,7 @@ public class Utils {
 				if (TextUtils.isEmpty(phoneNumber)) {
 					continue;
 				}
-				// ÒÔÏÂÊÇÎÒ×Ô¼ºµÄÊı¾İ·â×°¡£
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ·ï¿½×°ï¿½ï¿½
 			}
 			phoneCursor.close();
 		}
@@ -155,7 +157,7 @@ public class Utils {
 	
 	public static HashMap<String, ContractInfo> getAllContracts(Context mContext,List<String> nameList) {
 
-		// ¶ÁÈ¡SIM¿¨ÊÖ»úºÅ,ÓĞÁ½ÖÖ¿ÉÄÜ:content://icc/adnÓëcontent://sim/adn
+		// ï¿½ï¿½È¡SIMï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½:content://icc/adnï¿½ï¿½content://sim/adn
 		HashMap<String, ContractInfo> map = new HashMap<String, ContractInfo>();
 		ContentResolver resolver = mContext.getContentResolver();
 		Uri uri = Uri.parse("content://icc/adn");
@@ -170,7 +172,7 @@ public class Utils {
 					if (TextUtils.isEmpty(phoneNumber)) {
 						continue;
 					}
-					// ÒÔÏÂÊÇÎÒ×Ô¼ºµÄÊı¾İ·â×°¡£
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ·ï¿½×°ï¿½ï¿½
 
 					while (map.containsKey(name)) {
 						name = name + " ";
@@ -189,19 +191,19 @@ public class Utils {
 			e.printStackTrace();
 		}
 		// ContentResolver resolver2 = mContext.getContentResolver();
-		// »ñÈ¡ÊÖ»úÁªÏµÈË
+		// ï¿½ï¿½È¡ï¿½Ö»ï¿½ï¿½ï¿½Ïµï¿½ï¿½
 		Cursor phoneCursor2 = resolver.query(Phone.CONTENT_URI, null, null,
-				null, null); // ´«ÈëÕıÈ·µÄuri
+				null, null); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½uri
 		if (phoneCursor2 != null) {
 			while (phoneCursor2.moveToNext()) {
-				int nameIndex = phoneCursor2.getColumnIndex(Phone.DISPLAY_NAME); // »ñÈ¡ÁªÏµÈËname
+				int nameIndex = phoneCursor2.getColumnIndex(Phone.DISPLAY_NAME); // ï¿½ï¿½È¡ï¿½ï¿½Ïµï¿½ï¿½name
 				String name = phoneCursor2.getString(nameIndex);
 				
 				int phoneIndex = phoneCursor2.getColumnIndex(Phone.NUMBER);
 				
 				String phoneNumber = phoneCursor2.getString(phoneIndex);
 //				String phoneNumber = phoneCursor2.getString(phoneCursor
-//						.getColumnIndex(Phone.NUMBER)); // »ñÈ¡ÁªÏµÈËnumber
+//						.getColumnIndex(Phone.NUMBER)); // ï¿½ï¿½È¡ï¿½ï¿½Ïµï¿½ï¿½number
 				if (TextUtils.isEmpty(phoneNumber)) {
 					continue;
 				}
@@ -236,10 +238,10 @@ public class Utils {
 	
 	public static byte[] decodeBitmap(String path) {  
         BitmapFactory.Options opts = new BitmapFactory.Options();  
-        opts.inJustDecodeBounds = true;// ÉèÖÃ³ÉÁËtrue,²»Õ¼ÓÃÄÚ´æ£¬Ö»»ñÈ¡bitmap¿í¸ß  
+        opts.inJustDecodeBounds = true;// ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½true,ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½Ú´æ£¬Ö»ï¿½ï¿½È¡bitmapï¿½ï¿½ï¿½  
         BitmapFactory.decodeFile(path, opts);  
         opts.inSampleSize = computeSampleSize(opts, -1, 1024 * 800);  
-        opts.inJustDecodeBounds = false;// ÕâÀïÒ»¶¨Òª½«ÆäÉèÖÃ»Øfalse£¬ÒòÎªÖ®Ç°ÎÒÃÇ½«ÆäÉèÖÃ³ÉÁËtrue  
+        opts.inJustDecodeBounds = false;// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½falseï¿½ï¿½ï¿½ï¿½ÎªÖ®Ç°ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½true  
         opts.inPurgeable = true;  
         opts.inInputShareable = true;  
         opts.inDither = false;  
@@ -279,7 +281,7 @@ public class Utils {
   
     private static double getScaling(int src, int des) {  
         /** 
-         * 48 Ä¿±ê³ß´ç¡ÂÔ­³ß´ç sqrt¿ª·½£¬µÃ³ö¿í¸ß°Ù·Ö±È 49 
+         * 48 Ä¿ï¿½ï¿½ß´ï¿½ï¿½Ô­ï¿½ß´ï¿½ sqrtï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ß°Ù·Ö±ï¿½ 49 
          */  
         double scale = Math.sqrt((double) des / (double) src);  
         return scale;  
@@ -326,4 +328,11 @@ public class Utils {
         }  
     }  
 	
+    
+    public static void copy(String content) {
+    	// å¾—åˆ°å‰ªè´´æ¿ç®¡ç†å™¨
+    	ClipboardManager cmb = (ClipboardManager) TelApplication.getAppContext()
+    	.getSystemService(Context.CLIPBOARD_SERVICE);
+    	cmb.setText(content.trim());
+    	}
 }

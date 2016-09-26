@@ -1,12 +1,14 @@
 package com.example.telphone.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.alipay.sdk.pay.demo.PayDemoActivity;
 
 import com.example.telphone.R;
 
@@ -21,6 +23,28 @@ public class ChargeWay extends Activity implements OnClickListener{
 		case R.id.rlyt_deyx:
 			break;
 		case R.id.rlyt_alipay:
+			
+			Intent it = new Intent(this,PayDemoActivity.class);
+			
+			String account = ChargeWay.this.getIntent().getStringExtra("phone");
+			int money = ChargeWay.this.getIntent().getIntExtra("money", 100);
+			String goodsDes = null;
+			if(money==100)
+			{
+				goodsDes = getResources().getString(R.string.charge_amount_100);
+			}else if(money == 200)
+			{
+				goodsDes = getResources().getString(R.string.charge_amount_200);
+			}else if(money ==400)
+			{
+				goodsDes = getResources().getString(R.string.charge_amount_400);
+			}
+			
+			it.putExtra("phone", account);
+			it.putExtra("money", money);
+			it.putExtra("des", goodsDes);
+			startActivity(it);
+			
 			break;
 		}
 	}
@@ -29,6 +53,7 @@ public class ChargeWay extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 		
 		this.setContentView(R.layout.activity_recharge_way);
 		TextView tv_title=(TextView)findViewById(R.id.tv_title);

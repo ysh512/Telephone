@@ -75,6 +75,9 @@
 		    android:name="com.example.telphone.activity.ChargeWay"
 		    ></activity>
         
+		<activity 
+		    android:name="com.alipay.sdk.pay.demo.PayDemoActivity"
+		    ></activity>
          <receiver android:name="com.example.telphone.receiver.PhoneReceiver">
             <intent-filter>   
             	<action android:name="android.intent.action.PHONE_STATE"/>   

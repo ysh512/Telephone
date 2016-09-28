@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.telphone.Constants;
 import com.example.telphone.R;
+import com.example.telphone.tool.Variable;
 
 public class ExternalFragment extends Fragment {
 
@@ -17,7 +19,7 @@ public class ExternalFragment extends Fragment {
 	private TextView tv_price;
 	
 	
-	private int money;
+	private double money;
 	private String phone;
 	private String goodsDes;
 	private int goodsId; //100元是1 200元是2 400元是3
@@ -41,7 +43,7 @@ public class ExternalFragment extends Fragment {
 		money = this.getActivity().getIntent().getIntExtra("money", 100);
 		goodsDes = this.getActivity().getIntent().getStringExtra("des");
 		
-		switch(money)
+		switch((int)money)
 		{
 		case 100:
 			goodsId=1;
@@ -53,16 +55,18 @@ public class ExternalFragment extends Fragment {
 			goodsId=4;
 		}
 		
+		if(Variable.PAY_DEBUG)
+		{
+			money = 0.01;
+		}
 		tv_name.setText(phone);
-		tv_price.setText(money);
+		tv_price.setText(""+money);
 		tv_des.setText(goodsDes);
 	}
 
-	
-	public void onResume()
+	public double getPayMoney()
 	{
-		
+		return money;
 	}
-	
 	
 }

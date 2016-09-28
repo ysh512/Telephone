@@ -1,5 +1,7 @@
 package com.alipay.sdk.pay.demo;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -7,23 +9,38 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.alipay.sdk.app.PayTask;
 import com.example.telphone.R;
+import com.example.telphone.tool.Variable;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 public class PayDemoActivity extends FragmentActivity {
 
+	public static final String TAG=PayDemoActivity.class.getSimpleName();
+	
 	// 商户PID
 	public static final String PARTNER = "2088421370388495";
 	// 商户收款账号
@@ -34,6 +51,8 @@ public class PayDemoActivity extends FragmentActivity {
 	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB";
 	private static final int SDK_PAY_FLAG = 1;
 
+	private String ordid=null;
+	public ExternalFragment eFragment;
 	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
 		@SuppressWarnings("unused")
@@ -76,11 +95,20 @@ public class PayDemoActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pay_main);
-		
-		String account = this.getIntent().getStringExtra("phone");
-		int money = this.getIntent().getIntExtra("money", 100);
-		String des = this.getIntent().getStringExtra("des");
+		eFragment = (ExternalFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+		GetOrderId getOrderId = new GetOrderId();
+		getOrderId.execute();
 	}
+	
+	
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
+
+
 
 	/**
 	 * call alipay sdk pay. 调用SDK支付
@@ -97,7 +125,10 @@ public class PayDemoActivity extends FragmentActivity {
 					}).show();
 			return;
 		}
-		String orderInfo = getOrderInfo("测试的商品", "该测试商品的详细描述", "0.01");
+		String money = String.valueOf(eFragment.getPayMoney());
+		String goodDes = this.getIntent().getStringExtra("des");
+		String goodName = "话费充值";
+		String orderInfo = getOrderInfo(goodName,goodDes, money);
 
 		/**
 		 * 特别注意，这里的签名逻辑需要放在服务端，切勿将私钥泄露在代码中！
@@ -225,14 +256,14 @@ public class PayDemoActivity extends FragmentActivity {
 	 * 
 	 */
 	private String getOutTradeNo() {
-		SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss", Locale.getDefault());
-		Date date = new Date();
-		String key = format.format(date);
-
-		Random r = new Random();
-		key = key + r.nextInt();
-		key = key.substring(0, 15);
-		return key;
+//		SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss", Locale.getDefault());
+//		Date date = new Date();
+//		String key = format.format(date);
+//
+//		Random r = new Random();
+//		key = key + r.nextInt();
+//		key = key.substring(0, 15);
+		return ordid;
 	}
 
 	/**
@@ -251,6 +282,85 @@ public class PayDemoActivity extends FragmentActivity {
 	 */
 	private String getSignType() {
 		return "sign_type=\"RSA\"";
+	}
+	
+	class GetOrderId extends AsyncTask<Void,Void,Boolean>{
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			String phone = PayDemoActivity.this.getIntent().getStringExtra("phone");
+			double money = PayDemoActivity.this.getIntent().getIntExtra("money",100);
+
+			String goodsId="1";
+			switch((int)money)
+			{
+			case 100:
+				goodsId="1";
+				break;
+			case 200:
+				goodsId="2";
+			case 400:
+				goodsId="4";
+				break;
+				default:
+					break;
+			}
+			
+			if(Variable.PAY_DEBUG)
+			{
+				money=0.01;
+			}
+			HttpClient client = new DefaultHttpClient();  
+			String querOrderIdUrl="http://60.205.168.68:88/notify_chong.php?phone="+phone+"&money="+money+"&goodsid="+goodsId;
+	        Log.d(TAG,querOrderIdUrl);
+			HttpGet get = new HttpGet(querOrderIdUrl);
+	        HttpResponse response= null;
+	        BufferedReader in = null;  
+	        try {
+				response = client.execute(get);
+				if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
+				{
+					
+					String result = EntityUtils.toString(response.getEntity());
+					Log.d(TAG, result);
+					JSONObject object = new JSONObject(result);
+					ordid = object.getString("ordid");
+					
+					Log.d(TAG,result);
+				}
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			
+			return true;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			if(!result)
+			{
+				Toast.makeText(PayDemoActivity.this, "获取订单失败，请稍候重试", Toast.LENGTH_SHORT).show();
+				
+				
+			}
+		}
+		
+		
+		
 	}
 
 }

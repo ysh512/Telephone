@@ -17,7 +17,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="商品名称:"
+                android:text="充值账户"
                 android:textColor="#777777"
                 tools:ignore="HardcodedText" />
 
@@ -97,7 +97,8 @@
             android:layout_margin="10dp"
             android:onClick="h5Pay"
             android:text="网页支付转native"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText" 
+            android:visibility="gone"/>
     </LinearLayout>
 
 </ScrollView>

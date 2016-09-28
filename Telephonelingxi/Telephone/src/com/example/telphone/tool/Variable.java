@@ -19,4 +19,7 @@ public class Variable {
 	public static final String FILED_MARQUEEN_STR = "marqueen_ad";
 	
 	
+	public static final boolean PAY_DEBUG=true; 
+	
+	
 }

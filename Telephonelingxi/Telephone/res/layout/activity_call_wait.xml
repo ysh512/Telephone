@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@id/parent" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/iv_bg_calling" android:background="@drawable/bg_calling" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="fitXY" />
-    <include android:id="@id/decallview" android:visibility="visible" layout="@layout/activity_directcall" />
-    <include android:id="@id/recallview" android:visibility="gone" layout="@layout/activity_calling" />
-</FrameLayout>

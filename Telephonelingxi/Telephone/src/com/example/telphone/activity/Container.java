@@ -90,6 +90,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	public static final String TAG = "Container";
 	//-----------------UI------------------------
 	
+//	private String alipayAccount;
+	
 	private ViewPager viewPager;
 	private TextView im_call;
 	private TextView im_record;
@@ -178,20 +180,15 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private TextView tv_rcmd_copy;
 	
 	
+	private String alipayAccount;
+	private String alipayName;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		SharedPreferences sharedPreferences= getSharedPreferences(Variable.SHARE_PRE_NAME, 
-				Activity.MODE_PRIVATE); 
-				// ʹ��getString�������value��ע���2��������value��Ĭ��ֵ 
-				String login =sharedPreferences.getString("login", ""); 
-				String phone =sharedPreferences.getString("phone", ""); 
-		if(!login.equals("true"))
-		{
-			Intent it = new Intent(Container.this,Login.class);
-			startActivity(it);
-		}
+
 		
 		TelApplication.init(this);
 
@@ -271,48 +268,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 		ll_numPad = (LinearLayout)telView.findViewById(R.id.ll_tel_numpad);
 		vp_t_ad = (ViewPager)telView.findViewById(R.id.vp_t_ad);
-		this.mImageViews = new ImageView[3];
-		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3};
-		for(int i=0;i<mImageViews.length;i++)
-		{
-			mImageViews[i] = new ImageView(this);
-			mImageViews[i].setImageResource(resIds[i]);
-		}
-		vp_t_ad.setAdapter(new MenuAdAdapter(mImageViews));
 		
-		ArrayList<ImageView> ivList = new ArrayList<ImageView>();
-		for(int i=0;;i++)
-		{
-			String fileName = QueryInfo.ALBUM_PATH+"ad1"+String.valueOf(i)+".jpg";
-			File f = new File(fileName);
-			if(!f.exists())
-			{
-				break;
-			}
-			
-			Bitmap bmp = BitmapFactory.decodeByteArray(Utils.decodeBitmap(fileName), 0, Utils.decodeBitmap(fileName).length);  
-            imageCache.put(fileName, new SoftReference<Bitmap>(bmp));  
-
-//			Bitmap bmp = BitmapFactory.decodeFile(fileName, null);
-			ImageView iv = new ImageView(this);
-			iv.setImageBitmap(bmp);
-			iv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
-			iv.setScaleType(ScaleType.FIT_XY);
-			ivList.add(iv);
-		}
-		if(ivList.size()>0)
-		{
-			vp_t_ad.setAdapter(new BitmapLoadAdapter(ivList));
-		}
-		vp_t_ad.setCurrentItem(1);
-		if(ivList.size()>0)
-		{
-			this.scrollPageViewer(vp_t_ad, ivList.size());
-		}
-		else
-		{
-			this.scrollPageViewer(vp_t_ad, mImageViews.length);
-		}
 		
 		
 		
@@ -361,6 +317,52 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 		
 		
+	}
+
+
+	private void initVpTAd() {
+		this.mImageViews = new ImageView[3];
+		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3};
+		for(int i=0;i<mImageViews.length;i++)
+		{
+			mImageViews[i] = new ImageView(this);
+			mImageViews[i].setImageResource(resIds[i]);
+		}
+		vp_t_ad.setAdapter(new MenuAdAdapter(mImageViews));
+		
+		ArrayList<ImageView> ivList = new ArrayList<ImageView>();
+		for(int i=0;;i++)
+		{
+			String fileName = QueryInfo.ALBUM_PATH+"ad1"+String.valueOf(i)+".jpg";
+			File f = new File(fileName);
+			if(!f.exists())
+			{
+				break;
+			}
+			
+			Bitmap bmp = BitmapFactory.decodeByteArray(Utils.decodeBitmap(fileName), 0, Utils.decodeBitmap(fileName).length);  
+            imageCache.put(fileName, new SoftReference<Bitmap>(bmp));  
+
+//			Bitmap bmp = BitmapFactory.decodeFile(fileName, null);
+			ImageView iv = new ImageView(this);
+			iv.setImageBitmap(bmp);
+			iv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+			iv.setScaleType(ScaleType.FIT_XY);
+			ivList.add(iv);
+		}
+		if(ivList.size()>0)
+		{
+			vp_t_ad.setAdapter(new BitmapLoadAdapter(ivList));
+		}
+		vp_t_ad.setCurrentItem(1);
+		if(ivList.size()>0)
+		{
+			this.scrollPageViewer(vp_t_ad, ivList.size());
+		}
+		else
+		{
+			this.scrollPageViewer(vp_t_ad, mImageViews.length);
+		}
 	}
 	
 	class TouchListener implements OnTouchListener
@@ -891,8 +893,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			startActivity(it2);		
 			break;
 		case 3:
-//			Intent it3 = new Intent(Container.this,Lottery.class);
-//			startActivity(it3);
+			Intent it3 = new Intent(Container.this,BindAccount.class);
+			startActivity(it3);
 			break;
 		case 4:
 			break;
@@ -979,6 +981,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		GetInfoTask task = new GetInfoTask();
 		task.execute();
 	
+		initVpTAd();
 	}
 	
 	private void call(final String phoneNumber, final String name) {
@@ -1033,6 +1036,16 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 							chongzhi = chongzhi.replace("[", "").replace("]", "");
 							String chongzhis[]=chongzhi.split(",");
 							this.chongzhis = chongzhis;
+							String account = object.getString("email");
+							String name=object.getString("account");
+							
+							Log.d(TAG, "account:"+account);
+							Log.d(TAG, "name:");
+							if(!TextUtils.isEmpty(account) && !TextUtils.isEmpty(name))
+							{
+								alipayAccount = account;
+								alipayName = name;
+							}
 							
 							return true;
 						}

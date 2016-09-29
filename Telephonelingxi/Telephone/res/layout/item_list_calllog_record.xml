@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@id/rl_item" android:background="@color/white" android:paddingLeft="@dimen/dimen_10dip" android:paddingRight="@dimen/dimen_10dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:layout_gravity="center_vertical" android:id="@id/iv_record_state" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_call_in" />
-    <TextView android:textSize="@dimen/dimen_14sp" android:textColor="@color/text6_color" android:id="@id/tv_record_time" android:paddingTop="@dimen/dimen_10dip" android:paddingBottom="@dimen/dimen_10dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:text="time" />
-    <TextView android:textSize="@dimen/dimen_14sp" android:textColor="@color/text1_color" android:layout_gravity="center|right" android:id="@id/tv_record_duration" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00:00" />
-</FrameLayout>

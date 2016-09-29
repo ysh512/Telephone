@@ -32,7 +32,6 @@ public class Web extends Activity{
 
 	private class WebViewClientDemo extends WebViewClient {
 	    @Override
-	    // 在WebView中而不是默认浏览器中显示页面
 	    public boolean shouldOverrideUrlLoading(WebView view, String url) {
 	        view.loadUrl(url);
 	        return true;

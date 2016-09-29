@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@id/rl_content" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/tv_date"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="@dimen/textsize16" android:textStyle="bold" android:textColor="@color/black" android:id="@id/tv_server_title" android:paddingLeft="6.0dip" android:paddingTop="10.0dip" android:paddingRight="6.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-    <ImageView android:id="@id/iv_server" android:paddingLeft="6.0dip" android:paddingTop="6.0dip" android:paddingRight="6.0dip" android:layout_width="fill_parent" android:layout_height="160.0dip" android:scaleType="fitXY" android:layout_below="@id/tv_server_title" />
-    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/white" android:id="@id/tv_server_title2" android:background="#96000000" android:padding="6.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" android:layout_alignBottom="@id/iv_server" />
-    <TextView android:textSize="@dimen/textsize12" android:textColor="@color/gray" android:id="@id/tv_server_des" android:paddingLeft="6.0dip" android:paddingRight="6.0dip" android:paddingBottom="6.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/iv_server" />
-</RelativeLayout>

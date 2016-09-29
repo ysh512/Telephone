@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@drawable/sl_bg_item" android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="@dimen/textsize18" android:textColor="@color/white" android:gravity="center" android:id="@id/tv_flow_price" android:background="@drawable/bg_money2" android:paddingLeft="@dimen/dimen_5dip" android:paddingRight="@dimen/dimen_6dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimen_15dip" android:layout_marginTop="@dimen/dimen_10dip" android:layout_marginRight="@dimen/dimen_15dip" android:text="" />
-    <TextView android:textSize="@dimen/textsize16" android:textColor="@color/black" android:id="@id/tv_flow_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:layout_toRightOf="@id/tv_flow_price" android:layout_centerVertical="true" />
-    <View android:layout_width="fill_parent" android:layout_height="@dimen/dimen_10dip" android:layout_below="@id/tv_flow_price" />
-    <View android:layout_alignParentBottom="true" style="@style/line_h" />
-</RelativeLayout>

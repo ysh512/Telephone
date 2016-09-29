@@ -62,8 +62,12 @@ public class TelApplication extends Application{
 		if(s.contains("phone"))
 		{
 			phone = s.getString("phone", "");
-			QueryInfo qi = new QueryInfo(context,s.getString("phone", ""));
-			new Thread(qi).start();
+			
+			
+			//暂停广告加载机制
+//			QueryInfo qi = new QueryInfo(context,s.getString("phone", ""));
+//			new Thread(qi).start();
+		
 		}
 		
 		

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:background="#fff7f7f7" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:layout_gravity="bottom" android:id="@id/iv_bottom" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/bmw_ad" />
-    <ImageView android:id="@id/loading" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="centerCrop" />
-    <com.zqcall.mobile.view.AdsViewFliper android:id="@id/vf_ads_load" android:layout_width="fill_parent" android:layout_height="fill_parent" android:inAnimation="@anim/fling_in_right2left" android:outAnimation="@anim/fling_out_right2left" />
-</FrameLayout>

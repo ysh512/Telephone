@@ -74,7 +74,7 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
 //			TelApplication app = (TelApplication)getApplicationContext();
 //			app.finishAll();
 			TelApplication.finishAll();
-			Intent it = new Intent(this,Container.class);
+			Intent it = new Intent(this,Login.class);
 			startActivity(it);
 
 			break;
@@ -118,24 +118,24 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
 	
 	//>android 2.3
 	private void answerRingingCall1() { 
-        //²å¶ú»ú
+        //ï¿½ï¿½ï¿½ï¿½ï¿½
            Intent localIntent1 = new Intent(Intent.ACTION_HEADSET_PLUG);
            localIntent1.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
            localIntent1.putExtra("state", 1);
            localIntent1.putExtra("microphone", 1);
            localIntent1.putExtra("name", "Headset");
            sendOrderedBroadcast(localIntent1,"android.permission.CALL_PRIVILEGED");
-        //°´ÏÂ¶ú»ú°´Å¥
+        //ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Å¥
            Intent localIntent2 = new Intent(Intent.ACTION_MEDIA_BUTTON);
            KeyEvent localKeyEvent1 = new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_HEADSETHOOK);
            localIntent2.putExtra("android.intent.extra.KEY_EVENT", localKeyEvent1);
            sendOrderedBroadcast(localIntent2,"android.permission.CALL_PRIVILEGED");
-        //·Å¿ª¶ú»ú°´Å¥
+        //ï¿½Å¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥
            Intent localIntent3 = new Intent(Intent.ACTION_MEDIA_BUTTON);
            KeyEvent localKeyEvent2 = new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_HEADSETHOOK);
            localIntent3.putExtra("android.intent.extra.KEY_EVENT", localKeyEvent2);
            sendOrderedBroadcast(localIntent3, "android.permission.CALL_PRIVILEGED");
-        //°Î³ö¶ú»ú
+        //ï¿½Î³ï¿½ï¿½ï¿½ï¿½ï¿½
            Intent localIntent4 = new Intent(Intent.ACTION_HEADSET_PLUG);
            localIntent4.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
            localIntent4.putExtra("state", 0);
@@ -147,30 +147,30 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
 	//android 4.1
 	private void answerRingingCall2() { 
 
-	     //·Å¿ª¶ú»ú°´Å¥
+	     //ï¿½Å¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥
 	        Intent localIntent3 = new Intent(Intent.ACTION_MEDIA_BUTTON);
 	        KeyEvent localKeyEvent2 = new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_HEADSETHOOK);
 	        localIntent3.putExtra("android.intent.extra.KEY_EVENT",localKeyEvent2);
 	        sendOrderedBroadcast(localIntent3,"android.permission.CALL_PRIVILEGED");
 	        
-	        //²å¶ú»ú
+	        //ï¿½ï¿½ï¿½ï¿½ï¿½
 	           Intent localIntent1 = new Intent(Intent.ACTION_HEADSET_PLUG);
 	           localIntent1.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 	           localIntent1.putExtra("state", 1);
 	           localIntent1.putExtra("microphone", 1);
 	           localIntent1.putExtra("name", "Headset");
 	           sendOrderedBroadcast(localIntent1,"android.permission.CALL_PRIVILEGED");
-	        //°´ÏÂ¶ú»ú°´Å¥
+	        //ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Å¥
 	           Intent localIntent2 = new Intent(Intent.ACTION_MEDIA_BUTTON);
 	           KeyEvent localKeyEvent1 = new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_HEADSETHOOK);
 	           localIntent2.putExtra("android.intent.extra.KEY_EVENT",localKeyEvent1);
 	           sendOrderedBroadcast(localIntent2,"android.permission.CALL_PRIVILEGED");
-	        //·Å¿ª¶ú»ú°´Å¥
+	        //ï¿½Å¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥
 	            localIntent3 = new Intent(Intent.ACTION_MEDIA_BUTTON);
 	            localKeyEvent2 = new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_HEADSETHOOK);
 	           localIntent3.putExtra("android.intent.extra.KEY_EVENT",localKeyEvent2);
 	           sendOrderedBroadcast(localIntent3,"android.permission.CALL_PRIVILEGED");
-	        //°Î³ö¶ú»ú
+	        //ï¿½Î³ï¿½ï¿½ï¿½ï¿½ï¿½
 	           Intent localIntent4 = new Intent(Intent.ACTION_HEADSET_PLUG);
 	           localIntent4.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 	           localIntent4.putExtra("state", 0);
@@ -182,10 +182,10 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
 	
 	private void answerRingingCallWithBroadcast(Context context,TelephonyManager telmanager){  
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);  
-        //ÅĞ¶ÏÊÇ·ñ²åÉÏÁË¶ú»ú  
+        //ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶ï¿½ï¿½ï¿½  
         if (! audioManager.isWiredHeadsetOn()) { 
-       //4.1ÒÔÉÏÏµÍ³ÏŞÖÆÁË²¿·ÖÈ¨ÏŞ£¬ Ê¹ÓÃÈıĞÇ4.1°æ±¾²âÊÔÌáÊ¾¾¯¸æ£ºPermission Denial: not allowed to send broadcast android.intent.action.HEADSET_PLUG from pid=1324, uid=10017
-//ÕâÀïĞèÒª×¢ÒâÒ»µã£¬·¢ËÍ¹ã²¥Ê±¼ÓÁËÈ¨ÏŞ¡°android.permission.CALL_PRIVLEGED¡±£¬Ôò½ÓÊÜ¸Ã¹ã²¥Ê±Ò²ĞèÒªÔö¼Ó¸ÃÈ¨ÏŞ¡£µ«ÊÇ4.1ÒÔÉÏ°æ±¾Ã²ËÆÕâ¸öÈ¨ÏŞÖ»ÄÜÏµÍ³Ó¦ÓÃ²Å¿ÉÒÔµÃµ½¡£²âÊÔµÄÊ±ºò£¬×Ô¶¨ÒåµÄ½ÓÊÕÆ÷ÎŞ·¨½ÓÊÜµ½´Ë¹ã²¥£¬ºóÀ´È¥µôÁËÕâ¸öÈ¨ÏŞ£¬ÉèÎªNULL±ã¿ÉÒÔ¼àÌıµ½ÁË¡£
+       //4.1ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½È¨ï¿½Ş£ï¿½ Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4.1ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½æ£ºPermission Denial: not allowed to send broadcast android.intent.action.HEADSET_PLUG from pid=1324, uid=10017
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òª×¢ï¿½ï¿½Ò»ï¿½ã£¬ï¿½ï¿½ï¿½Í¹ã²¥Ê±ï¿½ï¿½ï¿½ï¿½È¨ï¿½Ş¡ï¿½android.permission.CALL_PRIVLEGEDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¸Ã¹ã²¥Ê±Ò²ï¿½ï¿½Òªï¿½ï¿½ï¿½Ó¸ï¿½È¨ï¿½Ş¡ï¿½ï¿½ï¿½ï¿½ï¿½4.1ï¿½ï¿½ï¿½Ï°æ±¾Ã²ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½Ö»ï¿½ï¿½ÏµÍ³Ó¦ï¿½Ã²Å¿ï¿½ï¿½ÔµÃµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ê±ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½ï¿½ï¿½ï¿½Üµï¿½ï¿½Ë¹ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½Ş£ï¿½ï¿½ï¿½ÎªNULLï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½
 
         if(android.os.Build.VERSION.SDK_INT >=15 ){
                 Intent meidaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);  
@@ -193,7 +193,7 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
                 meidaButtonIntent.putExtra(Intent.EXTRA_KEY_EVENT,keyEvent);  
                 context.sendOrderedBroadcast(meidaButtonIntent, null);  
         }else{
-// ÒÔÏÂÊÊÓÃÓÚAndroid2.3¼°2.3ÒÔÉÏµÄ°æ±¾ÉÏ £¬µ«²âÊÔ·¢ÏÖ4.1ÏµÍ³ÉÏ²»¹ÜÓÃ¡£
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Android2.3ï¿½ï¿½2.3ï¿½ï¿½ï¿½ÏµÄ°æ±¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½4.1ÏµÍ³ï¿½Ï²ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
         Intent localIntent1 = new Intent(Intent.ACTION_HEADSET_PLUG);  
                 localIntent1.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);  
                 localIntent1.putExtra("state", 1);  

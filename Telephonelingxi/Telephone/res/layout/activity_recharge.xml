@@ -4,7 +4,8 @@
     android:layout_height="fill_parent"
     android:background="@color/layout_bg" >
 
-    <include layout="@layout/include_activity_title" />
+    <include layout="@layout/include_activity_title"
+        android:id="@+id/view_title" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -23,7 +24,7 @@
                 android:background="@color/white" >
 
                 <TextView
-                    android:id="@id/tt"
+                    android:id="@+id/tt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -35,7 +36,7 @@
                     android:textSize="@dimen/textsize16" />
 
                 <EditText
-                    android:id="@id/et_account"
+                    android:id="@+id/et_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/tt"
@@ -51,7 +52,7 @@
                     android:textSize="@dimen/textsize16" />
 
                 <TextView
-                    android:id="@id/tty"
+                    android:id="@+id/tty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tt"
@@ -64,7 +65,7 @@
                     android:textSize="@dimen/textsize14" />
 
                 <ImageView
-                    android:id="@id/tv_tips"
+                    android:id="@+id/tv_tips"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -91,7 +92,7 @@
                 <View style="@style/line_h" />
 
                 <LinearLayout
-                    android:id="@id/llyt_meal"
+                    android:id="@+id/llyt_meal"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"

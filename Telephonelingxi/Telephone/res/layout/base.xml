@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="#52AEEF">
+        android:background="@color/tab_bg" >
 
         <TextView
             android:id="@+id/tv_title"
@@ -16,26 +16,24 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/company_name"
-            android:textSize="20sp" 
-            android:textColor="#ffffff"/>
+            android:textColor="@color/text6_color"
+            android:textSize="@dimen/textsize16" >
+        </TextView>
 
         <ImageView
             android:id="@+id/iv_b_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/back2"
+           android:layout_width="@dimen/titlebar"
+        android:layout_height="@dimen/titlebar"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/sl_bg_title"
+        android:scaleType="center" 
             android:visibility="gone" />
-        
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_title"/>
-    
-    
+        android:layout_below="@id/rl_title" />
+
 </RelativeLayout>

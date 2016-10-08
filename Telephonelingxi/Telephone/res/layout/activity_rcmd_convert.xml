@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/layout_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/include_activity_title" />
+
+
+
+    <include 
+        layout="@layout/item_list_account"
+        />
+    
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/more_item_height"
+        android:layout_marginTop="@dimen/dimen_15dip"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen_15dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_money"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize16" />
+
+        <EditText
+            android:id="@+id/et_convert_money"
+            android:layout_width="0.0dip"
+            android:layout_height="@dimen/input_height"
+            android:layout_weight="1.0"
+            android:background="@null"
+            android:hint="@string/input_convert_money"
+            android:inputType="number"
+            android:maxLength="10"
+            android:paddingLeft="@dimen/dimen_10dip"
+            android:singleLine="true"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/textsize16" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_convert"
+        style="@style/button_once"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/dimen_15dip"
+        android:background="@drawable/sl_bg_red_reddark"
+        android:text="@string/convert" />
+
+</LinearLayout>

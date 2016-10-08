@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.provider.CallLog.Calls;
 import android.support.v7.appcompat.R.color;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -91,22 +92,22 @@ public class RecordAdapter extends BaseAdapter {
         switch(list.get(position).type)
         {
         case Calls.INCOMING_TYPE:
-        	holder.iv_call_type.setImageResource(R.drawable.call_coming);
+        	holder.iv_call_type.setImageResource(R.drawable.ic_call_in);
         	break;
         case Calls.OUTGOING_TYPE:
-        	holder.iv_call_type.setImageResource(R.drawable.call_ougoing);
+        	holder.iv_call_type.setImageResource(R.drawable.ic_call_out);
         	break;        	
         case Calls.MISSED_TYPE:
-        	holder.iv_call_type.setImageResource(R.drawable.call_missing);
+        	holder.iv_call_type.setImageResource(R.drawable.ic_call_mis);
         	break;
         	default:
         		holder.iv_call_type.setImageResource(R.drawable.call_coming);
         		break;
         }
         SingleRecord t = list.get(position);
-        if(null == t.name)
+        if(TextUtils.isEmpty(t.name))
         {
-        	holder.tv_call_name.setText("δ֪");
+        	holder.tv_call_name.setText("未知");
         }
         else
         {
@@ -114,7 +115,7 @@ public class RecordAdapter extends BaseAdapter {
         }
         if(t.number.length()<3)
         {
-        	holder.tv_call_number.setText("δ֪");
+        	holder.tv_call_number.setText(t.number);
         }
         else
         {

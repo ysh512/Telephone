@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/layout_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/include_activity_title" />
+
+        <TextView
+            android:id="@+id/bt_save"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/titlebar"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/sl_bg_title"
+            android:gravity="center"
+            android:paddingLeft="16.0dip"
+            android:paddingRight="16.0dip"
+            android:text="@string/com_save"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize14" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_edit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20.0dip"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <View style="@style/line_h" />
+
+        <include
+            android:id="@+id/et_profile"
+            layout="@layout/widget_clear_edittext" />
+
+        <View style="@style/line_h" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_radios"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20.0dip"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <View style="@style/line_h" />
+
+        <TextView
+            android:id="@+id/radio0"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sl_bg_item"
+            android:drawableRight="@drawable/sl_cb_switch"
+            android:gravity="center_vertical"
+            android:paddingBottom="10.0dip"
+            android:paddingLeft="20.0dip"
+            android:paddingRight="16.0dip"
+            android:paddingTop="10.0dip"
+            android:text="@string/dial_choose1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize16" />
+
+        <View
+            style="@style/line_h"
+            android:layout_marginLeft="20.0dip" />
+
+        <TextView
+            android:id="@+id/radio1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sl_bg_item"
+            android:drawableRight="@drawable/sl_cb_switch"
+            android:gravity="center_vertical"
+            android:paddingBottom="10.0dip"
+            android:paddingLeft="20.0dip"
+            android:paddingRight="16.0dip"
+            android:paddingTop="10.0dip"
+            android:text="@string/dial_choose2"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize16" />
+
+        <View style="@style/line_h" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/et_clear"
+        android:layout_width="fill_parent"
+        android:layout_height="43.0dip"
+        android:background="@drawable/sl_bg_input"
+        android:ems="10"
+        android:maxLength="26"
+        android:textColor="@color/text6_color"
+        android:textSize="@dimen/textsize14" />
+
+    <ImageView
+        android:id="@+id/et_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="5.0dip"
+        android:scaleType="center"
+        android:src="@drawable/sl_search_del"
+        android:visibility="gone" />
+
+</RelativeLayout>

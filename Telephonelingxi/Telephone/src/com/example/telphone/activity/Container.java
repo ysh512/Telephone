@@ -28,8 +28,8 @@ import com.example.telphone.Constants;
 import com.example.telphone.QueryInfo;
 import com.example.telphone.R;
 import com.example.telphone.TelApplication;
+import com.example.telphone.activity.RestPwd.ResetPwdTask;
 import com.example.telphone.extendview.MarqueeButton;
-import com.example.telphone.listener.CallBottomListener;
 import com.example.telphone.model.BitmapLoadAdapter;
 import com.example.telphone.model.ContainerAdapter;
 import com.example.telphone.model.MenuAdAdapter;
@@ -50,11 +50,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.Editable;
@@ -85,7 +85,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 
 @SuppressLint("HandlerLeak")
-public class Container extends BaseActivity implements OnClickListener ,OnItemClickListener,OnPageChangeListener{
+public class Container extends BaseActivity implements OnClickListener ,OnPageChangeListener{
 
 	public static final String TAG = "Container";
 	//-----------------UI------------------------
@@ -99,8 +99,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private TextView im_meun;
 	
 	//page call
-	private LinearLayout ll_numPad;
-	private ViewPager vp_t_ad;
 	private ImageButton num_1;
 	private ImageButton num_2;
 	private ImageButton num_3;
@@ -138,16 +136,14 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private ViewPager vp_menu_ad;
 	private ImageView[] mImageViews; // װ
 
-	private GridView gv_m;
+//	private GridView gv_m;
 	
 	
-	/**
-	 * �ϴε�һ���ɼ�Ԫ�أ����ڹ���ʱ��¼��ʶ��
-	 */
+	private ListView lv_records;
+
 	private int lastFirstVisibleItem = -1;
-	/**
-	 * ����ת����ƴ������
-	 */
+
+	
 	private CharacterParser characterParser;
 	private List<GroupMemberBean> SourceDateList;
 	
@@ -178,11 +174,19 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	private TextView tv_rcmd_url;
 	private TextView tv_rcmd_info;
 	private TextView tv_rcmd_copy;
+		
+	private TextView tv_card_set;
+	private TextView tv_recharge;
+	private TextView tv_set;
+	private TextView tv_convert;
+	private TextView tv_balance;
+	private TextView tv_pwd_set;
+
 	
+	private TextView tv_phone;
+	private TextView tv_nickName;
 	
-	private String alipayAccount;
-	private String alipayName;
-	
+	private RelativeLayout rlyt_recommend_info;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -228,7 +232,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 		views = new ArrayList();
 		LayoutInflater inflater = getLayoutInflater();		
-		View telView = inflater.inflate(R.layout.tel, null);		
+		View telView = inflater.inflate(R.layout.tel, null);	
+		lv_records = (ListView)telView.findViewById(R.id.lv_r_records);
 		views.add(telView);	
 		initTelView(telView);
 		
@@ -236,6 +241,17 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		views.add(contactsView);
 		initContactsView(contactsView);
 		View recommendview = inflater.inflate(R.layout.fragment_recommend, null);
+		vp_menu_ad = (ViewPager) recommendview.findViewById(R.id.vp_m_ad); 
+		//set scroll ad string
+		MarqueeButton mb= (MarqueeButton)recommendview.findViewById(R.id.marquee_button);
+		
+		SharedPreferences mySharedPreferences = this.getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE);
+		if(mySharedPreferences.contains(Variable.FILED_MARQUEEN_STR))
+		{
+			mb.setText(mySharedPreferences.getString(Variable.FILED_MARQUEEN_STR, ""));
+		}
+		
+		
 		views.add(recommendview);		
 		View menuView = inflater.inflate(R.layout.menu, null);
 		views.add(menuView);
@@ -265,12 +281,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	}
 	
 	private void initTelView(View telView) {
-		
-		ll_numPad = (LinearLayout)telView.findViewById(R.id.ll_tel_numpad);
-		vp_t_ad = (ViewPager)telView.findViewById(R.id.vp_t_ad);
-		
-		
-		
 		
 		num_1 = (ImageButton)telView.findViewById(R.id.ib_num_1);
 		num_2 = (ImageButton)telView.findViewById(R.id.ib_num_2);
@@ -328,7 +338,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			mImageViews[i] = new ImageView(this);
 			mImageViews[i].setImageResource(resIds[i]);
 		}
-		vp_t_ad.setAdapter(new MenuAdAdapter(mImageViews));
 		
 		ArrayList<ImageView> ivList = new ArrayList<ImageView>();
 		for(int i=0;;i++)
@@ -349,19 +358,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			iv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
 			iv.setScaleType(ScaleType.FIT_XY);
 			ivList.add(iv);
-		}
-		if(ivList.size()>0)
-		{
-			vp_t_ad.setAdapter(new BitmapLoadAdapter(ivList));
-		}
-		vp_t_ad.setCurrentItem(1);
-		if(ivList.size()>0)
-		{
-			this.scrollPageViewer(vp_t_ad, ivList.size());
-		}
-		else
-		{
-			this.scrollPageViewer(vp_t_ad, mImageViews.length);
 		}
 	}
 	
@@ -476,8 +472,30 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	}
 	
 	private void initMenuview(View menuView) {
-		vp_menu_ad = (ViewPager) menuView.findViewById(R.id.vp_m_ad); 
 		
+		tv_phone = (TextView)menuView.findViewById(R.id.tv_phone);
+		tv_nickName = (TextView)menuView.findViewById(R.id.et_nikename);
+		tv_phone.setText(PreferenceUtils.getPhone());
+		
+		rlyt_recommend_info = (RelativeLayout)menuView.findViewById(R.id.rlyt_recommend_info);
+		rlyt_recommend_info.setOnClickListener(this);
+		
+		tv_pwd_set = (TextView)menuView.findViewById(R.id.tv_pwd_set);
+		tv_pwd_set.setOnClickListener(this);
+		tv_balance = (TextView)menuView.findViewById(R.id.tv_balance);
+		tv_balance.setOnClickListener(this);
+		tv_card_set = (TextView)menuView.findViewById(R.id.tv_card_set);
+		
+		tv_card_set.setOnClickListener(this);
+		 
+		tv_recharge = (TextView)menuView.findViewById(R.id.tv_recharge);
+		tv_recharge.setOnClickListener(this);
+		
+		tv_set = (TextView)menuView.findViewById(R.id.tv_set);
+		tv_set.setOnClickListener(this);
+		
+		tv_convert = (TextView)menuView.findViewById(R.id.tv_convert);
+		tv_convert.setOnClickListener(this);
 		int resIds[]= {R.drawable.ad30,R.drawable.ad32};
 		this.mImageViews = new ImageView[resIds.length];
 		for(int i=0;i<mImageViews.length;i++)
@@ -524,26 +542,18 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			this.scrollPageViewer(vp_menu_ad,mImageViews.length );
 		}
 			
-		gv_m = (GridView)menuView.findViewById(R.id.gv_m);
-		int strResId[] = {R.string.gd_1,R.string.gd_2,R.string.gd_3,
-				R.string.gd_4,R.string.gd_5,R.string.gd_6,R.string.gd_7,R.string.gd_8};
+//		gv_m = (GridView)menuView.findViewById(R.id.gv_m);
+//		int strResId[] = {R.string.gd_1,R.string.gd_2,R.string.gd_3,
+//				R.string.gd_4,R.string.gd_5,R.string.gd_6,R.string.gd_7,R.string.gd_8};
+//		
+//		int picResId[] = {R.drawable.set_nearshop,R.drawable.set_earn_calls,R.drawable.set_balance,R.drawable.set_lottery,
+//				R.drawable.set_shop,R.drawable.set_find,R.drawable.set_hotcall,R.drawable.set_moresettings};
+//		
+//		gv_m.setAdapter(new MenuGridviewAdapter(Container.this,strResId,picResId));
+//		
+//		gv_m.setOnItemClickListener(this);
 		
-		int picResId[] = {R.drawable.set_nearshop,R.drawable.set_earn_calls,R.drawable.set_balance,R.drawable.set_lottery,
-				R.drawable.set_shop,R.drawable.set_find,R.drawable.set_hotcall,R.drawable.set_moresettings};
-		
-		gv_m.setAdapter(new MenuGridviewAdapter(Container.this,strResId,picResId));
-		
-		gv_m.setOnItemClickListener(this);
-		
-		//set scroll ad string
-		MarqueeButton mb= (MarqueeButton)menuView.findViewById(R.id.marquee_button);
-		
-//		TextView tv_ad = (TextView)menuView.findViewById(R.id.tv_m_ad);
-		SharedPreferences mySharedPreferences = this.getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE);
-		if(mySharedPreferences.contains(Variable.FILED_MARQUEEN_STR))
-		{
-			mb.setText(mySharedPreferences.getString(Variable.FILED_MARQUEEN_STR, ""));
-		}
+
 
 		
 		
@@ -556,7 +566,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		title = (TextView) contactsView.findViewById(R.id.title_layout_catalog);
 		tvNofriends = (TextView) contactsView
 				.findViewById(R.id.title_layout_no_friends);
-		// ʵ��������תƴ����
+		
 		characterParser = CharacterParser.getInstance();
 
 		pinyinComparator = new PinyinComparator();
@@ -565,7 +575,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		dialog = (TextView) contactsView.findViewById(R.id.dialog);
 		sideBar.setTextView(dialog);
 
-		// �����Ҳഥ������
+		
 		sideBar.setOnTouchingLetterChangedListener(new OnTouchingLetterChangedListener() {
 
 			@Override
@@ -585,9 +595,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// ����Ҫ����adapter.getItem(position)����ȡ��ǰposition����Ӧ�Ķ���
-//				String phoneNumber= 
-//				
+			
 				TextView v = (TextView) view.findViewById(R.id.title);
 				String name = (String) v.getText();
 				Log.d("Name",name);
@@ -660,15 +668,15 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		}
 		mClearEditText = (ClearEditText) contactsView.findViewById(R.id.filter_edit);
 
-		// �������������ֵ�ĸı�����������
+		
 		mClearEditText.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// ���ʱ����Ҫ��ѹЧ�� �Ͱ������ص�
+				
 				titleLayout.setVisibility(View.GONE);
-				// ������������ֵΪ�գ�����Ϊԭ�����б�����Ϊ���������б�
+				
 				filterData(s.toString());
 			}
 
@@ -748,7 +756,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	}
 		
 	/**
-	 * ����������е�ֵ���������ݲ�����ListView
+	 * 
 	 * 
 	 * @param filterStr
 	 */
@@ -779,16 +787,12 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	}
 	
 	
-	/**
-	 * ����ListView�ĵ�ǰλ�û�ȡ���������ĸ��Char asciiֵ
-	 */
+
 	public int getSectionForPosition(int position) {
 		return SourceDateList.get(position).getSortLetters().charAt(0);
 	}
 
-	/**
-	 * ���ݷ��������ĸ��Char asciiֵ��ȡ���һ�γ��ָ�����ĸ��λ��
-	 */
+
 	public int getPositionForSection(int section) {
 		for (int i = 0; i < SourceDateList.size(); i++) {
 			String sortStr = SourceDateList.get(i).getSortLetters();
@@ -856,6 +860,34 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		case R.id.tv_rcmd_copy:
 			Utils.copy(tv_rcmd_url.getText().toString());
 			break;
+		case R.id.tv_card_set:
+			Intent itCharge = new Intent(Container.this,BindAccount.class);
+			startActivity(itCharge);
+			break;
+		case R.id.tv_recharge:
+			Intent itRecharge = new Intent(Container.this,ChargeCenter.class);
+			startActivity(itRecharge);
+			break;
+		case R.id.tv_set:
+			Intent itSet = new Intent(this,Setting.class);
+			startActivity(itSet);
+			break;
+		case R.id.tv_convert:
+			Intent itCash = new Intent(this,Cash.class);
+			startActivity(itCash);
+			break;
+		case R.id.tv_balance:
+			Intent itBalance = new Intent(this,QueryBalance.class);
+			startActivity(itBalance);
+			break;
+		case R.id.tv_pwd_set:
+			Intent itResetPwd = new Intent(this,RestPwd.class);
+			startActivity(itResetPwd);
+			break;
+		case R.id.rlyt_recommend_info:
+			Intent itRecomdInfo = new Intent(this,RecomdInfo.class);
+			startActivity(itRecomdInfo);
+			break;
 			default:
 				break;
 		}
@@ -871,47 +903,47 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 	}
 
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
-		String url="";
-		switch(arg2)
-		{
-		case 0:
-//			url = "http://121.40.100.250:88/reg/";
-//			startWebView(url);
-			Intent it = new Intent(Container.this,ChargeCenter.class);
-			startActivity(it);
-			break;
-		case 1:
-//			Uri uri = Uri.parse(Variable.MAIN_PAGE_URL);
-//			Intent it1 = new Intent(Intent.ACTION_VIEW,uri);
-//			startActivity(it1);
-			break;
-		case 2:
-			Intent it2 = new Intent(Container.this,QueryBalance.class);
-			startActivity(it2);		
-			break;
-		case 3:
-			Intent it3 = new Intent(Container.this,BindAccount.class);
-			startActivity(it3);
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-//			callCustomService();
-			break;
-		case 7:
-			Intent it7 = new Intent(this,Setting.class);
-			startActivity(it7);
-			break;
-			default:
-				break;
-		}
-		
-	}
+//	@Override
+//	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+//		// TODO Auto-generated method stub
+//		String url="";
+//		switch(arg2)
+//		{
+//		case 0:
+////			url = "http://121.40.100.250:88/reg/";
+////			startWebView(url);
+//			Intent it = new Intent(Container.this,ChargeCenter.class);
+//			startActivity(it);
+//			break;
+//		case 1:
+////			Uri uri = Uri.parse(Variable.MAIN_PAGE_URL);
+////			Intent it1 = new Intent(Intent.ACTION_VIEW,uri);
+////			startActivity(it1);
+//			break;
+//		case 2:
+//			Intent it2 = new Intent(Container.this,QueryBalance.class);
+//			startActivity(it2);		
+//			break;
+//		case 3:
+//			Intent it3 = new Intent(Container.this,BindAccount.class);
+//			startActivity(it3);
+//			break;
+//		case 4:
+//			break;
+//		case 5:
+//			break;
+//		case 6:
+////			callCustomService();
+//			break;
+//		case 7:
+//			Intent it7 = new Intent(this,Setting.class);
+//			startActivity(it7);
+//			break;
+//			default:
+//				break;
+//		}
+//		
+//	}
 
 
 
@@ -960,7 +992,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			public void handleMessage(Message msg) {
 				super.handleMessage(msg);
 		    
-			    int current = vp_t_ad.getCurrentItem();
+			    int current =v.getCurrentItem();
 			    v.setCurrentItem((current+1)%pages);
 			    
 //	            Log.d(TAG, "change ad index:"+menuAdIndex);
@@ -978,6 +1010,11 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
+		
+		recordsList = Utils.getContacts(this);
+		RecordAdapter lv_adapter = new RecordAdapter(this,recordsList);
+		lv_records.setAdapter(lv_adapter);
 		GetInfoTask task = new GetInfoTask();
 		task.execute();
 	
@@ -1039,14 +1076,20 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 							String account = object.getString("email");
 							String name=object.getString("account");
 							
+							
+							String alipayAccount = object.getString("email");
+							String aliapyName = object.getString("account");
+							
+							String nickName = object.getString("nickname");
+							PreferenceUtils.saveNickName(nickName);
 							Log.d(TAG, "account:"+account);
 							Log.d(TAG, "name:");
-							if(!TextUtils.isEmpty(account) && !TextUtils.isEmpty(name))
+							if(!TextUtils.isEmpty(account) || !TextUtils.isEmpty(name))
 							{
-								alipayAccount = account;
-								alipayName = name;
+								PreferenceUtils.saveAlipayAccount(alipayAccount, aliapyName);
 							}
-							
+							String wxid = object.getString("wxid");
+							PreferenceUtils.saveWechat(wxid);
 							return true;
 						}
 						
@@ -1078,6 +1121,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 				tv_rcmd_people_1.setText(Constants.LEVEL_ONE+":"+chongzhis[0]);
 				tv_rcmd_people_2.setText(Constants.LEVEL_TWO+":"+chongzhis[2]);
 				tv_rcmd_people_3.setText(Constants.LEVEL_THREE+":"+chongzhis[2]);
+				
+				tv_nickName.setText(PreferenceUtils.getNickName());
 			}
 		}
 		

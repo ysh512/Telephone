@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen_10dip"
+    android:paddingLeft="@dimen/dimen_15dip"
+    android:paddingRight="@dimen/dimen_15dip"
+    android:paddingTop="@dimen/dimen_10dip" >
+
+    <TextView
+        android:id="@+id/tv_convert_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/dimen_5dip"
+        android:gravity="center_vertical"
+        android:text="支付宝"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize16" />
+
+    <TextView
+        android:id="@+id/tv_convert_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_5dip"
+        android:text="78092133@qq.com"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize16" />
+
+    <TextView
+        android:id="@+id/tv_convert_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_5dip"
+        android:text="啊"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize16" />
+
+    <TextView
+        android:id="@+id/tv_convert_bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_5dip"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize16"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_convert_bank_branch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_5dip"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize16"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_15dip" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tip" />
+
+        <TextView
+            android:id="@+id/tv_convert_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="1.0dip"
+            android:paddingLeft="@dimen/dimen_5dip"
+            android:text=""
+            android:textColor="@color/gray"
+            android:textSize="@dimen/textsize12" />
+    </FrameLayout>
+
+</LinearLayout>

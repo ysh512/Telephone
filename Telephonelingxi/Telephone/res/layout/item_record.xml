@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/call_coming" />
+        android:paddingRight="@dimen/dimen_10dip"
+        android:src="@drawable/ic_call_in" />
 
     <TextView
         android:id="@+id/tv_ir_name"
@@ -20,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tv_ir_phonenum"
         android:layout_alignParentTop="true"
-        android:textSize="16sp"
-        android:textColor="#336598"
+        android:textColor="@color/text6_color"
+        android:textSize="@dimen/textsize16" 
         android:text="Jack" />
 
     <TextView
@@ -31,27 +32,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/iv_ir_call_type"
-        android:textSize="16sp"
+        android:textColor="@color/text3_color"
+		android:textSize="@dimen/textsize12"
+		android:singleLine="true"
         android:text="13280080012" />
 
     <ImageView
         android:id="@+id/iv_ir_callphone"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/telephone" />
-    <ImageView
-        android:layout_width="0.5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@+id/iv_ir_callphone"
-        android:background="#dbdbdb"/>
-    
+        android:layout_width="@dimen/listitem"
+            android:layout_height="@dimen/listitem"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="-10.0dip"
+            android:scaleType="center"
+            android:src="@drawable/ic_arraw" />   
     
     <ImageView 
         android:layout_width="match_parent"
@@ -67,7 +61,8 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/iv_ir_callphone"
         android:text="09-16 11:30"
-        android:layout_marginRight="5dp"
-        android:textSize="14sp" />
+        android:textColor="@color/text5_color"
+        android:textSize="@dimen/textsize14"
+        android:layout_marginRight="5dp"/>
 
 </RelativeLayout>

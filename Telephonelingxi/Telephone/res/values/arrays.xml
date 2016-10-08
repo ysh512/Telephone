@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="card_money">
-        <item>请选择充值卡面额</item>
-        <item>100元面额</item>
-        <item>50元面额</item>
-        <item>30元面额</item>
-    </string-array>
-</resources>

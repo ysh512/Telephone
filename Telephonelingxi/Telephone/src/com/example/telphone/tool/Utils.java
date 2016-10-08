@@ -37,9 +37,7 @@ public class Utils {
 	        null, null, null, Calls.DEFAULT_SORT_ORDER);                                                                                                 
 	if(cursor.moveToFirst()){                                                                                
 	    do{                                                                                                  
-//	        CallsLog calls =new CallsLog();                                                                  
-	        //����                                                                                     
-	    	
+
 	    	SingleRecord ci = new SingleRecord();
 	    	
 	        String number = cursor.getString(cursor.getColumnIndex(Calls.NUMBER));                           
@@ -74,7 +72,7 @@ public class Utils {
 	        ci.time = time;
 	        recordsList.add(ci);
 	        
-//	        Log.d("Phone",name+":"+number);
+	        Log.d("Phone",name+":"+number);
 	        
 //	        String number = cursor.getString(cursor.getColumnIndexOrThrow(Calls.NUMBER));
 	    }while(cursor.moveToNext());                                                                         
@@ -103,36 +101,16 @@ public class Utils {
 				if (TextUtils.isEmpty(phoneNumber)) {
 					continue;
 				}
-				// ���������Լ������ݷ�װ��
-				
-//				if(map.containsKey(name))
-//				{
-//					ContractInfo c = map.get(name);
-//					c.phoneList.add(phoneNumber);
-//				}
-//				else
-//				{
-//					ContractInfo contractInfo = new ContractInfo();
-//					contractInfo.name = name;
-//				// contractInfo.setName(name);
-//					contractInfo.phoneList = new ArrayList();
-//					contractInfo.phoneList.add(phoneNumber);
-////				contractInfo.phoneNum = phoneNumber;
-//				// contractInfo.setPhoneNumber(getNumber(phoneNumber));
-//				// contractInfo.setFrom(PHONE);
-//					contractInfo.source = 0;
-//					map.put(name, contractInfo);
-//				}
+
 			}
 			phoneCursor.close();
 		}
 		return map;
 	}
 
-	// ����������ȡsim���ķ�����sim����uri�����ֿ���content://icc/adn��content://sim/adn
-	// ��һ��������ǵ�һ�֣�
+
 	public static HashMap<String, ContractInfo> getSimContracts(Context mContext) {
-		// ��ȡSIM���ֻ���,�����ֿ���:content://icc/adn��content://sim/adn
+
 		HashMap<String, ContractInfo> map = new HashMap<String, ContractInfo>();
 
 		ContentResolver resolver = mContext.getContentResolver();

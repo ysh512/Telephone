@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="200.0dip"
+                    android:background="@drawable/bg_account"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:id="@+id/rlyt_recommend_info"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15.0dip"
+                        android:layout_marginTop="20.0dip" >
+
+                        <ImageView
+                            android:id="@+id/ic_user_icon"
+                            android:layout_width="75.0dip"
+                            android:layout_height="75.0dip"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_photo"/>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/ic_user_icon"
+                            android:orientation="vertical"
+                            android:paddingLeft="15.0dip"
+                            android:paddingTop="6.0dip" >
+
+                            <TextView
+                                android:id="@+id/tv_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="#ff94590d"
+                                android:textSize="@dimen/textsize16" />
+
+                            <TextView
+                                android:id="@+id/et_nikename"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/nickname_null"
+                                android:minEms="5"
+                                android:paddingTop="3.0dip"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="#ff94590d"
+                                android:textSize="@dimen/textsize16" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/ic_recommend_qr_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/dimen_5dip"
+                            android:padding="10.0dip"
+                            android:src="@drawable/ic_ic_qr_code2" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="0.0dip"
+                        android:layout_weight="1.0" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="10.0dip" >
+
+                        <LinearLayout
+                            android:id="@+id/ll_rcmd_gold"
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingBottom="5.0dip" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/account_money"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/textsize16" />
+
+                            <TextView
+                                android:id="@+id/tv_rcmd_gold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_6dip"
+                                android:text=""
+                                android:textColor="#ff94590d" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5sp"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/line_bg_two" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_rcmd_gold_total"
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingBottom="5.0dip" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/account_money_total"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/textsize16" />
+
+                            <TextView
+                                android:id="@+id/tv_rcmd_gold_total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_6dip"
+                                android:text=""
+                                android:textColor="#ff94590d" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5sp"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/line_bg_two" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_rcmd_gold_convert"
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingBottom="5.0dip" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/account_money_convert"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/textsize16" />
+
+                            <TextView
+                                android:id="@+id/tv_rcmd_gold_convert"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_6dip"
+                                android:text=""
+                                android:textColor="#ff94590d" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+               <!--   <include
+                    android:id="@+id/ad_account"
+                    layout="@layout/widget_ad_fliper" />
+				-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="10.0dip"
+                    android:background="@color/layout_bg" />
+
+                <TextView
+                    android:id="@+id/tv_balance"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_balacne"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/act_balance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/tv_recharge"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_recharge"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/act_recharge"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/tv_pwd_set"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_pwd_set"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/act_pwd_set"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="10.0dip"
+                    android:background="@color/layout_bg" />
+
+                <TextView
+                    android:id="@+id/tv_account_log"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_pipeline"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/account_pipeline"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/tv_convert_log"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_convert_log"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/convert_pipeline"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/tv_card_set"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_card_set"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/convert_card"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/tv_convert"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_convert"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/convert"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="10.0dip"
+                    android:background="@color/layout_bg" />
+
+                <TextView
+                    android:id="@+id/tv_set"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_dial_set"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/net_set"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/tv_about"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_w_g"
+                    android:drawableLeft="@drawable/ic_about"
+                    android:drawablePadding="@dimen/dimen_10dip"
+                    android:drawableRight="@drawable/ic_arrow_act"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_15dip"
+                    android:text="@string/account_about"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+            </LinearLayout>
+        </ScrollView>
+
+
+</RelativeLayout>

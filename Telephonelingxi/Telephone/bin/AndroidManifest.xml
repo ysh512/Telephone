@@ -79,8 +79,31 @@
 		    ></activity>
 		
 		<activity 
+		    android:name="com.example.telphone.activity.AlipayEdit"
+		    ></activity>
+		
+		<activity
+		    android:name="com.example.telphone.activity.Cash"></activity>
+		
+		<activity 
 		    android:name="com.alipay.sdk.pay.demo.PayDemoActivity"
 		    ></activity>
+		
+		<activity
+		    android:name="com.example.telphone.activity.RestPwd"
+		    ></activity>
+		
+		<activity 
+		    android:name="com.example.telphone.activity.RecomdInfo"
+		    ></activity>
+		
+		<activity
+		    android:name="com.example.telphone.activity.SetNickname"
+		    ></activity>
+		<activity 
+		    android:name="com.example.telphone.activity.BindWeChat"
+		    ></activity>
+		
          <receiver android:name="com.example.telphone.receiver.PhoneReceiver">
             <intent-filter>   
             	<action android:name="android.intent.action.PHONE_STATE"/>   

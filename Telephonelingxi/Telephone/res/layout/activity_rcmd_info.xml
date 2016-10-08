@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <include layout="@layout/include_activity_title"
+        android:id="@+id/view_title" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/view_title"
+        android:background="@color/layout_bg"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_15dip" >
+
+            <RelativeLayout
+                android:id="@+id/rlyt_photo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_15dip"
+                android:background="@drawable/sl_bg_w_g"
+                android:clickable="true"
+                android:paddingBottom="8.0dip"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="16.0dip"
+                android:paddingTop="8.0dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/info_photo"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize16" />
+
+                <ImageView
+                    android:id="@+id/iv_arr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                    android:src="@drawable/ic_arrow_profile" />
+
+                <ImageView
+                    android:id="@+id/iv_user_icon"
+                    android:layout_width="50.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:layout_toLeftOf="@id/iv_arr"
+                    android:src="@drawable/ic_photo" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_15dip"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/rlyt_nickname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_item"
+                    android:clickable="true"
+                    android:paddingBottom="15.0dip"
+                    android:paddingLeft="20.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingTop="15.0dip" >
+
+                    <TextView
+                        android:id="@+id/tv_keyboard_voice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/info_nickname"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize16" />
+
+                    <ImageView
+                        android:id="@+id/iv_arr0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_arrow_profile" />
+
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10.0dip"
+                        android:layout_toLeftOf="@id/iv_arr0"
+                        android:text=""
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/textsize16" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/line_h2"
+                    android:layout_marginLeft="20.0dip" />
+
+                <RelativeLayout
+                    android:id="@+id/rlyt_weixin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_item"
+                    android:clickable="true"
+                    android:paddingBottom="15.0dip"
+                    android:paddingLeft="20.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingTop="15.0dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/info_weixin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize16" />
+
+                    <ImageView
+                        android:id="@+id/iv_arr1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_arrow_profile" />
+
+                    <TextView
+                        android:id="@+id/tv_weixin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10.0dip"
+                        android:layout_toLeftOf="@id/iv_arr1"
+                        android:text=""
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/textsize16" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/line_h2"
+                    android:layout_marginLeft="20.0dip" />
+
+                <RelativeLayout
+                    android:id="@+id/rlyt_qr_code"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/more_item_height"
+                    android:background="@drawable/sl_bg_item"
+                    android:clickable="true"
+                    android:paddingBottom="15.0dip"
+                    android:paddingLeft="20.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingTop="15.0dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/info_qrcode"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize16" />
+
+                    <ImageView
+                        android:id="@+id/iv_arr2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_arrow_profile" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10.0dip"
+                        android:layout_toLeftOf="@id/iv_arr2"
+                        android:src="@drawable/ic_qritem" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_height"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <View style="@style/line_h" />
+
+                <TextView
+                    android:id="@id/tv_swithc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sl_bg_item"
+                    android:gravity="center"
+                    android:paddingBottom="16.0dip"
+                    android:paddingTop="16.0dip"
+                    android:text="切换账号"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/textsize16" />
+
+                <View style="@style/line_h" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/v_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_photo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#e12d2d2d"
+        android:orientation="vertical"
+        android:paddingBottom="30.0dip"
+        android:paddingLeft="30.0dip"
+        android:paddingRight="30.0dip"
+        android:paddingTop="50.0dip"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_photos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sl_bg_w_g"
+            android:gravity="center"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="10.0dip"
+            android:text="@string/info_photos"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_camera"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/sl_bg_w_g"
+            android:gravity="center"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="10.0dip"
+            android:text="@string/info_camera"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/sl_bg_w_g"
+            android:gravity="center"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="10.0dip"
+            android:text="@string/com_cancel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize16" />
+    </LinearLayout>
+
+</RelativeLayout>

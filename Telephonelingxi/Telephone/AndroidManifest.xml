@@ -104,6 +104,14 @@
 		    android:name="com.example.telphone.activity.BindWeChat"
 		    ></activity>
 		
+		<activity 
+		    android:name="com.kevin.imagecrop.activity.CropActivity"
+		    ></activity>
+		
+		<activity 
+		    android:name="com.example.telphone.activity.QRCode"
+		    ></activity>
+		
          <receiver android:name="com.example.telphone.receiver.PhoneReceiver">
             <intent-filter>   
             	<action android:name="android.intent.action.PHONE_STATE"/>   

@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true" >
+
+    <!-- <include layout="@layout/toolbar_layout" /> -->
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/include_activity_title" />
+
+        <TextView
+            android:id="@+id/bt_save"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/titlebar"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/sl_bg_title"
+            android:gravity="center"
+            android:paddingLeft="16.0dip"
+            android:paddingRight="16.0dip"
+            android:text="@string/com_save"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize14" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:layout_below="@id/top"
+         >
+
+        <com.kevin.crop.view.UCropView
+            android:id="@+id/weixin_act_ucrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+</RelativeLayout>

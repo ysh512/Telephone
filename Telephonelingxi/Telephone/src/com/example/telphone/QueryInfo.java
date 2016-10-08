@@ -5,25 +5,20 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
-import com.example.telphone.tool.Variable;
 
 import android.app.Activity;
 import android.content.Context;
@@ -32,9 +27,13 @@ import android.content.SharedPreferences.Editor;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.telphone.tool.Variable;
+
 public class QueryInfo implements Runnable{
 
 	//http://121.40.100.250:88/CallReqRet.php?UserID=%s&CallTo=dialpan&Wap=json
+	
+	private static final String TAG=QueryInfo.class.getSimpleName();
 	
 	 public final static String ALBUM_PATH  
      = Environment.getExternalStorageDirectory() + "/lingxidownload/";
@@ -45,35 +44,34 @@ public class QueryInfo implements Runnable{
 	{
 		this.context = context;
 		this.phone = phone;
+		sp = context.getSharedPreferences(Variable.SHARE_PRE_NAME,
+				Activity.MODE_PRIVATE);
 	}
 	
 	@Override
 	public void run() {
 
 		
-		sp = context.getSharedPreferences(Variable.SHARE_PRE_NAME,
-				Activity.MODE_PRIVATE);
 		
+		
+//		updateDialPic();
+
+
+
+		updateAdString();
+		
+//		updateCallingAdPic();
+		
+		updateMenuAdPic();
+		
+	}
+
+	private void updateDialPic() {
 		String ad_pic_url = "http://60.205.168.68:88/CallReqRet.php?UserID="
 				+ phone + "&CallTo=dialpan&Wap=json";
 
 		String result = getQueryResult(ad_pic_url);
-		// HttpClient client = new DefaultHttpClient();
-		// HttpGet get = new
-		// HttpGet("http://121.40.100.250:99/CallReqRet.php?UserID="+phone+"&CallTo=dialpan&Wap=json");
-		// HttpResponse response= null;
-		// BufferedReader in = null;
-		// try {
-		// response = client.execute(get);
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 
-		
-
-		// if (null!=response && response.getStatusLine().getStatusCode() ==
-		// HttpStatus.SC_OK) {
 		try {
 			// String result = EntityUtils.toString(response.getEntity());
 			JSONTokener json = new JSONTokener(result);
@@ -120,32 +118,27 @@ public class QueryInfo implements Runnable{
 
 			e.printStackTrace();
 		}
-
-		// }
-
-		updateAdString();
-		
-		updateCallingAdPic();
-		
-		updateMenuAdPic();
-		
 	}
 	
 	
 	private void updateMenuAdPic() {
 
-		String picUrl = "http://60.205.168.68:88/CallReqRet.php?UserID"+phone+"&CallTo=more&Wap=json";
+		String picUrl = "http://60.205.168.68:88/wapb/CallReqRet.php?UserID=13333333333&CallTo=moreadv&Wap=json";
 		String result = getQueryResult(picUrl);
 		
 		
 		
 		try {
-			JSONTokener json = new JSONTokener(result);
-			JSONObject jo = (JSONObject) json.nextValue();
+			JSONArray array = new JSONArray(result);
+//			JSONTokener json = new JSONTokener(result);
+//			JSONObject jo = (JSONObject) json.nextValue();
 			
 			int i =0;
-			while (jo.has(String.valueOf(i))) {
-				JSONObject sub = (JSONObject) jo.get(String.valueOf(i));
+//			while (jo.has(String.valueOf(i))) {
+			for(;i<array.length();i++)
+			{
+				JSONObject sub = array.getJSONObject(i);
+//				JSONObject sub = (JSONObject) jo.get(String.valueOf(i));
 				String imageUrl = sub.getString("imgurl");
 				String date = sub.getString("date");
 				String dateSaved = sp.getString("ad3" + String.valueOf(i),
@@ -158,8 +151,9 @@ public class QueryInfo implements Runnable{
 					e.putString("ad3" + String.valueOf(i), date);
 					e.commit();
 				}
-				i++;
 			}
+//				i++;
+//			}
 
 			while (sp.contains("ad3" + String.valueOf(i))) {
 				sp.edit().remove("ad3" + String.valueOf(i));
@@ -224,8 +218,9 @@ public class QueryInfo implements Runnable{
 //			
 //		}
 		//http://121.40.100.250:99/CallReqRet.php?UserID=13262878009&CallTo=marquee&Wap=json
-		String queryUrl = "http://60.205.168.68:88/CallReqRet.php?UserID="+phone+"&CallTo=marquee&Wap=json";
+		String queryUrl = "http://60.205.168.68:88/wapb/CallReqRet.php?UserID=13333333333&CallTo=marquee&Wap=json";
 		String result = getQueryResult(queryUrl);
+		Log.d(TAG, "[updateAdString] result:"+result);
 		if(null!=result)
 		{
 			

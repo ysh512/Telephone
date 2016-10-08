@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.example.telphone.tool.Variable;
+import com.kevin.imagecrop.KevinApplication;
+import com.kevin.imagecrop.activity.basic.ActivityStack;
 
 import android.app.Activity;
 import android.app.Application;
@@ -42,10 +44,9 @@ public class TelApplication extends Application{
 		super.onCreate();
 		appContext = getApplicationContext();
 		
-		//create log
-
+		KevinApplication.mActivityStack = new ActivityStack();
 		
-		//Update Appinfo cache
+		KevinApplication.mContext = getApplicationContext();
 		
 	}
 	
@@ -59,16 +60,15 @@ public class TelApplication extends Application{
 			e.putBoolean("auto", true);
 			e.commit();
 		}
-		if(s.contains("phone"))
-		{
+//		if(s.contains("phone"))
+//		{
 			phone = s.getString("phone", "");
 			
 			
-			//暂停广告加载机制
-//			QueryInfo qi = new QueryInfo(context,s.getString("phone", ""));
-//			new Thread(qi).start();
+			QueryInfo qi = new QueryInfo(context,s.getString("phone", "13333333333"));
+			new Thread(qi).start();
 		
-		}
+//		}
 		
 		
 	}

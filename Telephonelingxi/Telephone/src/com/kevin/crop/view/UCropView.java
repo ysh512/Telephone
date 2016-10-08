@@ -1,5 +1,7 @@
 package com.kevin.crop.view;
 
+import com.example.telphone.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
@@ -7,7 +9,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.kevin.crop.R;
 
 public class UCropView extends FrameLayout {
 

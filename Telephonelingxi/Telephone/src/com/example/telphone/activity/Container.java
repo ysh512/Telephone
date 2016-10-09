@@ -192,6 +192,15 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	
 	private RelativeLayout rlyt_recommend_info;
 	
+	
+	private int yuer;
+	private int recommendIncome;
+	private int cash;
+	
+	private TextView tv_rcmd_gold;
+	private TextView tv_rcmd_gold_total;
+	private TextView tv_rcmd_gold_convert;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -476,6 +485,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	}
 	
 	private void initMenuview(View menuView) {
+		
+		tv_rcmd_gold = (TextView)menuView.findViewById(R.id.tv_rcmd_gold);
+		tv_rcmd_gold_total = (TextView)menuView.findViewById(R.id.tv_rcmd_gold_total);
+		tv_rcmd_gold_convert = (TextView)menuView.findViewById(R.id.tv_rcmd_gold_convert);
 		
 		tv_account_log = (TextView)menuView.findViewById(R.id.tv_account_log);
 		tv_account_log.setOnClickListener(this);
@@ -1109,6 +1122,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 								PreferenceUtils.saveAlipayAccount(alipayAccount, aliapyName);
 							}
 							String wxid = object.getString("wxid");
+							yuer  = (int) Float.parseFloat(object.getString("yuer"));
+							recommendIncome = (int)Float.parseFloat(object.getString("yucun"));
+							cash = (int)Float.parseFloat(object.getString("cash"));
+							
 							PreferenceUtils.saveWechat(wxid);
 							return true;
 						}
@@ -1143,6 +1160,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 				tv_rcmd_people_3.setText(Constants.LEVEL_THREE+":"+chongzhis[2]);
 				
 				tv_nickName.setText(PreferenceUtils.getNickName());
+				
+				tv_rcmd_gold.setText(yuer+"金币");
+				tv_rcmd_gold_total.setText(recommendIncome+"金币");
+				tv_rcmd_gold_convert.setText(cash+"金币");
 			}
 		}
 		

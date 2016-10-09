@@ -186,6 +186,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private TextView tv_phone;
 	private TextView tv_nickName;
 	
+	
+	private TextView tv_account_log;
+	private TextView tv_convert_log;
+	
 	private RelativeLayout rlyt_recommend_info;
 	
 	@Override
@@ -472,6 +476,12 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	}
 	
 	private void initMenuview(View menuView) {
+		
+		tv_account_log = (TextView)menuView.findViewById(R.id.tv_account_log);
+		tv_account_log.setOnClickListener(this);
+		
+		tv_convert_log = (TextView)menuView.findViewById(R.id.tv_convert_log);
+		tv_convert_log.setOnClickListener(this);
 		
 		tv_phone = (TextView)menuView.findViewById(R.id.tv_phone);
 		tv_nickName = (TextView)menuView.findViewById(R.id.et_nikename);
@@ -887,6 +897,16 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		case R.id.rlyt_recommend_info:
 			Intent itRecomdInfo = new Intent(this,RecomdInfo.class);
 			startActivity(itRecomdInfo);
+			break;
+		case R.id.tv_account_log:
+			Intent itAccountLog = new Intent(this,Web.class);
+			itAccountLog.putExtra("url", String.format(Constants.ACCOUNT_FLOW, PreferenceUtils.getPhone(),PreferenceUtils.getPass()));
+			startActivity(itAccountLog);
+			break;
+		case R.id.tv_convert_log:
+			Intent itConvertLog = new Intent(this,Web.class);
+			itConvertLog.putExtra("url", String.format(Constants.CASH_RECORD_URL, PreferenceUtils.getPhone(),PreferenceUtils.getPass()));
+			startActivity(itConvertLog);
 			break;
 			default:
 				break;

@@ -233,7 +233,7 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
       
         String result = "error";  
         MultipartBody.Builder builder = new MultipartBody.Builder();  
-        builder.addFormDataPart("image", imagePath,  
+        builder.addFormDataPart("file", imagePath,  
                 RequestBody.create(MediaType.parse("image/jpeg"), new File(imagePath)));  
         RequestBody requestBody = builder.build();  
         Request.Builder reqBuilder = new Request.Builder();  
@@ -243,6 +243,7 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
                 .post(requestBody)  
                 .build();  
       
+        
         Log.d(TAG, "请求地址 " +uploadUrl);  
         try{  
             Response response = mOkHttpClient.newCall(request).execute();  

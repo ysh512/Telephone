@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.PreferenceUtils;
 
 public class BindAccount extends Activity implements View.OnClickListener{

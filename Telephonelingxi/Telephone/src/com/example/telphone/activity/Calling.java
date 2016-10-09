@@ -13,7 +13,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import com.example.telphone.QueryInfo;
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.TelApplication;
 import com.example.telphone.tool.Variable;
 

@@ -26,7 +26,7 @@ import com.example.sortlistview.SortGroupMemberAdapter;
 import com.example.sortlistview.SideBar.OnTouchingLetterChangedListener;
 import com.example.telphone.Constants;
 import com.example.telphone.QueryInfo;
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.TelApplication;
 import com.example.telphone.activity.RestPwd.ResetPwdTask;
 import com.example.telphone.extendview.MarqueeButton;

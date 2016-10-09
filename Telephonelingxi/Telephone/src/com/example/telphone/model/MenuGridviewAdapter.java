@@ -1,7 +1,7 @@
 package com.example.telphone.model;
 
   
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 import android.content.Context;  
 import android.view.LayoutInflater;  
@@ -64,7 +64,7 @@ public class MenuGridviewAdapter extends BaseAdapter {
     @Override  
     public View getView(int position, View convertView, ViewGroup parent) {  
         // TODO Auto-generated method stub  
-//        »ñµÃholderÒÔ¼°holder¶ÔÏóÖÐtvºÍimg¶ÔÏóµÄÊµÀý  
+//        ï¿½ï¿½ï¿½holderï¿½Ô¼ï¿½holderï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tvï¿½ï¿½imgï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½  
         Holder holder;  
         if(convertView==null){  
               
@@ -80,10 +80,10 @@ public class MenuGridviewAdapter extends BaseAdapter {
             holder=(Holder) convertView.getTag();  
               
         }  
-//        ÎªholderÖÐµÄtvºÍimgÉèÖÃÄÚÈÝ  
+//        Îªholderï¿½Ðµï¿½tvï¿½ï¿½imgï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
         holder.tv.setText(data[position]);  
         holder.img.setImageResource(imgId[position]);  
-//        ×¢Òâ  Ä¬ÈÏÎª·µ»Ønull,±ØÐëµÃ·µ»ØconvertViewÊÓÍ¼  
+//        ×¢ï¿½ï¿½  Ä¬ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½null,ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½convertViewï¿½ï¿½Í¼  
         return convertView;  
     }  
   

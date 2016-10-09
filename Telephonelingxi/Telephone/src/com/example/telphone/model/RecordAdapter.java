@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.activity.Calling;
 import com.example.telphone.property.SingleRecord;
 

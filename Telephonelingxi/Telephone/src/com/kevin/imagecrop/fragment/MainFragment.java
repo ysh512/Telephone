@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.kevin.imagecrop.fragment.basic.PictureSelectFragment;
 
 import butterknife.Bind;

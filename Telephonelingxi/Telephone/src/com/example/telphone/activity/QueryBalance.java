@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.telphone.Constants;
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.PreferenceUtils;
 
 import android.app.Activity;

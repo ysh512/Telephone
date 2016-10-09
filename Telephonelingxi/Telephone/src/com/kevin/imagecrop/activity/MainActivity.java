@@ -2,7 +2,7 @@ package com.kevin.imagecrop.activity;
 
 import android.support.v4.app.FragmentTransaction;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.kevin.imagecrop.activity.basic.BaseActivity;
 import com.kevin.imagecrop.fragment.MainFragment;
 import com.kevin.imagecrop.fragment.basic.BaseFragment;

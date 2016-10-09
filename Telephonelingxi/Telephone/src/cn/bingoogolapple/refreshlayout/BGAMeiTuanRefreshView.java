@@ -16,7 +16,7 @@
 
 package cn.bingoogolapple.refreshlayout;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;

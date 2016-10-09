@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.kevin.crop.util.CubicEasing;
 import com.kevin.crop.util.RectUtils;
 

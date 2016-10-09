@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sortlistview.SideBar.OnTouchingLetterChangedListener;
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 public class ActivityAddFriends extends Activity implements SectionIndexer {
 	private ListView sortListView;
@@ -35,17 +35,17 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 	private TextView title;
 	private TextView tvNofriends;
 	/**
-	 * ÉÏ´ÎµÚÒ»¸ö¿É¼ûÔªËØ£¬ÓÃÓÚ¹ö¶¯Ê±¼ÇÂ¼±êÊ¶¡£
+	 * ï¿½Ï´Îµï¿½Ò»ï¿½ï¿½ï¿½É¼ï¿½Ôªï¿½Ø£ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Â¼ï¿½ï¿½Ê¶ï¿½ï¿½
 	 */
 	private int lastFirstVisibleItem = -1;
 	/**
-	 * ºº×Ö×ª»»³ÉÆ´ÒôµÄÀà
+	 * ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private CharacterParser characterParser;
 	private List<GroupMemberBean> SourceDateList;
 
 	/**
-	 * ¸ù¾ÝÆ´ÒôÀ´ÅÅÁÐListViewÀïÃæµÄÊý¾ÝÀà
+	 * ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ListViewï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private PinyinComparator pinyinComparator;
 
@@ -61,7 +61,7 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 		title = (TextView) this.findViewById(R.id.title_layout_catalog);
 		tvNofriends = (TextView) this
 				.findViewById(R.id.title_layout_no_friends);
-		// ÊµÀý»¯ºº×Ö×ªÆ´ÒôÀà
+		// Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªÆ´ï¿½ï¿½ï¿½ï¿½
 		characterParser = CharacterParser.getInstance();
 
 		pinyinComparator = new PinyinComparator();
@@ -70,12 +70,12 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 		dialog = (TextView) findViewById(R.id.dialog);
 		sideBar.setTextView(dialog);
 
-		// ÉèÖÃÓÒ²à´¥Ãþ¼àÌý
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ò²à´¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		sideBar.setOnTouchingLetterChangedListener(new OnTouchingLetterChangedListener() {
 
 			@Override
 			public void onTouchingLetterChanged(String s) {
-				// ¸Ã×ÖÄ¸Ê×´Î³öÏÖµÄÎ»ÖÃ
+				// ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½×´Î³ï¿½ï¿½Öµï¿½Î»ï¿½ï¿½
 				int position = adapter.getPositionForSection(s.charAt(0));
 				if (position != -1) {
 					sortListView.setSelection(position);
@@ -90,7 +90,7 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// ÕâÀïÒªÀûÓÃadapter.getItem(position)À´»ñÈ¡µ±Ç°positionËù¶ÔÓ¦µÄ¶ÔÏó
+				// ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½adapter.getItem(position)ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ç°positionï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ä¶ï¿½ï¿½ï¿½
 				Toast.makeText(
 						getApplication(),
 						((GroupMemberBean) adapter.getItem(position)).getName(),
@@ -100,7 +100,7 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 
 //		SourceDateList = filledData(getResources().getStringArray(R.array.date));
 
-		// ¸ù¾Ýa-z½øÐÐÅÅÐòÔ´Êý¾Ý
+		// ï¿½ï¿½ï¿½ï¿½a-zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½
 		Collections.sort(SourceDateList, pinyinComparator);
 		adapter = new SortGroupMemberAdapter(this, SourceDateList);
 		sortListView.setAdapter(adapter);
@@ -147,15 +147,15 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 		});
 		mClearEditText = (ClearEditText) findViewById(R.id.filter_edit);
 
-		// ¸ù¾ÝÊäÈë¿òÊäÈëÖµµÄ¸Ä±äÀ´¹ýÂËËÑË÷
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ä¸Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		mClearEditText.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// Õâ¸öÊ±ºò²»ÐèÒª¼·Ñ¹Ð§¹û ¾Í°ÑËûÒþ²Øµô
+				// ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ñ¹Ð§ï¿½ï¿½ ï¿½Í°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½
 				titleLayout.setVisibility(View.GONE);
-				// µ±ÊäÈë¿òÀïÃæµÄÖµÎª¿Õ£¬¸üÐÂÎªÔ­À´µÄÁÐ±í£¬·ñÔòÎª¹ýÂËÊý¾ÝÁÐ±í
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎªï¿½Õ£ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÔ­ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 				filterData(s.toString());
 			}
 
@@ -172,7 +172,7 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 	}
 
 	/**
-	 * ÎªListViewÌî³äÊý¾Ý
+	 * ÎªListViewï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param date
 	 * @return
@@ -183,11 +183,11 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 		for (int i = 0; i < date.length; i++) {
 			GroupMemberBean sortModel = new GroupMemberBean();
 			sortModel.setName(date[i]);
-			// ºº×Ö×ª»»³ÉÆ´Òô
+			// ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½
 			String pinyin = characterParser.getSelling(date[i]);
 			String sortString = pinyin.substring(0, 1).toUpperCase();
 
-			// ÕýÔò±í´ïÊ½£¬ÅÐ¶ÏÊ××ÖÄ¸ÊÇ·ñÊÇÓ¢ÎÄ×ÖÄ¸
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Ç·ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½Ä¸
 			if (sortString.matches("[A-Z]")) {
 				sortModel.setSortLetters(sortString.toUpperCase());
 			} else {
@@ -201,7 +201,7 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 	}
 
 	/**
-	 * ¸ù¾ÝÊäÈë¿òÖÐµÄÖµÀ´¹ýÂËÊý¾Ý²¢¸üÐÂListView
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ï¿½ListView
 	 * 
 	 * @param filterStr
 	 */
@@ -223,7 +223,7 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 			}
 		}
 
-		// ¸ù¾Ýa-z½øÐÐÅÅÐò
+		// ï¿½ï¿½ï¿½ï¿½a-zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Collections.sort(filterDateList, pinyinComparator);
 		adapter.updateListView(filterDateList);
 		if (filterDateList.size() == 0) {
@@ -237,14 +237,14 @@ public class ActivityAddFriends extends Activity implements SectionIndexer {
 	}
 
 	/**
-	 * ¸ù¾ÝListViewµÄµ±Ç°Î»ÖÃ»ñÈ¡·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ
+	 * ï¿½ï¿½ï¿½ï¿½ListViewï¿½Äµï¿½Ç°Î»ï¿½Ã»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµ
 	 */
 	public int getSectionForPosition(int position) {
 		return SourceDateList.get(position).getSortLetters().charAt(0);
 	}
 
 	/**
-	 * ¸ù¾Ý·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ»ñÈ¡ÆäµÚÒ»´Î³öÏÖ¸ÃÊ××ÖÄ¸µÄÎ»ÖÃ
+	 * ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµï¿½ï¿½È¡ï¿½ï¿½ï¿½Ò»ï¿½Î³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Î»ï¿½ï¿½
 	 */
 	public int getPositionForSection(int section) {
 		for (int i = 0; i < SourceDateList.size(); i++) {

@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.alipay.sdk.pay.demo.PayDemoActivity;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 public class ChargeWay extends Activity implements OnClickListener{
 

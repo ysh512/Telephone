@@ -10,7 +10,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import com.example.telphone.Constants;
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.PreferenceUtils;
 import com.kevin.crop.UCrop;
 import com.kevin.imagecrop.activity.CropActivity;
@@ -179,6 +179,7 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
 	            	startCropActivity(mDestinationUri);
 	                break;  
 	            case GALLERY_REQUEST_CODE:
+	            	mDestinationUri = Uri.fromFile(new File(mTempPhotoPath));
 	            	startCropActivity(data.getData());
 	            	break;
 	            case UCrop.REQUEST_CROP: 

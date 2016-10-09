@@ -1,6 +1,6 @@
 package com.kevin.crop.view;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;

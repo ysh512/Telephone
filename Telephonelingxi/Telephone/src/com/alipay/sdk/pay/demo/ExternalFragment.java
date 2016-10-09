@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.telphone.Constants;
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.Variable;
 
 public class ExternalFragment extends Fragment {

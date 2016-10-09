@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.telphone.Constants;
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.PreferenceUtils;
 
 public class Cash extends Activity implements OnClickListener{

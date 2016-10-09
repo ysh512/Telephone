@@ -3,7 +3,7 @@ package com.example.sortlistview;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.property.ContractInfo;
 
 import android.content.Context;
@@ -29,7 +29,7 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 		this.mapContracts = contracts;
 	}
 	/**
-	 * µ±ListViewÊý¾Ý·¢Éú±ä»¯Ê±,µ÷ÓÃ´Ë·½·¨À´¸üÐÂListView
+	 * ï¿½ï¿½ListViewï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½ä»¯Ê±,ï¿½ï¿½ï¿½Ã´Ë·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ListView
 	 * 
 	 * @param list
 	 */
@@ -64,10 +64,10 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 			viewHolder = (ViewHolder) view.getTag();
 		}
 
-		// ¸ù¾Ýposition»ñÈ¡·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ
+		// ï¿½ï¿½ï¿½ï¿½positionï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµ
 		int section = getSectionForPosition(position);
 
-		// Èç¹ûµ±Ç°Î»ÖÃµÈÓÚ¸Ã·ÖÀàÊ××ÖÄ¸µÄCharµÄÎ»ÖÃ £¬ÔòÈÏÎªÊÇµÚÒ»´Î³öÏÖ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Î»ï¿½Ãµï¿½ï¿½Ú¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Charï¿½ï¿½Î»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Çµï¿½Ò»ï¿½Î³ï¿½ï¿½ï¿½
 		if (position == getPositionForSection(section)) {
 			viewHolder.tvLetter.setVisibility(View.VISIBLE);
 			viewHolder.tvLetter.setText(mContent.getSortLetters());
@@ -94,14 +94,14 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 	}
 
 	/**
-	 * ¸ù¾ÝListViewµÄµ±Ç°Î»ÖÃ»ñÈ¡·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ
+	 * ï¿½ï¿½ï¿½ï¿½ListViewï¿½Äµï¿½Ç°Î»ï¿½Ã»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµ
 	 */
 	public int getSectionForPosition(int position) {
 		return list.get(position).getSortLetters().charAt(0);
 	}
 
 	/**
-	 * ¸ù¾Ý·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ»ñÈ¡ÆäµÚÒ»´Î³öÏÖ¸ÃÊ××ÖÄ¸µÄÎ»ÖÃ
+	 * ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµï¿½ï¿½È¡ï¿½ï¿½ï¿½Ò»ï¿½Î³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Î»ï¿½ï¿½
 	 */
 	public int getPositionForSection(int section) {
 		for (int i = 0; i < getCount(); i++) {
@@ -116,14 +116,14 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 	}
 
 	/**
-	 * ÌáÈ¡Ó¢ÎÄµÄÊ××ÖÄ¸£¬·ÇÓ¢ÎÄ×ÖÄ¸ÓÃ#´úÌæ¡£
+	 * ï¿½ï¿½È¡Ó¢ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½#ï¿½ï¿½ï¿½æ¡£
 	 * 
 	 * @param str
 	 * @return
 	 */
 	private String getAlpha(String str) {
 		String sortStr = str.trim().substring(0, 1).toUpperCase();
-		// ÕýÔò±í´ïÊ½£¬ÅÐ¶ÏÊ××ÖÄ¸ÊÇ·ñÊÇÓ¢ÎÄ×ÖÄ¸
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Ç·ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½Ä¸
 		if (sortStr.matches("[A-Z]")) {
 			return sortStr;
 		} else {

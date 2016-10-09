@@ -1,6 +1,6 @@
 package com.example.sortlistview;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -14,13 +14,13 @@ import android.view.View;
 import android.widget.TextView;
 
 public class SideBar extends View {
-	// ´¥ÃþÊÂ¼þ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
 	private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
-	// 26¸ö×ÖÄ¸
+	// 26ï¿½ï¿½ï¿½ï¿½Ä¸
 	public static String[] b = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
 			"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
 			"W", "X", "Y", "Z", "#" };
-	private int choose = -1;// Ñ¡ÖÐ
+	private int choose = -1;// Ñ¡ï¿½ï¿½
 	private Paint paint = new Paint();
 
 	private TextView mTextDialog;
@@ -43,14 +43,14 @@ public class SideBar extends View {
 	}
 
 	/**
-	 * ÖØÐ´Õâ¸ö·½·¨
+	 * ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		// »ñÈ¡½¹µã¸Ä±ä±³¾°ÑÕÉ«.
-		int height = getHeight();// »ñÈ¡¶ÔÓ¦¸ß¶È
-		int width = getWidth(); // »ñÈ¡¶ÔÓ¦¿í¶È
-		int singleHeight = height / b.length;// »ñÈ¡Ã¿Ò»¸ö×ÖÄ¸µÄ¸ß¶È
+		// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä±ä±³ï¿½ï¿½ï¿½ï¿½É«.
+		int height = getHeight();// ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ß¶ï¿½
+		int width = getWidth(); // ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½
+		int singleHeight = height / b.length;// ï¿½ï¿½È¡Ã¿Ò»ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Ä¸ß¶ï¿½
 
 		for (int i = 0; i < b.length; i++) {
 			paint.setColor(Color.rgb(33, 65, 98));
@@ -58,16 +58,16 @@ public class SideBar extends View {
 			paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
 			paint.setTextSize(20);
-			// Ñ¡ÖÐµÄ×´Ì¬
+			// Ñ¡ï¿½Ðµï¿½×´Ì¬
 			if (i == choose) {
 				paint.setColor(Color.parseColor("#3399ff"));
 				paint.setFakeBoldText(true);
 			}
-			// x×ø±êµÈÓÚÖÐ¼ä-×Ö·û´®¿í¶ÈµÄÒ»°ë.
+			// xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½-ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Èµï¿½Ò»ï¿½ï¿½.
 			float xPos = width / 2 - paint.measureText(b[i]) / 2;
 			float yPos = singleHeight * i + singleHeight;
 			canvas.drawText(b[i], xPos, yPos, paint);
-			paint.reset();// ÖØÖÃ»­±Ê
+			paint.reset();// ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 		}
 
 	}
@@ -76,10 +76,10 @@ public class SideBar extends View {
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent event) {
 		final int action = event.getAction();
-		final float y = event.getY();// µã»÷y×ø±ê
+		final float y = event.getY();// ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½
 		final int oldChoose = choose;
 		final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
-		final int c = (int) (y / getHeight() * b.length);// µã»÷y×ø±êËùÕ¼×Ü¸ß¶ÈµÄ±ÈÀý*bÊý×éµÄ³¤¶È¾ÍµÈÓÚµã»÷bÖÐµÄ¸öÊý.
+		final int c = (int) (y / getHeight() * b.length);// ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½Ü¸ß¶ÈµÄ±ï¿½ï¿½ï¿½*bï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½È¾Íµï¿½ï¿½Úµï¿½ï¿½bï¿½ÐµÄ¸ï¿½ï¿½ï¿½.
 
 		switch (action) {
 		case MotionEvent.ACTION_UP:
@@ -114,7 +114,7 @@ public class SideBar extends View {
 	}
 
 	/**
-	 * ÏòÍâ¹«¿ªµÄ·½·¨
+	 * ï¿½ï¿½ï¿½â¹«ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
 	 * 
 	 * @param onTouchingLetterChangedListener
 	 */
@@ -124,7 +124,7 @@ public class SideBar extends View {
 	}
 
 	/**
-	 * ½Ó¿Ú
+	 * ï¿½Ó¿ï¿½
 	 * 
 	 * @author coder
 	 * 

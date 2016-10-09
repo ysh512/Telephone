@@ -24,7 +24,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.Variable;
 
 public class Lottery extends Activity{

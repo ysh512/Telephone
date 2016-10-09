@@ -12,7 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.kevin.crop.UCrop;
 import com.kevin.crop.util.BitmapLoadUtils;
 import com.kevin.crop.view.CropImageView;
@@ -117,6 +117,7 @@ public class CropActivity extends BaseActivity {
                 finish();
             }
         } else {
+        	Log.d(TAG, "[setImageData] result exception");
             setResultException(new NullPointerException("Both input and output Uri must be specified"));
             finish();
         }

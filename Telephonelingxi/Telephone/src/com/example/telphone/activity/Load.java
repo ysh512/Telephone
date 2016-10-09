@@ -1,6 +1,6 @@
 package com.example.telphone.activity;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.Variable;
 
 import android.app.Activity;

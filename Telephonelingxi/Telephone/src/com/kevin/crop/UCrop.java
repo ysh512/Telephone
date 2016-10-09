@@ -16,7 +16,7 @@ import android.support.annotation.Nullable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import com.example.telphone.BuildConfig;
+import com.dner.fast.BuildConfig;
 
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).

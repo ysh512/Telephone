@@ -11,7 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;

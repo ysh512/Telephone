@@ -20,7 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.alipay.sdk.app.PayTask;
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.tool.Variable;
 
 import android.annotation.SuppressLint;

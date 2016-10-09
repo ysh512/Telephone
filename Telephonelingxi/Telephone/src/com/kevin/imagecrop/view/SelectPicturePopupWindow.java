@@ -1,6 +1,6 @@
 package com.kevin.imagecrop.view;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 import android.app.Activity;
 import android.content.Context;

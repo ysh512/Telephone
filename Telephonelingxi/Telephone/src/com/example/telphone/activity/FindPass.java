@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 
 public class FindPass extends Activity{
 

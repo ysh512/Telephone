@@ -1,6 +1,6 @@
 package com.example.telphone.listener;
 
-import com.example.telphone.R;
+import com.dner.fast.R;
 import com.example.telphone.activity.Calling;
 
 import android.app.AlertDialog;

@@ -2,6 +2,6 @@
 *.class
 
 # Generated files
-bin/
-gen/
+Telephonelingxi/Telephone/bin/
+Telephonelingxi/Telephone/gen/
 

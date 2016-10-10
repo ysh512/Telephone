@@ -185,6 +185,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private TextView tv_convert;
 	private TextView tv_balance;
 	private TextView tv_pwd_set;
+	private TextView tv_about;
 
 	
 	private TextView tv_phone;
@@ -493,6 +494,9 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	}
 	
 	private void initMenuview(View menuView) {
+		
+		tv_about = (TextView)menuView.findViewById(R.id.tv_about);
+		tv_about.setOnClickListener(this);
 		
 		tv_rcmd_gold = (TextView)menuView.findViewById(R.id.tv_rcmd_gold);
 		tv_rcmd_gold_total = (TextView)menuView.findViewById(R.id.tv_rcmd_gold_total);
@@ -931,6 +935,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			break;
 		case R.id.tv_rcmd_share:
 			showShare();
+			break;
+		case R.id.tv_about:
+			Intent itAbout = new Intent(this,About.class);
+			startActivity(itAbout);
 			break;
 			default:
 				break;

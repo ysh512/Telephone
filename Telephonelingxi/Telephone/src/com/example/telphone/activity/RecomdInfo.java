@@ -232,17 +232,20 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
         OkHttpClient mOkHttpClient = new OkHttpClient();  
       
         String result = "error";  
-        MultipartBody.Builder builder = new MultipartBody.Builder();  
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);  
         builder.addFormDataPart("file", imagePath,  
                 RequestBody.create(MediaType.parse("image/jpeg"), new File(imagePath)));  
+        builder.addFormDataPart("UserID", PreferenceUtils.getPhone());
+        builder.addFormDataPart("CallTo", "file");
         RequestBody requestBody = builder.build();  
         Request.Builder reqBuilder = new Request.Builder();  
-        String uploadUrl = String.format(Constants.UPLOAD_AVATAR_URL,PreferenceUtils.getPhone(),PreferenceUtils.getPass());
+//        String uploadUrl = String.format(Constants.UPLOAD_AVATAR_URL,PreferenceUtils.getPhone(),PreferenceUtils.getPass());
+        String uploadUrl = Constants.UPLOAD_AVATAR_URL;
         Request request = reqBuilder  
                 .url(uploadUrl)  
                 .post(requestBody)  
                 .build();  
-      
+        
         
         Log.d(TAG, "请求地址 " +uploadUrl);  
         try{  

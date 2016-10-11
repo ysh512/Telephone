@@ -880,8 +880,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			break;
 			
 		case R.id.iv_cb_call:
-			String phone = PreferenceUtils.getPhone();
-			call(phone,this.tv_title.getText().toString());
+			call(this.tv_title.getText().toString(),this.tv_title.getText().toString());
 			break;
 		case R.id.iv_cb_keyboard:
 			this.ll_tab.setVisibility(View.VISIBLE);

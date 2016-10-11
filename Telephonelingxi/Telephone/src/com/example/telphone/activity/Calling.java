@@ -170,7 +170,9 @@ public class Calling extends Activity{
 			String from = sharedPreferences.getString("phone","");
 			
 			HttpClient client = new DefaultHttpClient();  
-	        HttpGet get = new HttpGet("http://60.205.168.68:88/wapb/CallReqRet.php?UserID="+from+"&CallTo="+phone);
+	        String callUrl = "http://60.205.168.68:88/wapb/CallReqRet.php?UserID="+from+"&CallTo="+phone;
+	        Log.d(TAG, "[doInBackground] callUrl:"+callUrl);
+			HttpGet get = new HttpGet(callUrl);
 	        HttpResponse response= null;
 	        BufferedReader in = null;  
 	        try {

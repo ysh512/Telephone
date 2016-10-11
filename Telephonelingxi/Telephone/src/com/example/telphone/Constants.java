@@ -19,7 +19,7 @@ public class Constants {
 	
 	public static final String MARQUEE_TEXT_URL = "http://60.205.168.68:88/wapb/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=marquee";
 	
-	public static final String UPLOAD_AVATAR_URL = "http://60.205.168.68:88/wapb/CallReqRet.php";
+	public static final String UPLOAD_AVATAR_URL = "http://60.205.168.68:99/wapb/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=file";
 	
 	public static final String CASH_RECORD_URL="http://60.205.168.68:99/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=dhlist";
 	

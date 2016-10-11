@@ -17,6 +17,8 @@ public class PreferenceUtils {
 
 	public static final String KEY_WE_CHAT = "wechat";
 	
+	public static final String KEY_USER_ID="userid";
+	
 	public static String getPhone()
 	{
 		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
@@ -89,5 +91,20 @@ public class PreferenceUtils {
 		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
 		String wechat = shared.getString(KEY_WE_CHAT, "暂未绑定");
 		return wechat;
+	}
+	
+	public static void saveId(int id)
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		Editor editor = shared.edit();
+		editor.putInt(KEY_USER_ID,id);
+		editor.commit();
+	}
+	
+	public static int getId()
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		return shared.getInt(KEY_USER_ID, 1);
+		
 	}
 }

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dner.fast"
     android:versionCode="1"
-    android:versionName="1.0.0.0" >
+    android:versionName="1.0.0.3" >
 
     <uses-permission android:name="android.permission.READ_CONTACTS" /> 
     <uses-permission android:name="android.permission.WRITE_CONTACTS" /> 
@@ -110,9 +110,6 @@
 		
 		<activity 
 		    android:name="com.example.telphone.activity.QRCode"
-		    ></activity>
-		<activity 
-		    android:name="com.example.telphone.activity.About"
 		    ></activity>
 		
          <receiver android:name="com.example.telphone.receiver.PhoneReceiver">

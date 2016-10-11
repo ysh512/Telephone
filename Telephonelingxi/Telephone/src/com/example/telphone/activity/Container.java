@@ -17,9 +17,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
-
 import com.example.sortlistview.CharacterParser;
 import com.example.sortlistview.ClearEditText;
 import com.example.sortlistview.GroupMemberBean;
@@ -177,7 +174,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private TextView tv_rcmd_url;
 	private TextView tv_rcmd_info;
 	private TextView tv_rcmd_copy;
-	private TextView tv_rcmd_share;
 		
 	private TextView tv_card_set;
 	private TextView tv_recharge;
@@ -185,7 +181,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private TextView tv_convert;
 	private TextView tv_balance;
 	private TextView tv_pwd_set;
-	private TextView tv_about;
 
 	
 	private TextView tv_phone;
@@ -196,17 +191,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private TextView tv_convert_log;
 	
 	private RelativeLayout rlyt_recommend_info;
-	
-	
-	private int yuer;
-	private int recommendIncome;
-	private int cash;
-	
-	private TextView tv_rcmd_gold;
-	private TextView tv_rcmd_gold_total;
-	private TextView tv_rcmd_gold_convert;
-	
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -297,8 +281,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		tv_rcmd_info = (TextView)recommendview.findViewById(R.id.tv_rcmd_info);
 		tv_rcmd_copy = (TextView)recommendview.findViewById(R.id.tv_rcmd_copy);
 		tv_rcmd_copy.setOnClickListener(this);
-		tv_rcmd_share = (TextView)recommendview.findViewById(R.id.tv_rcmd_share);
-		tv_rcmd_share.setOnClickListener(this);
 		
 	}
 	
@@ -494,13 +476,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	}
 	
 	private void initMenuview(View menuView) {
-		
-		tv_about = (TextView)menuView.findViewById(R.id.tv_about);
-		tv_about.setOnClickListener(this);
-		
-		tv_rcmd_gold = (TextView)menuView.findViewById(R.id.tv_rcmd_gold);
-		tv_rcmd_gold_total = (TextView)menuView.findViewById(R.id.tv_rcmd_gold_total);
-		tv_rcmd_gold_convert = (TextView)menuView.findViewById(R.id.tv_rcmd_gold_convert);
 		
 		tv_account_log = (TextView)menuView.findViewById(R.id.tv_account_log);
 		tv_account_log.setOnClickListener(this);
@@ -933,13 +908,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			itConvertLog.putExtra("url", String.format(Constants.CASH_RECORD_URL, PreferenceUtils.getPhone(),PreferenceUtils.getPass()));
 			startActivity(itConvertLog);
 			break;
-		case R.id.tv_rcmd_share:
-			showShare();
-			break;
-		case R.id.tv_about:
-			Intent itAbout = new Intent(this,About.class);
-			startActivity(itAbout);
-			break;
 			default:
 				break;
 		}
@@ -1109,7 +1077,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 						JSONObject object = new JSONObject(result);
 						
 						int id = object.getInt("id");
-						PreferenceUtils.saveId(id);
 						this.id = id;
 						if(0==id)
 						{
@@ -1142,10 +1109,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 								PreferenceUtils.saveAlipayAccount(alipayAccount, aliapyName);
 							}
 							String wxid = object.getString("wxid");
-							yuer  = (int) Float.parseFloat(object.getString("yuer"));
-							recommendIncome = (int)Float.parseFloat(object.getString("yucun"));
-							cash = (int)Float.parseFloat(object.getString("cash"));
-							
 							PreferenceUtils.saveWechat(wxid);
 							return true;
 						}
@@ -1180,47 +1143,9 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 				tv_rcmd_people_3.setText(Constants.LEVEL_THREE+":"+chongzhis[2]);
 				
 				tv_nickName.setText(PreferenceUtils.getNickName());
-				
-				tv_rcmd_gold.setText(yuer+"金币");
-				tv_rcmd_gold_total.setText(recommendIncome+"金币");
-				tv_rcmd_gold_convert.setText(cash+"金币");
 			}
 		}
 		
 	}
-	
-	
-	private void showShare() {
-		 ShareSDK.initSDK(this);
-		 OnekeyShare oks = new OnekeyShare();
-		 //关闭sso授权
-		 oks.disableSSOWhenAuthorize(); 
-		 String shareUrl = String.format(Constants.RECOMMEND_URL, String.valueOf(PreferenceUtils.getId()));
-		 
-		// 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
-		 //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
-		 // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-		 oks.setTitle("分享");
-		 // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-		 oks.setTitleUrl(shareUrl);
-		 // text是分享文本，所有平台都需要这个字段
-		 oks.setText(shareUrl);
-		 //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
-//		 oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
-		 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-		 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-		 // url仅在微信（包括好友和朋友圈）中使用
-		 oks.setUrl(shareUrl);
-		 // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-		 oks.setComment("邀请好友赚取话费");
-		 // site是分享此内容的网站名称，仅在QQ空间使用
-		 oks.setSite(getString(R.string.app_name));
-		 // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-		 oks.setSiteUrl(shareUrl);
-		 
-		// 启动分享GUI
-		 oks.show(this);
-		 }
-	
 		
 }

@@ -28,7 +28,7 @@
                     android:layout_marginLeft="15.0dip"
                     android:layout_marginTop="20.0dip" >
 
-                    <ImageView
+                    <com.example.telphone.extendview.AsyncImageView
                         android:id="@+id/ic_user_icon"
                         android:layout_width="75.0dip"
                         android:layout_height="75.0dip"

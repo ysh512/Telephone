@@ -32,6 +32,7 @@ import com.example.telphone.QueryInfo;
 import com.dner.fast.R;
 import com.example.telphone.TelApplication;
 import com.example.telphone.activity.RestPwd.ResetPwdTask;
+import com.example.telphone.extendview.AsyncImageView;
 import com.example.telphone.extendview.MarqueeButton;
 import com.example.telphone.model.BitmapLoadAdapter;
 import com.example.telphone.model.ContainerAdapter;
@@ -206,7 +207,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private TextView tv_rcmd_gold_total;
 	private TextView tv_rcmd_gold_convert;
 	
-	
+	private AsyncImageView aiv_avator;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -494,6 +495,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	}
 	
 	private void initMenuview(View menuView) {
+		
+		aiv_avator = (AsyncImageView)menuView.findViewById(R.id.ic_user_icon);
 		
 		tv_about = (TextView)menuView.findViewById(R.id.tv_about);
 		tv_about.setOnClickListener(this);
@@ -1147,6 +1150,13 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 							cash = (int)Float.parseFloat(object.getString("cash"));
 							
 							PreferenceUtils.saveWechat(wxid);
+							
+							String user_avator = object.getString("pic_path");
+							if(!TextUtils.isEmpty(user_avator))
+							{
+								aiv_avator.setImageUrl(user_avator);
+							}
+							
 							return true;
 						}
 						

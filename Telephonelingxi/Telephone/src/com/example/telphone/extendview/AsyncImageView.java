@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.dner.fast.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -44,7 +45,7 @@ public class AsyncImageView extends ImageView {
 	
 	public void setImageUrl(String imageUri, int defaultImage) {
         if (defaultImage <= 0) {
-        	setImageBitmap(null);
+        	setImageResource(R.drawable.ic_photo);
         } else {
         	setImageResource(defaultImage);
         }

@@ -15,6 +15,10 @@ import java.util.Iterator;
 import com.example.telphone.tool.Variable;
 import com.kevin.imagecrop.KevinApplication;
 import com.kevin.imagecrop.activity.basic.ActivityStack;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import android.app.Activity;
 import android.app.Application;
@@ -48,6 +52,8 @@ public class TelApplication extends Application{
 		
 		KevinApplication.mContext = getApplicationContext();
 		
+		initImageLoader(this);
+		
 	}
 	
 	public static void init(Context context)
@@ -72,6 +78,22 @@ public class TelApplication extends Application{
 		
 		
 	}
+	
+    private static void initImageLoader(Context context) {
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                context).threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .memoryCacheSize(10 * 1024 * 1024)
+                .diskCacheSize(Constants.cImageCacheMaxSize)
+                // .threadPoolSize(6)
+                // .writeDebugLogs() // Remove for release app
+                .build();
+
+        ImageLoader.getInstance().init(config);
+    }
+	
 	
 	@Override
 	public void onTerminate() {

@@ -126,19 +126,15 @@ public class QueryInfo implements Runnable{
 		String picUrl = "http://60.205.168.68:88/wapb/CallReqRet.php?UserID=13333333333&CallTo=moreadv&Wap=json";
 		String result = getQueryResult(picUrl);
 		
-		
+		Log.d(TAG,"[updateMenuAdPic] result:"+result);
 		
 		try {
 			JSONArray array = new JSONArray(result);
-//			JSONTokener json = new JSONTokener(result);
-//			JSONObject jo = (JSONObject) json.nextValue();
 			
 			int i =0;
-//			while (jo.has(String.valueOf(i))) {
 			for(;i<array.length();i++)
 			{
 				JSONObject sub = array.getJSONObject(i);
-//				JSONObject sub = (JSONObject) jo.get(String.valueOf(i));
 				String imageUrl = sub.getString("imgurl");
 				String date = sub.getString("date");
 				String dateSaved = sp.getString("ad3" + String.valueOf(i),
@@ -152,8 +148,6 @@ public class QueryInfo implements Runnable{
 					e.commit();
 				}
 			}
-//				i++;
-//			}
 
 			while (sp.contains("ad3" + String.valueOf(i))) {
 				sp.edit().remove("ad3" + String.valueOf(i));
@@ -170,8 +164,6 @@ public class QueryInfo implements Runnable{
 				}
 				i++;
 			}
-
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

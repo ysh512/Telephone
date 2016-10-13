@@ -209,6 +209,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	
 	private AsyncImageView aiv_avator;
 	
+	private String avator_path;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -1151,10 +1153,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 							PreferenceUtils.saveWechat(wxid);
 							
 							String user_avator = object.getString("pic_path");
-							if(!TextUtils.isEmpty(user_avator))
-							{
-								aiv_avator.setImageUrl(user_avator);
-							}
+							Log.d(TAG, "[refreshLogin] user avator:"+user_avator);
+							avator_path = user_avator;
 							
 							return true;
 						}
@@ -1193,6 +1193,12 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 				tv_rcmd_gold.setText(yuer+"金币");
 				tv_rcmd_gold_total.setText(recommendIncome+"金币");
 				tv_rcmd_gold_convert.setText(cash+"金币");
+				
+				if(!TextUtils.isEmpty(avator_path))
+				{
+					Log.d(TAG, "[onPostExecute] set avator:"+avator_path);
+					aiv_avator.setImageUrl(avator_path);
+				}
 			}
 		}
 		

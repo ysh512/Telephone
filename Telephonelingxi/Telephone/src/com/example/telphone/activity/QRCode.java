@@ -5,9 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.test.PerformanceTestCase;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +32,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 
 import com.dner.fast.R;
 import com.example.telphone.Constants;
+import com.example.telphone.extendview.AsyncImageView;
 import com.example.telphone.extendview.TitlePopup;
 import com.example.telphone.extendview.TitlePopup.OnItemOnClickListener;
 import com.example.telphone.property.ActionItem;
@@ -32,7 +45,7 @@ public class QRCode extends Activity{
 
 	private TextView tv_title;
 	
-	private ImageView  ic_user_icon;
+	private AsyncImageView  ic_user_icon;
 	private ImageView iv_qr_code;
 	
 	private TitlePopup titlePopup; 
@@ -43,21 +56,30 @@ public class QRCode extends Activity{
 	
 	private Bitmap qrcodeBitmap;
 	
+	private TextView tv_nikename;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 		initView();
+		
+		QueryAvatorTask task = new QueryAvatorTask();
+		task.execute();
 	}
 
 	private void initView() {
 		this.setContentView(R.layout.activity_my_qrcode);
 		
+		
+		tv_nikename=(TextView)findViewById(R.id.tv_nikename);
+		
+		tv_nikename.setText(PreferenceUtils.getNickName());
 		tv_title = (TextView)findViewById(R.id.tv_title);
 		tv_title.setText("我的二维码");
 		
-		ic_user_icon = (ImageView)findViewById(R.id.ic_user_icon);
+		ic_user_icon = (AsyncImageView)findViewById(R.id.ic_user_icon);
 		iv_qr_code = (ImageView)findViewById(R.id.ic_qr_code);
 		
 		setQrCode(String.format(Constants.RECOMMEND_URL, PreferenceUtils.getPhone()));
@@ -66,6 +88,8 @@ public class QRCode extends Activity{
 		
 		iv_title_right = (ImageView)findViewById(R.id.iv_title_right);
 		iv_title_right.setImageResource(R.drawable.ic_qrmore);
+		
+		
 		iv_title_right.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -173,4 +197,72 @@ public class QRCode extends Activity{
 			 oks.show(this);
 			 }
 	
+		
+		 class QueryAvatorTask extends AsyncTask<Void,Void,Boolean>
+		    {
+
+		    	private String avator_path;
+		    	
+				@Override
+				protected Boolean doInBackground(Void... params) {
+					HttpClient client = new DefaultHttpClient();  
+					String url = String.format(Constants.LOGIN_URL,PreferenceUtils.getPhone(),PreferenceUtils.getPass());
+			        
+					Log.d(TAG, "[doInBackground] login url:"+url);
+					HttpGet get = new HttpGet(url);  
+			        HttpResponse response= null;
+					try {
+						response = client.execute(get);
+						if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+							String result = EntityUtils.toString(response.getEntity());
+							Log.d(TAG, "[refreshLogin] result:"+result);
+							try {
+								JSONObject object = new JSONObject(result);
+								
+								int id = object.getInt("id");
+								PreferenceUtils.saveId(id);
+								if(0==id)
+								{
+									return false;
+								}else
+								{
+									
+									String user_avator = object.getString("pic_path");
+									Log.d(TAG, "[refreshLogin] user avator:"+user_avator);
+									avator_path = user_avator;
+									return true;
+								}
+								
+							} catch (JSONException e) {
+								e.printStackTrace();
+								return false;
+							}
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+						return false;
+					}
+			         
+					return false;
+				
+					
+				}
+
+				@Override
+				protected void onPostExecute(Boolean result) {
+					// TODO Auto-generated method stub
+					super.onPostExecute(result);
+					
+					if(result)
+					{
+						if(!TextUtils.isEmpty(avator_path))
+						{
+							ic_user_icon.setImageUrl(avator_path);
+						}
+					}
+				}
+				
+		    }
+
+		
 }

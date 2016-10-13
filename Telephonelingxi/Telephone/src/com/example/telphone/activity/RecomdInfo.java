@@ -1,6 +1,16 @@
 package com.example.telphone.activity;
 
 import java.io.File;
+import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -11,6 +21,7 @@ import okhttp3.Response;
 
 import com.example.telphone.Constants;
 import com.dner.fast.R;
+import com.example.telphone.extendview.AsyncImageView;
 import com.example.telphone.tool.PreferenceUtils;
 import com.kevin.crop.UCrop;
 import com.kevin.imagecrop.activity.CropActivity;
@@ -25,6 +36,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -53,6 +65,9 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
     private String mTempPhotoPath;
 
     private Uri mDestinationUri;
+    
+    private AsyncImageView aiv_avator;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -72,6 +87,8 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
 		rlyt_wexin = (RelativeLayout)findViewById(R.id.rlyt_weixin);
 		rlyt_qr_code = (RelativeLayout)findViewById(R.id.rlyt_qr_code);
 		tv_swithc = (TextView)findViewById(R.id.tv_swithc);
+		aiv_avator = (AsyncImageView)findViewById(R.id.iv_user_icon);
+		
 		
 		tv_nickname = (TextView)findViewById(R.id.tv_nickname);
 		tv_weixin  = (TextView)findViewById(R.id.tv_weixin);
@@ -91,6 +108,10 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
 		
 		tv_nickname.setText(PreferenceUtils.getNickName());
 		tv_weixin.setText(PreferenceUtils.getWeChat());
+		
+		
+		QueryAvatorTask task = new QueryAvatorTask();
+		task.execute();
 	}
 
 	@Override
@@ -170,6 +191,10 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
 //	        }
 
 	}
+	
+	
+	
+	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {  
 //	    if (resultCode == mActivity.RESULT_OK) {  
 	        switch (requestCode) {  
@@ -260,4 +285,69 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
         }  
         return result;  
     }  
+    
+    class QueryAvatorTask extends AsyncTask<Void,Void,Boolean>
+    {
+
+    	private String avator_path;
+    	
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			HttpClient client = new DefaultHttpClient();  
+			String url = String.format(Constants.LOGIN_URL,PreferenceUtils.getPhone(),PreferenceUtils.getPass());
+	        
+			Log.d(TAG, "[doInBackground] login url:"+url);
+			HttpGet get = new HttpGet(url);  
+	        HttpResponse response= null;
+			try {
+				response = client.execute(get);
+				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+					String result = EntityUtils.toString(response.getEntity());
+					Log.d(TAG, "[refreshLogin] result:"+result);
+					try {
+						JSONObject object = new JSONObject(result);
+						
+						int id = object.getInt("id");
+						PreferenceUtils.saveId(id);
+						if(0==id)
+						{
+							return false;
+						}else
+						{
+							
+							String user_avator = object.getString("pic_path");
+							Log.d(TAG, "[refreshLogin] user avator:"+user_avator);
+							avator_path = user_avator;
+							return true;
+						}
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+						return false;
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+	         
+			return false;
+		
+			
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			if(result)
+			{
+				if(!TextUtils.isEmpty(avator_path))
+				{
+					aiv_avator.setImageUrl(avator_path);
+				}
+			}
+		}
+    }
 }

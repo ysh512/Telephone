@@ -11,7 +11,7 @@
         android:id="@+id/view_title"
         />
 
-    <ImageView
+    <com.example.telphone.extendview.AsyncImageView
         android:id="@+id/ic_user_icon"
         android:layout_width="80.0dip"
         android:layout_height="80.0dip"

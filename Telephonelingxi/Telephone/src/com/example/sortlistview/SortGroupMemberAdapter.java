@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 	private Context mContext;
 	private HashMap<String,ContractInfo> mapContracts;
 
+	private static int[] res = new int[]{R.drawable.ic11,R.drawable.ic22,R.drawable.ic33,R.drawable.ic44,R.drawable.ic55,R.drawable.ic66,R.drawable.ic77};
+	
 	public SortGroupMemberAdapter(Context mContext, List<GroupMemberBean> list) {
 		this.mContext = mContext;
 		this.list = list;
@@ -59,6 +62,8 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 			viewHolder.tvTitle = (TextView) view.findViewById(R.id.title);
 			viewHolder.tvLetter = (TextView) view.findViewById(R.id.catalog);
 			viewHolder.tvPhoneNumber = (TextView)view.findViewById(R.id.tv_phone_number);
+			viewHolder.ivCircle = (ImageView)view.findViewById(R.id.iv_circle);
+			
 			view.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) view.getTag();
@@ -81,6 +86,8 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 		{
 			viewHolder.tvPhoneNumber.setText(this.mapContracts.get(name).phone);
 		}
+		
+		viewHolder.ivCircle.setImageResource(res[position%res.length]);
 
 		return view;
 
@@ -91,6 +98,8 @@ public class SortGroupMemberAdapter extends BaseAdapter implements SectionIndexe
 		TextView tvTitle;
 		
 		TextView tvPhoneNumber;
+		
+		ImageView ivCircle;
 	}
 
 	/**

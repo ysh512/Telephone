@@ -2,6 +2,7 @@ package com.example.telphone.activity;
 
 import com.dner.fast.R;
 import com.example.telphone.TelApplication;
+import com.example.telphone.tool.PreferenceUtils;
 import com.example.telphone.tool.Variable;
 
 import android.app.Activity;
@@ -57,6 +58,11 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
 		
 		tb_auto.setOnCheckedChangeListener(this);
 		
+		boolean isExternal = PreferenceUtils.getExteranl();
+		tb_extcall.setChecked(isExternal);
+		
+		tb_extcall.setOnCheckedChangeListener(this);
+		
 		SharedPreferences mySharedPreferences= getSharedPreferences(Variable.SHARE_PRE_NAME, 
 				Activity.MODE_PRIVATE); 
 		boolean auto = mySharedPreferences.getBoolean("auto", false);
@@ -110,6 +116,11 @@ public class Setting extends BaseActivity implements OnClickListener,OnCheckedCh
 			Editor e = mySharedPreferences.edit();
 			e.putBoolean("auto", arg1);
 			e.commit();
+			
+			break;
+			
+		case R.id.tb_s_extcall:
+			PreferenceUtils.setExteranl(tb_extcall.isChecked());
 			
 			break;
 		}		

@@ -25,7 +25,7 @@ public class MyViewPager extends ViewPager{
 		Resources resouce = this.getContext().getResources();
 		DisplayMetrics dm = resouce.getDisplayMetrics();
 		int width = dm.widthPixels;
-		int height = (width*5)/4;
+		int height = (width*3)/4;
 		this.setMeasuredDimension(width, height);
 		
 	}

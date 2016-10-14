@@ -19,6 +19,8 @@ public class PreferenceUtils {
 	
 	public static final String KEY_USER_ID="userid";
 	
+	public static final String KEY_EXTERNAL_CALL="external_call";
+	
 	public static String getPhone()
 	{
 		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
@@ -106,5 +108,19 @@ public class PreferenceUtils {
 		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
 		return shared.getInt(KEY_USER_ID, 1);
 		
+	}
+	
+	public static void setExteranl(boolean external)
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		Editor editor = shared.edit();
+		editor.putBoolean(KEY_EXTERNAL_CALL, external);
+		editor.commit();
+	}
+	
+	public static boolean getExteranl()
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		return shared.getBoolean(KEY_EXTERNAL_CALL, false);
 	}
 }

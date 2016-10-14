@@ -17,34 +17,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
-
-import com.example.sortlistview.CharacterParser;
-import com.example.sortlistview.ClearEditText;
-import com.example.sortlistview.GroupMemberBean;
-import com.example.sortlistview.PinyinComparator;
-import com.example.sortlistview.SideBar;
-import com.example.sortlistview.SortGroupMemberAdapter;
-import com.example.sortlistview.SideBar.OnTouchingLetterChangedListener;
-import com.example.telphone.Constants;
-import com.example.telphone.QueryInfo;
-import com.dner.fast.R;
-import com.example.telphone.TelApplication;
-import com.example.telphone.activity.RestPwd.ResetPwdTask;
-import com.example.telphone.extendview.AsyncImageView;
-import com.example.telphone.extendview.MarqueeButton;
-import com.example.telphone.model.BitmapLoadAdapter;
-import com.example.telphone.model.ContainerAdapter;
-import com.example.telphone.model.MenuAdAdapter;
-import com.example.telphone.model.MenuGridviewAdapter;
-import com.example.telphone.model.RecordAdapter;
-import com.example.telphone.property.ContractInfo;
-import com.example.telphone.property.SingleRecord;
-import com.example.telphone.tool.PreferenceUtils;
-import com.example.telphone.tool.Utils;
-import com.example.telphone.tool.Variable;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -54,11 +26,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.Editable;
@@ -74,10 +48,12 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.WindowManager;
+import android.webkit.WebStorage.Origin;
 import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -85,8 +61,32 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView.OnItemClickListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
+import com.dner.fast.R;
+import com.example.sortlistview.CharacterParser;
+import com.example.sortlistview.ClearEditText;
+import com.example.sortlistview.GroupMemberBean;
+import com.example.sortlistview.PinyinComparator;
+import com.example.sortlistview.SideBar;
+import com.example.sortlistview.SideBar.OnTouchingLetterChangedListener;
+import com.example.sortlistview.SortGroupMemberAdapter;
+import com.example.telphone.Constants;
+import com.example.telphone.QueryInfo;
+import com.example.telphone.TelApplication;
+import com.example.telphone.extendview.AsyncImageView;
+import com.example.telphone.extendview.MarqueeButton;
+import com.example.telphone.extendview.MyViewPager;
+import com.example.telphone.model.BitmapLoadAdapter;
+import com.example.telphone.model.ContainerAdapter;
+import com.example.telphone.model.MenuAdAdapter;
+import com.example.telphone.model.RecordAdapter;
+import com.example.telphone.property.ContractInfo;
+import com.example.telphone.property.SingleRecord;
+import com.example.telphone.tool.PreferenceUtils;
+import com.example.telphone.tool.Utils;
+import com.example.telphone.tool.Variable;
 
 @SuppressLint("HandlerLeak")
 public class Container extends BaseActivity implements OnClickListener ,OnPageChangeListener{
@@ -103,18 +103,20 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private TextView im_meun;
 	
 	//page call
-	private ImageButton num_1;
-	private ImageButton num_2;
-	private ImageButton num_3;
-	private ImageButton num_4;
-	private ImageButton num_5;
-	private ImageButton num_6;
-	private ImageButton num_7;
-	private ImageButton num_8;
-	private ImageButton num_9;
-	private ImageButton num_0;
-	private ImageButton num_j;
-	private ImageButton num_x;
+	private ImageView num_1;
+	private ImageView num_2;
+	private ImageView num_3;
+	private ImageView num_4;
+	private ImageView num_5;
+	private ImageView num_6;
+	private ImageView num_7;
+	private ImageView num_8;
+	private ImageView num_9;
+	private ImageView num_0;
+	private ImageView num_j;
+	private ImageView num_x;
+	
+	private LinearLayout ll_tel_numpad;
 	
 	//page call bottom
 	private LinearLayout ll_call_pad;	
@@ -137,7 +139,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	
 	
 	//menu page
-	private ViewPager vp_menu_ad;
+	private MyViewPager vp_menu_ad;
 	private ImageView[] mImageViews; // װ
 
 //	private GridView gv_m;
@@ -211,6 +213,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	
 	private String avator_path;
 	
+	private Drawable orginBg;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -264,7 +268,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		views.add(contactsView);
 		initContactsView(contactsView);
 		View recommendview = inflater.inflate(R.layout.fragment_recommend, null);
-		vp_menu_ad = (ViewPager) recommendview.findViewById(R.id.vp_m_ad); 
+		vp_menu_ad = (MyViewPager) recommendview.findViewById(R.id.vp_m_ad); 
 		//set scroll ad string
 		MarqueeButton mb= (MarqueeButton)recommendview.findViewById(R.id.marquee_button);
 		
@@ -307,18 +311,18 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	
 	private void initTelView(View telView) {
 		
-		num_1 = (ImageButton)telView.findViewById(R.id.ib_num_1);
-		num_2 = (ImageButton)telView.findViewById(R.id.ib_num_2);
-		num_3 = (ImageButton)telView.findViewById(R.id.ib_num_3);
-		num_4 = (ImageButton)telView.findViewById(R.id.ib_num_4);
-		num_5 = (ImageButton)telView.findViewById(R.id.ib_num_5);
-		num_6 = (ImageButton)telView.findViewById(R.id.ib_num_6);
-		num_7 = (ImageButton)telView.findViewById(R.id.ib_num_7);
-		num_8 = (ImageButton)telView.findViewById(R.id.ib_num_8);
-		num_9 = (ImageButton)telView.findViewById(R.id.ib_num_9);
-		num_0 = (ImageButton)telView.findViewById(R.id.ib_num_0);
-		num_j = (ImageButton)telView.findViewById(R.id.ib_num_j);
-		num_x = (ImageButton)telView.findViewById(R.id.ib_num_x);
+		num_1 = (ImageView)telView.findViewById(R.id.ib_num_1);
+		num_2 = (ImageView)telView.findViewById(R.id.ib_num_2);
+		num_3 = (ImageView)telView.findViewById(R.id.ib_num_3);
+		num_4 = (ImageView)telView.findViewById(R.id.ib_num_4);
+		num_5 = (ImageView)telView.findViewById(R.id.ib_num_5);
+		num_6 = (ImageView)telView.findViewById(R.id.ib_num_6);
+		num_7 = (ImageView)telView.findViewById(R.id.ib_num_7);
+		num_8 = (ImageView)telView.findViewById(R.id.ib_num_8);
+		num_9 = (ImageView)telView.findViewById(R.id.ib_num_9);
+		num_0 = (ImageView)telView.findViewById(R.id.ib_num_0);
+		num_j = (ImageView)telView.findViewById(R.id.ib_num_j);
+		num_x = (ImageView)telView.findViewById(R.id.ib_num_x);
 		
 		TelClickListener t = new TelClickListener();
 		
@@ -335,22 +339,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		num_j.setOnClickListener(t);
 		num_x.setOnClickListener(t);
 		
-		TouchListener tl = new TouchListener();
-		num_1.setOnTouchListener(tl);
-		num_2.setOnTouchListener(tl);
-		num_3.setOnTouchListener(tl);
-		num_4.setOnTouchListener(tl);
-		num_5.setOnTouchListener(tl);
-		num_6.setOnTouchListener(tl);
-		num_7.setOnTouchListener(tl);
-		num_8.setOnTouchListener(tl);
-		num_9.setOnTouchListener(tl);
-		num_0.setOnTouchListener(tl);
-		num_j.setOnTouchListener(tl);
-		num_x.setOnTouchListener(tl);
 		
-		
-		
+		ll_tel_numpad = (LinearLayout)telView.findViewById(R.id.ll_tel_numpad);
 		
 	}
 
@@ -386,107 +376,44 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		}
 	}
 	
-	class TouchListener implements OnTouchListener
-	{
 
-		@Override
-		public boolean onTouch(View v, MotionEvent arg1) {
-			ImageButton ib = (ImageButton)v;
-			ib.setBackgroundResource(0);
-			if(MotionEvent.ACTION_DOWN== arg1.getAction())
-			{
-				switch (v.getId())
-				{
-				case R.id.ib_num_0:((ImageButton)v).setBackgroundResource(R.drawable.num_00);				
-					break;
-				case R.id.ib_num_1:((ImageButton)v).setBackgroundResource(R.drawable.num_10);
-					break;
-				case R.id.ib_num_2:((ImageButton)v).setBackgroundResource(R.drawable.num_20);
-					break;
-				case R.id.ib_num_3:((ImageButton)v).setBackgroundResource(R.drawable.num_30);
-					break;
-				case R.id.ib_num_4:((ImageButton)v).setBackgroundResource(R.drawable.num_40);
-					break;
-				case R.id.ib_num_5:((ImageButton)v).setBackgroundResource(R.drawable.num_50);
-					break;
-				case R.id.ib_num_6:((ImageButton)v).setBackgroundResource(R.drawable.num_60);
-					break;
-				case R.id.ib_num_7:((ImageButton)v).setBackgroundResource(R.drawable.num_70);
-					break;
-				case R.id.ib_num_8:((ImageButton)v).setBackgroundResource(R.drawable.num_80);
-					break;
-				case R.id.ib_num_9:((ImageButton)v).setBackgroundResource(R.drawable.num_90);
-					break;
-				case R.id.ib_num_j:((ImageButton)v).setBackgroundResource(R.drawable.num_j0);
-					break;
-				case R.id.ib_num_x:((ImageButton)v).setBackgroundResource(R.drawable.num_x0);
-					break;
-					default:
-						break;
-				}
-			}
-			else
-			{
-				switch (v.getId())
-				{
-				case R.id.ib_num_0:((ImageButton)v).setBackgroundResource(R.drawable.num_09);
-					break;
-				case R.id.ib_num_1:((ImageButton)v).setBackgroundResource(R.drawable.num_19);
-					break;
-				case R.id.ib_num_2:((ImageButton)v).setBackgroundResource(R.drawable.num_29);
-					break;
-				case R.id.ib_num_3:((ImageButton)v).setBackgroundResource(R.drawable.num_39);
-					break;
-				case R.id.ib_num_4:((ImageButton)v).setBackgroundResource(R.drawable.num_49);
-					break;
-				case R.id.ib_num_5:((ImageButton)v).setBackgroundResource(R.drawable.num_59);
-					break;
-				case R.id.ib_num_6:((ImageButton)v).setBackgroundResource(R.drawable.num_69);
-					break;
-				case R.id.ib_num_7:((ImageButton)v).setBackgroundResource(R.drawable.num_79);
-					break;
-				case R.id.ib_num_8:((ImageButton)v).setBackgroundResource(R.drawable.num_89);
-					break;
-				case R.id.ib_num_9:((ImageButton)v).setBackgroundResource(R.drawable.num_99);
-					break;
-				case R.id.ib_num_j:((ImageButton)v).setBackgroundResource(R.drawable.num_j9);
-					break;
-				case R.id.ib_num_x:((ImageButton)v).setBackgroundResource(R.drawable.num_x9);
-					break;
-					default:
-						break;
-				}
-			}
-			
-			
-			
-			return false;
-		}
-		
-	}
 	class TelClickListener implements OnClickListener
 	{
 
 		@Override
 		public void onClick(View v) {
+			
+			
+			
 			String tag = (String)v.getTag();
+			
+			if(tag.equals("*"))
+			{
+				Intent it = new Intent(Container.this,Setting.class);
+				startActivity(it);
+				return;
+			}
+			
 			String current = Container.this.tv_title.getText().toString();
 			if(current.contains("迅通"))
 			{
 				tv_title.setText(tag);
-
 				//hidekeyboard  tel  delnumber three imageViews on the bottom(default gone)				
-
 				ll_call_pad.setVisibility(View.VISIBLE);
 				ll_tab.setVisibility(View.GONE);
 
 			}
 			else
 			{
-//				ll_tab.setVisibility(View.VISIBLE);
-				tv_title.setText(current+tag);
+				if(tag.equals("#"))
+				{
+					int end = tv_title.getText().toString().length()>=1?tv_title.getText().toString().length()-1:0;
+					tv_title.setText(tv_title.getText().toString().subSequence(0, end));
+				}else
+				{
+					tv_title.setText(current+tag);	
+				}
 			}
-
 			if(View.VISIBLE!=ll_call_pad.getVisibility())
 			{
 				ll_call_pad.setVisibility(View.VISIBLE);
@@ -860,12 +787,28 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 
 	@Override
 	public void onClick(View arg0) {
+		Log.d(TAG, "[onClick] current item:"+viewPager.getCurrentItem());
 		switch(arg0.getId())
 		{
 		case R.id.tv_dial:
 			super.showTitle();
-			String s = this.getString(R.string.company_name);
-			setCurrentPager(0,s,R.drawable.call_press);
+			
+			
+			if(viewPager.getCurrentItem()!=0)
+			{
+				String s = this.getString(R.string.company_name);
+				setCurrentPager(0,s,R.drawable.call_press);	
+			}else
+			{
+				if(ll_tel_numpad.getVisibility()==View.VISIBLE)
+				{
+					ll_tel_numpad.setVisibility(View.GONE);
+				}else
+				{
+					ll_tel_numpad.setVisibility(View.VISIBLE);
+				}
+			}
+			
 			break;
 		
 		case R.id.tv_contact:
@@ -893,7 +836,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			this.tv_title.setText(this.tv_title.getText().toString().subSequence(0, end));
 			if(0==end)
 			{
-				tv_title.setText(R.string.company_name);
+//				tv_title.setText(R.string.company_name);
 			}
 			break;
 		case R.id.tv_rcmd_copy:
@@ -1078,10 +1021,21 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	}
 	
 	private void call(final String phoneNumber, final String name) {
-		Intent it = new Intent(Container.this,Calling.class);
-		it.putExtra("number", phoneNumber);
-		it.putExtra("name", name);
-		Container.this.startActivity(it);
+		
+		if(PreferenceUtils.getExteranl())
+		{
+			Intent intent = new Intent(Intent.ACTION_DIAL);
+			Uri data = Uri.parse("tel:" + phoneNumber);
+			intent.setData(data);
+			startActivity(intent);
+			
+		}else
+		{
+			Intent it = new Intent(Container.this,Calling.class);
+			it.putExtra("number", phoneNumber);
+			it.putExtra("name", name);
+			Container.this.startActivity(it);
+		}
 	}
 	
 	

@@ -16,7 +16,7 @@
         android:id="@+id/ll_tel_numpad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#B5B6B5"
+        android:background="@null"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -25,34 +25,37 @@
             android:layout_marginTop="0.5dp"
             android:orientation="horizontal" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_19"
+                android:src="@drawable/ic_key_1"
+                android:background="@drawable/sl_bg_key"
                 android:tag="1" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0.5dp"
                 android:layout_marginRight="0.5dp"
                 android:layout_weight="1"
-                android:background="@drawable/num_29"
+				android:src="@drawable/ic_key_2"
+				android:background="@drawable/sl_bg_key"
                 android:tag="2" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_39"
+				android:src="@drawable/ic_key_3"
+				android:background="@drawable/sl_bg_key"
                 android:tag="3" >
-            </ImageButton>
+            </ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -61,34 +64,37 @@
             android:layout_marginTop="0.5dp"
             android:orientation="horizontal" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_49"
+				android:src="@drawable/ic_key_4"
+				android:background="@drawable/sl_bg_key"
                 android:tag="4" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0.5dp"
                 android:layout_marginRight="0.5dp"
                 android:layout_weight="1"
-                android:background="@drawable/num_59"
+				android:src="@drawable/ic_key_5"
+				android:background="@drawable/sl_bg_key"
                 android:tag="5" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_69"
+				android:src="@drawable/ic_key_6"
+				android:background="@drawable/sl_bg_key"
                 android:tag="6" >
-            </ImageButton>
+            </ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -97,34 +103,37 @@
             android:layout_marginTop="0.5dp"
             android:orientation="horizontal" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_79"
+				android:src="@drawable/ic_key_7"
+				android:background="@drawable/sl_bg_key"
                 android:tag="7" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0.5dp"
                 android:layout_marginRight="0.5dp"
                 android:layout_weight="1"
-                android:background="@drawable/num_89"
+				android:src="@drawable/ic_key_8"
+				android:background="@drawable/sl_bg_key"
                 android:tag="8" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_99"
+				android:src="@drawable/ic_key_9"
+				android:background="@drawable/sl_bg_key"
                 android:tag="9" >
-            </ImageButton>
+            </ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -134,34 +143,37 @@
             android:layout_marginTop="0.5dp"
             android:orientation="horizontal" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_x"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_x9"
+				android:src="@drawable/ic_key_set"
+				android:background="@drawable/sl_bg_key"
                 android:tag="*" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0.5dp"
                 android:layout_marginRight="0.5dp"
                 android:layout_weight="1"
-                android:background="@drawable/num_09"
+				android:src="@drawable/ic_key_0"
+				android:background="@drawable/sl_bg_key"
                 android:tag="0" >
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/ib_num_j"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/num_j9"
+				android:src="@drawable/ic_key_del"
+				android:background="@drawable/sl_bg_key"
                 android:tag="#" >
-            </ImageButton>
+            </ImageView>
         </LinearLayout>
     </LinearLayout>
 

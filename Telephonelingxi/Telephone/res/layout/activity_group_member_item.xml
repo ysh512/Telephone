@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/catalog"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:background="#E0E0E0"
         android:paddingBottom="5dip"
         android:paddingLeft="5dip"
@@ -16,17 +16,31 @@
         android:textSize="16sp"
         android:textColor="#454545" />
 
-    <TextView
-        android:id="@+id/title"
+    <RelativeLayout 
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dip"
-        android:gravity="center_vertical"
-        android:paddingBottom="10dip"
-        android:paddingTop="10dip"
-        android:textSize="16sp"
-        android:text="hhhh"
-        android:textColor="#336598" />
+        android:layout_height="40dp">
+        
+        <ImageView 
+            android:id="@+id/iv_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="2dp"
+            />
+        
+        <TextView
+        	android:id="@+id/title"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_toRightOf="@id/iv_circle"
+        	android:layout_marginLeft="5dip"
+        	android:gravity="center_vertical"
+        	android:paddingBottom="10dip"
+        	android:paddingTop="10dip"
+        	android:textSize="16sp"
+        	android:text="hhhh"
+        	android:textColor="#336598" />
+    </RelativeLayout>
+    
 
     <TextView
         android:id="@+id/tv_phone_number"
@@ -34,7 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
         android:textSize="14sp"
-        android:text="未知" />
+        android:text="未知"
+        android:visibility="gone" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0.2px"

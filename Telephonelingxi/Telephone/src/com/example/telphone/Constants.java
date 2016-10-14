@@ -29,7 +29,7 @@ public class Constants {
 	
 	//提现
 	public static final String CASH_URL="http://60.205.168.68:88/wapb/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=apply&money=%s";
-	public static final String MES="尊敬的%s,欢迎您使用%s，快推荐您的朋友使用并领取丰厚报仇吧您的推荐人是：%s";
+	public static final String MES="尊敬的%s,欢迎您使用%s，快推荐您的朋友使用并领取丰厚报酬吧您的推荐人是：%s";
 	
 	public static final int cImageCacheMaxSize = 100 * 1024 * 1024;
 }

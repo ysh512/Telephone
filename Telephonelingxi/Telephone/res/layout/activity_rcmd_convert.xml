@@ -53,7 +53,7 @@
         android:paddingRight="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:text="每次提现必须是100的整数倍，一次性兑现大于500奖励20，兑现1000奖励50，兑现2000奖励120,管理费30元/年。"
+        android:text="每次提现必须是100的整数倍，一次性兑现500奖励20，兑现1000奖励50，兑现2000奖励120,管理费30元/年。"
         ></TextView>
 
     <Button

@@ -25,6 +25,8 @@ public class Constants {
 	
 	public static final String ACCOUNT_FLOW="http://60.205.168.68:99/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=lslist";
 	
+	public static final String BIND_BANK_CARD="http://60.205.168.68:88/wapb/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=profile&account=%s&bankname=%s&bankcard=%s";
+	
 	//提现
 	public static final String CASH_URL="http://60.205.168.68:88/wapb/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=apply&money=%s";
 	public static final String MES="尊敬的%s,欢迎您使用%s，快推荐您的朋友使用并领取丰厚报仇吧您的推荐人是：%s";

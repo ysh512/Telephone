@@ -4,31 +4,30 @@
     android:versionCode="1"
     android:versionName="1.0.0.0" >
 
-    <uses-permission android:name="android.permission.READ_CONTACTS" /> 
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" /> 
-    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
-    <uses-permission android:name="android.permission.INTERNET" />  
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> 
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/> 
-	<uses-permission android:name="android.permission.CALL_PHONE"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
-	
-	
-    
-    
-   <uses-sdk
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" >
+    </uses-permission>
+
+    <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="21" />
 
     <application
-        android:largeHeap="true"
-        android:hardwareAccelerated="false"
+        android:name="com.example.telphone.TelApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:name="com.example.telphone.TelApplication"
+        android:largeHeap="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.telphone.activity.Load"
@@ -39,91 +38,85 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity 
-            android:name="com.example.telphone.activity.Container"></activity>
+        <activity android:name="com.example.telphone.activity.Container" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Recharge" />
+        <activity android:name="com.example.telphone.activity.Tel" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Login" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Setting" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Calling" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Web" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.QueryBalance" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Lottery" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.FindPass" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Register" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.ChargeCenter" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.ChargeWay" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.BindAccount" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.AlipayEdit" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.Cash" >
+        </activity>
+        <activity android:name="com.alipay.sdk.pay.demo.PayDemoActivity" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.RestPwd" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.RecomdInfo" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.SetNickname" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.BindWeChat" >
+        </activity>
+        <activity android:name="com.kevin.imagecrop.activity.CropActivity" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.QRCode" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.About" >
+        </activity>
+        <activity android:name="com.example.telphone.activity.BankCardEdit" >
+        </activity>
+
+        <receiver android:name="com.example.telphone.receiver.PhoneReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+
         <activity
-            android:name="com.example.telphone.activity.Recharge"/>
-        <activity 
-            android:name="com.example.telphone.activity.Tel"></activity>
-        <activity 
-            android:name="com.example.telphone.activity.Login"></activity>
-        <activity 
-            android:name="com.example.telphone.activity.Setting"></activity>
-        <activity 
-            android:name="com.example.telphone.activity.Calling"></activity>
-        
-        <activity 
-            android:name="com.example.telphone.activity.Web"></activity>
-        <activity
-            android:name="com.example.telphone.activity.QueryBalance"></activity>
-        <activity
-            android:name="com.example.telphone.activity.Lottery"></activity>
-        
-        <activity 
-            android:name="com.example.telphone.activity.FindPass"
-            ></activity>
-		<activity 
-		    android:name="com.example.telphone.activity.Register"
-		    ></activity>        
-		    
-		<activity
-		    android:name="com.example.telphone.activity.ChargeCenter"></activity>
-		
-		<activity 
-		    android:name="com.example.telphone.activity.ChargeWay"
-		    ></activity>
-        
-		<activity 
-		    android:name="com.example.telphone.activity.BindAccount"
-		    ></activity>
-		
-		<activity 
-		    android:name="com.example.telphone.activity.AlipayEdit"
-		    ></activity>
-		
-		<activity
-		    android:name="com.example.telphone.activity.Cash"></activity>
-		
-		<activity 
-		    android:name="com.alipay.sdk.pay.demo.PayDemoActivity"
-		    ></activity>
-		
-		<activity
-		    android:name="com.example.telphone.activity.RestPwd"
-		    ></activity>
-		
-		<activity 
-		    android:name="com.example.telphone.activity.RecomdInfo"
-		    ></activity>
-		
-		<activity
-		    android:name="com.example.telphone.activity.SetNickname"
-		    ></activity>
-		<activity 
-		    android:name="com.example.telphone.activity.BindWeChat"
-		    ></activity>
-		
-		<activity 
-		    android:name="com.kevin.imagecrop.activity.CropActivity"
-		    ></activity>
-		
-		<activity 
-		    android:name="com.example.telphone.activity.QRCode"
-		    ></activity>
-		<activity 
-		    android:name="com.example.telphone.activity.About"
-		    ></activity>
-		
-         <receiver android:name="com.example.telphone.receiver.PhoneReceiver">
-            <intent-filter>   
-            	<action android:name="android.intent.action.PHONE_STATE"/>   
-    			<action android:name="android.intent.action.NEW_OUTGOING_CALL" />   
-        	</intent-filter>   
-       </receiver>
-       
-       
-        
-</application>
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- 调用新浪原生SDK，需要注册的回调activity -->
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

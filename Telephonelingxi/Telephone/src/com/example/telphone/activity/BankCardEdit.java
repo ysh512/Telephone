@@ -8,8 +8,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -17,87 +15,76 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.telphone.Constants;
 import com.dner.fast.R;
+import com.example.telphone.Constants;
 import com.example.telphone.tool.PreferenceUtils;
 
-public class AlipayEdit extends Activity implements View.OnClickListener{
+public class BankCardEdit extends Activity implements OnClickListener{
 
-	private static final String TAG= AlipayEdit.class.getSimpleName();
-	private TextView tv_title;
+	private static final String TAG=BankCardEdit.class.getSimpleName();
+	
+	private EditText etBankName;
+	private EditText etBankCard;
+	private EditText etBankAccount;
 	
 	private TextView tv_title_right;
 	
-	private EditText et_alipay_account;
-	private EditText et_real_name;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 		initView();
 	}
 
 	private void initView() {
+		this.setContentView(R.layout.activity_bank_edit);
 		
-		this.setContentView(R.layout.activity_alipay_edit);
-		tv_title=(TextView)findViewById(R.id.tv_title);
-		tv_title.setText("支付宝");
+		etBankName = (EditText)findViewById(R.id.et_bank);
+		etBankCard = (EditText)findViewById(R.id.et_bank_num);
+		etBankAccount = (EditText)findViewById(R.id.et_bank_username);
+		
+		TextView title = (TextView)findViewById(R.id.tv_title);
+		title.setText("绑定银行卡");
 		tv_title_right = (TextView)findViewById(R.id.tv_title_right);
 		tv_title_right.setVisibility(View.VISIBLE);
 		tv_title_right.setText("保存");
 		
-		et_alipay_account = (EditText)findViewById(R.id.et_alipay_account);
-		et_real_name = (EditText)findViewById(R.id.et_real_name);
-		
 		tv_title_right.setOnClickListener(this);
-		
 	}
 
-	@Override
-	public void onClick(View v) {
-		switch(v.getId())
-		{
-		case R.id.tv_title_right:
-			SaveAlipay task = new SaveAlipay();
-			task.execute();
-			break;
-			default :
-				break;
-		}
-	}
-	
-	
-	class SaveAlipay extends AsyncTask<Void,Void,Boolean>
+	class SaveBankCard extends AsyncTask<Void,Void,Boolean>
 	{
 		
-		private String account;
-		private String name;
+		private String bankCardNo;
+		private String bankAccount;
+		private String bankName;
 		
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			account = et_alipay_account.getText().toString();
-			name = et_real_name.getText().toString();
+			bankCardNo = etBankCard.getText().toString();
+			bankName = etBankName.getText().toString();
+			bankAccount = etBankAccount.getText().toString();
 		}
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO Auto-generated method stub
-			if(TextUtils.isEmpty(account)||TextUtils.isEmpty(name))
+			if(TextUtils.isEmpty(bankCardNo)||TextUtils.isEmpty(bankAccount) || TextUtils.isEmpty(bankName))
 			{
 				return false;
 			}
 			
 
 			HttpClient client = new DefaultHttpClient();  
-			String url = String.format(Constants.ALIPAY_ACCOUNT_SAVE_URL,PreferenceUtils.getPhone(),PreferenceUtils.getPass(),account,name );
+			String url = String.format(Constants.BIND_BANK_CARD,PreferenceUtils.getPhone(),PreferenceUtils.getPass(),bankAccount,bankName,bankCardNo );
 	        
 			Log.d(TAG, "[doInBackground] save account url:"+url);
 			HttpGet get = new HttpGet(url);  
@@ -131,12 +118,24 @@ public class AlipayEdit extends Activity implements View.OnClickListener{
 			super.onPostExecute(result);
 			
 			if(!result){
-				Toast.makeText(AlipayEdit.this, "保存失败", Toast.LENGTH_SHORT).show();
+				Toast.makeText(BankCardEdit.this, "保存失败", Toast.LENGTH_SHORT).show();
 			}else
 			{
-				Toast.makeText(AlipayEdit.this, "保存成功", Toast.LENGTH_SHORT).show();
+				Toast.makeText(BankCardEdit.this, "保存成功", Toast.LENGTH_SHORT).show();
 			}
 		}
 		
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch(v.getId())
+		{
+		case R.id.tv_title_right:
+			SaveBankCard task = new SaveBankCard();
+			task.execute();
+			break;
+		}
 	}
 }

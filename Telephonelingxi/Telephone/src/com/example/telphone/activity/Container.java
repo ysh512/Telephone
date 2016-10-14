@@ -397,7 +397,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			String current = Container.this.tv_title.getText().toString();
 			if(current.contains("迅通"))
 			{
-				tv_title.setText(tag);
+				if(!tag.equals("#"))
+				{
+					tv_title.setText(tag);
+				}
 				//hidekeyboard  tel  delnumber three imageViews on the bottom(default gone)				
 				ll_call_pad.setVisibility(View.VISIBLE);
 				ll_tab.setVisibility(View.GONE);
@@ -1109,6 +1112,11 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 							String user_avator = object.getString("pic_path");
 							Log.d(TAG, "[refreshLogin] user avator:"+user_avator);
 							avator_path = user_avator;
+							
+							String bankname = object.getString("bankname");
+							String bankcard = object.getString("bankcard");
+							PreferenceUtils.saveBankName(bankname);
+							PreferenceUtils.saveBankCardNo(bankcard);
 							
 							return true;
 						}

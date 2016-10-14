@@ -21,6 +21,15 @@ public class PreferenceUtils {
 	
 	public static final String KEY_EXTERNAL_CALL="external_call";
 	
+	
+	public static final String KEY_BANK_CARD_NUMBER="bankcardnumber";
+	
+	public static final String KEY_BANK_CARD_ACCOUNT="bankcardaccount";
+	
+	public static final String KEY_BANK_NAME="banknanme";
+	
+	
+	
 	public static String getPhone()
 	{
 		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
@@ -122,5 +131,47 @@ public class PreferenceUtils {
 	{
 		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
 		return shared.getBoolean(KEY_EXTERNAL_CALL, false);
+	}
+	
+	public static void saveBankCardNo(String cardNo)
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		Editor editor = shared.edit();
+		editor.putString(KEY_BANK_CARD_NUMBER,cardNo);
+		editor.commit();
+	}
+	
+	public static void saveBankCardAccount(String cardAccount)
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		Editor editor = shared.edit();
+		editor.putString(KEY_BANK_CARD_ACCOUNT,cardAccount);
+		editor.commit();
+	}
+	
+	public static void saveBankName(String bankName)
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		Editor editor = shared.edit();
+		editor.putString(KEY_BANK_NAME,bankName);
+		editor.commit();
+	}
+	
+	public static String getBankCardNo()
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		return shared.getString(KEY_BANK_CARD_NUMBER, "");
+	}
+	
+	public static String getBankCardAccount()
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		return shared.getString(KEY_BANK_CARD_ACCOUNT, "");
+	}
+	
+	public static String getBankName()
+	{
+		SharedPreferences shared = TelApplication.getAppContext().getSharedPreferences(Variable.SHARE_PRE_NAME, Context.MODE_PRIVATE);
+		return shared.getString(KEY_BANK_NAME, "");
 	}
 }

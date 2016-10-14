@@ -10,6 +10,71 @@
     <include  
        android:id="@+id/ll_bind_account"
        layout="@layout/item_list_account" />
+    
+    
+    
+    <RelativeLayout
+        android:id="@+id/rl_bankcard_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sl_bg_item1"
+        android:paddingBottom="5.0dip"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="15.0dip"
+        android:paddingTop="5.0dip" >
+
+        <ImageView
+            android:id="@+id/iv_bank_image"
+            android:layout_width="46.0dip"
+            android:layout_height="46.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="15.0dip"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginTop="15.0dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_bank_image" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_profile" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15.0dip"
+            android:layout_toRightOf="@id/iv_bank_image"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip" >
+
+            <TextView
+                android:id="@+id/tv_bankcardname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="bank"
+                android:textColor="@color/text6_color"
+                android:textSize="@dimen/textsize16" />
+
+            <TextView
+                android:id="@+id/tv_bankcard_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tv_bankcardname"
+                android:layout_below="@id/tv_bankcardname"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_4dip"
+                android:singleLine="true"
+                android:text="account"
+                android:textColor="@color/text3_color"
+                android:textSize="@dimen/textsize16" />
+        </RelativeLayout>
+    </RelativeLayout>
+    
 
     <RelativeLayout
         android:id="@+id/rl_add_alipay"
@@ -25,6 +90,41 @@
             android:inputType="number"
             android:maxLength="26"
             android:text="添加支付宝账户"
+            android:layout_marginLeft="40dp"
+            android:duplicateParentState="true"
+            android:clickable="true"
+            android:gravity="left|center_vertical"
+            android:textColor="@color/text6_color"
+            android:textSize="@dimen/textsize14" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:padding="5.0dip"
+            android:scaleType="center"
+            android:src="@drawable/ic_arrow_act"
+            android:visibility="visible" />
+    </RelativeLayout>
+    
+        
+    
+    <RelativeLayout
+        android:id="@+id/rl_add_bankcard"
+        android:layout_width="fill_parent"
+        android:layout_height="43dip"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/tv_label_add_bankcard"
+            android:layout_width="wrap_content"
+            android:layout_height="43.0dip"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="26"
+            android:text="添加银行卡账户"
             android:layout_marginLeft="40dp"
             android:duplicateParentState="true"
             android:clickable="true"

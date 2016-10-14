@@ -61,8 +61,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 
 import com.dner.fast.R;
 import com.example.sortlistview.CharacterParser;
@@ -1173,6 +1175,22 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		 //关闭sso授权
 		 oks.disableSSOWhenAuthorize(); 
 		 String shareUrl = String.format(Constants.RECOMMEND_URL, String.valueOf(PreferenceUtils.getId()));
+		 
+		 oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
+             @Override
+             public void onShare(Platform platform,cn.sharesdk.framework.Platform.ShareParams paramsToShare) {
+                     if ("Wechat".equals(platform.getName())) {
+                     Bitmap imageData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+                     paramsToShare.setImageData(imageData);
+                     }
+                     if ("WechatMoments".equals(platform.getName())) {
+                             Bitmap imageData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+                             paramsToShare.setImageData(imageData);
+                     }
+
+             }
+     });
+		 
 		 
 		// 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
 		 //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));

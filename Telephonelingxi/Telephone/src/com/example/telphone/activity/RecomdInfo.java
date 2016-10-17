@@ -205,7 +205,10 @@ public class RecomdInfo extends Activity implements OnClickListener,OnSelectedLi
 	                break;  
 	            case GALLERY_REQUEST_CODE:
 	            	mDestinationUri = Uri.fromFile(new File(mTempPhotoPath));
-	            	startCropActivity(data.getData());
+	            	if(null!=data && null!=data.getData())
+	            	{
+	            		startCropActivity(data.getData());	
+	            	}
 	            	break;
 	            case UCrop.REQUEST_CROP: 
 	            	if(resultCode == RESULT_OK)

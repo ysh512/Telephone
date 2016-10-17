@@ -587,7 +587,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		
 		SourceDateList = filledData(nameList);
 
-		// ����a-z��������Դ����
 		if(nameList.size()>0)
 		{
 			Collections.sort(SourceDateList, pinyinComparator);
@@ -604,8 +603,17 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 				public void onScroll(AbsListView view, int firstVisibleItem,
 						int visibleItemCount, int totalItemCount) {
 					int section = getSectionForPosition(firstVisibleItem);
-					int nextSection = getSectionForPosition(firstVisibleItem + 1);
-					int nextSecPosition = getPositionForSection(+nextSection);
+					int nextSection=0;
+					int nextSecPosition = 0;
+					if(totalItemCount==1)
+					{
+						nextSection = getSectionForPosition(firstVisibleItem);
+						nextSecPosition = getPositionForSection(nextSection);
+					}else
+					{
+					nextSection = getSectionForPosition(firstVisibleItem + 1);
+					nextSecPosition = getPositionForSection(+nextSection);
+					}
 					if (firstVisibleItem != lastFirstVisibleItem) {
 						MarginLayoutParams params = (MarginLayoutParams) titleLayout
 								.getLayoutParams();

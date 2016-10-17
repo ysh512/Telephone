@@ -1023,6 +1023,11 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		task.execute();
 	
 		initVpTAd();
+		
+		if(vp_menu_ad.getCurrentItem()==0)
+		{
+			tv_title.setText(this.getResources().getString(R.string.company_name));
+		}
 	}
 	
 	private void call(final String phoneNumber, final String name) {

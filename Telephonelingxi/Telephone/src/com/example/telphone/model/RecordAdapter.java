@@ -124,7 +124,7 @@ public class RecordAdapter extends BaseAdapter {
         holder.tv_call_date.setText(list.get(position).time);
         final int pos = position;
         
-        holder.iv_call_right.setOnClickListener(new OnClickListener(){
+        convertView.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {

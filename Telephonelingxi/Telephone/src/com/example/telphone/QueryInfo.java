@@ -62,7 +62,7 @@ public class QueryInfo implements Runnable{
 		
 //		updateCallingAdPic();
 		
-		updateMenuAdPic();
+//		updateMenuAdPic();
 		
 	}
 
@@ -78,7 +78,6 @@ public class QueryInfo implements Runnable{
 			JSONObject jo = (JSONObject) json.nextValue();
 			int i = 0;
 
-			// ad10-ad19 tel pad ad picture��
 			while (jo.has(String.valueOf(i))) {
 				JSONObject sub = (JSONObject) jo.get(String.valueOf(i));
 				String imageUrl = sub.getString("imgurl");

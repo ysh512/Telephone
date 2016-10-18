@@ -1,5 +1,6 @@
 package com.example.telphone.activity;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.SoftReference;
@@ -14,6 +15,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +26,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -468,51 +471,45 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		
 		tv_convert = (TextView)menuView.findViewById(R.id.tv_convert);
 		tv_convert.setOnClickListener(this);
-		int resIds[]= {R.drawable.ad30,R.drawable.ad32};
-		this.mImageViews = new ImageView[resIds.length];
-		for(int i=0;i<mImageViews.length;i++)
-		{
-			mImageViews[i] = new ImageView(this);
-			mImageViews[i].setImageResource(resIds[i]);
-		}
-		vp_menu_ad.setAdapter(new MenuAdAdapter(mImageViews));
-		
+
+		UpdateAdTask task = new UpdateAdTask();
+		task.execute();
 //		menuAdIndex = 0;
 		
-		ArrayList<ImageView> ivList = new ArrayList<ImageView>();
-		for(int i=0;;i++)
-		{
-			String fileName = QueryInfo.ALBUM_PATH+"ad3"+String.valueOf(i)+".jpg";
-			File f = new File(fileName);
-			if(!f.exists())
-			{
-				break;
-			}
-			
-			Bitmap bmp = BitmapFactory.decodeByteArray(Utils.decodeBitmap(fileName), 0, Utils.decodeBitmap(fileName).length);  
-            imageCache.put(fileName, new SoftReference<Bitmap>(bmp));  
-
-			
-//			Bitmap bmp = BitmapFactory.decodeFile(fileName, null);
-			ImageView iv = new ImageView(this);
-			iv.setImageBitmap(bmp);
-			ivList.add(iv);
-			iv.setScaleType(ScaleType.FIT_XY);
-			iv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
-		}
-		if(ivList.size()>0)
-		{
-			vp_menu_ad.setAdapter(new BitmapLoadAdapter(ivList));
-		}
-		vp_menu_ad.setCurrentItem(1);
-		if(ivList.size()>0)
-		{
-			this.scrollPageViewer(vp_menu_ad, ivList.size());
-		}
-		else
-		{
-			this.scrollPageViewer(vp_menu_ad,mImageViews.length );
-		}
+//		ArrayList<ImageView> ivList = new ArrayList<ImageView>();
+//		for(int i=0;;i++)
+//		{
+//			String fileName = QueryInfo.ALBUM_PATH+"ad3"+String.valueOf(i)+".jpg";
+//			File f = new File(fileName);
+//			if(!f.exists())
+//			{
+//				break;
+//			}
+//			
+//			Bitmap bmp = BitmapFactory.decodeByteArray(Utils.decodeBitmap(fileName), 0, Utils.decodeBitmap(fileName).length);  
+//            imageCache.put(fileName, new SoftReference<Bitmap>(bmp));  
+//
+//			
+////			Bitmap bmp = BitmapFactory.decodeFile(fileName, null);
+//			ImageView iv = new ImageView(this);
+//			iv.setImageBitmap(bmp);
+//			ivList.add(iv);
+//			iv.setScaleType(ScaleType.FIT_XY);
+//			iv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+//		}
+//		if(ivList.size()>0)
+//		{
+//			vp_menu_ad.setAdapter(new BitmapLoadAdapter(ivList));
+//		}
+//		vp_menu_ad.setCurrentItem(1);
+//		if(ivList.size()>0)
+//		{
+//			this.scrollPageViewer(vp_menu_ad, ivList.size());
+//		}
+//		else
+//		{
+//			this.scrollPageViewer(vp_menu_ad,mImageViews.length );
+//		}
 			
 //		gv_m = (GridView)menuView.findViewById(R.id.gv_m);
 //		int strResId[] = {R.string.gd_1,R.string.gd_2,R.string.gd_3,
@@ -1232,4 +1229,91 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		 }
 	
 		
+	class UpdateAdTask extends AsyncTask<Void,Void,Boolean>
+	{
+
+		private List<String> pics;
+		
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			pics = new ArrayList<String>();
+			return updateMenuAdPic();
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			if(result)
+			{
+				AsyncImageView views[] = new AsyncImageView[pics.size()];
+				for(int i=0;i<pics.size();i++)
+				{
+					views[i] = new AsyncImageView(Container.this);
+					views[i].setImageUrl(pics.get(i));
+					views[i].setScaleType(ScaleType.FIT_XY);
+				}
+				vp_menu_ad.setAdapter(new MenuAdAdapter(views));
+			}else
+			{
+				int resIds[]= {R.drawable.ad30,R.drawable.ad32};
+				mImageViews = new ImageView[resIds.length];
+				for(int i=0;i<mImageViews.length;i++)
+				{
+					mImageViews[i] = new ImageView(Container.this);
+					mImageViews[i].setImageResource(resIds[i]);
+				}
+				vp_menu_ad.setAdapter(new MenuAdAdapter(mImageViews));
+			}
+		}
+		
+		
+		private String getQueryResult(String getUrl) {
+			HttpClient client = new DefaultHttpClient();  
+	        HttpGet get = new HttpGet(getUrl);  
+	        HttpResponse response= null;
+	        BufferedReader in = null;  
+			try {
+				response = client.execute(get);
+				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {  
+					String result = EntityUtils.toString(response.getEntity());
+					
+					return result;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
+			
+			
+			return null;
+		}
+		
+		private boolean updateMenuAdPic() {
+
+			String picUrl = "http://60.205.168.68:88/wapb/CallReqRet.php?UserID=13333333333&CallTo=moreadv&Wap=json";
+			String result = getQueryResult(picUrl);
+			
+			Log.d(TAG,"[updateMenuAdPic] result:"+result);
+			
+			try {
+				JSONArray array = new JSONArray(result);
+				
+				int i =0;
+				for(;i<array.length();i++)
+				{
+					JSONObject sub = array.getJSONObject(i);
+					String imageUrl = sub.getString("imgurl");
+					pics.add(imageUrl);
+				}
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+	}
+	
 }

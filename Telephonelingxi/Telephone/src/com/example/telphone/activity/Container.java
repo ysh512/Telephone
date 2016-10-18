@@ -1192,10 +1192,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		 oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
              @Override
              public void onShare(Platform platform,cn.sharesdk.framework.Platform.ShareParams paramsToShare) {
-                     if ("Wechat".equals(platform.getName())) {
-                     Bitmap imageData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
-                     paramsToShare.setImageData(imageData);
-                     }
+//                     if ("Wechat".equals(platform.getName())) {
+//                     Bitmap imageData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+//                     paramsToShare.setImageData(imageData);
+//                     }
                      if ("WechatMoments".equals(platform.getName())) {
                              Bitmap imageData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
                              paramsToShare.setImageData(imageData);

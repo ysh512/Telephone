@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
@@ -14,7 +15,7 @@ import com.dner.fast.R;
 
 public class ChargeWay extends Activity implements OnClickListener{
 
-	
+	private static final String TAG=ChargeWay.class.getSimpleName();
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -60,6 +61,7 @@ public class ChargeWay extends Activity implements OnClickListener{
 		tv_title.setText("充值中心");
 		
 		int money = this.getIntent().getIntExtra("money",100);
+		Log.d(TAG, "[ChargeWay] charge money:"+money);
 		TextView tv_rctype = (TextView)findViewById(R.id.tv_rctype);
 		Resources resource=  this.getResources();
 		switch(money)

@@ -68,7 +68,7 @@ public class ChargeCenter extends Activity implements OnClickListener{
 			if(!checkAccount())
 				return;
 			Intent it2 = new Intent(this,ChargeWay.class);
-			it2.putExtra("moeny", 400);
+			it2.putExtra("money", 400);
 			it2.putExtra("phone",et_account.getText().toString());
 			startActivity(it2);
 			break;

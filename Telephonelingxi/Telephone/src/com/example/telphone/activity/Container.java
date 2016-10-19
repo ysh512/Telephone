@@ -209,6 +209,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	private int yuer;
 	private int recommendIncome;
 	private int cash;
+	private int jiner;
+	
 	
 	private TextView tv_rcmd_gold;
 	private TextView tv_rcmd_gold_total;
@@ -1116,7 +1118,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 							}
 							String wxid = object.getString("wxid");
 							yuer  = (int) Float.parseFloat(object.getString("yuer"));
-							recommendIncome = (int)Float.parseFloat(object.getString("yucun"));
+							jiner = (int) Float.parseFloat(object.getString("yucun"));
 							cash = (int)Float.parseFloat(object.getString("cash"));
 							
 							PreferenceUtils.saveWechat(wxid);
@@ -1154,18 +1156,18 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			if(result)
 			{
 				Log.d(TAG, "[onPostExecute] chengjius"+chengjius.toString()+"---chongzhis:"+chongzhis.toString());
-				tv_rcmd_amt1.setText(Constants.LEVEL_ONE+":"+chengjius[0]);
-				tv_rcmd_amt2.setText(Constants.LEVEL_TWO+":"+chengjius[1]);
-				tv_rcmd_amt3.setText(Constants.LEVEL_THREE+":"+chengjius[2]);
+				tv_rcmd_amt1.setText(Constants.LEVEL_ONE+":"+chengjius[0].replaceAll("\"", ""));
+				tv_rcmd_amt2.setText(Constants.LEVEL_TWO+":"+chengjius[1].replaceAll("\"", ""));
+				tv_rcmd_amt3.setText(Constants.LEVEL_THREE+":"+chengjius[2].replaceAll("\"", ""));
 				
-				tv_rcmd_people_1.setText(Constants.LEVEL_ONE+":"+chongzhis[0]);
-				tv_rcmd_people_2.setText(Constants.LEVEL_TWO+":"+chongzhis[2]);
-				tv_rcmd_people_3.setText(Constants.LEVEL_THREE+":"+chongzhis[2]);
+				tv_rcmd_people_1.setText(Constants.LEVEL_ONE+":"+chongzhis[0].replaceAll("\"", ""));
+				tv_rcmd_people_2.setText(Constants.LEVEL_TWO+":"+chongzhis[1].replaceAll("\"", ""));
+				tv_rcmd_people_3.setText(Constants.LEVEL_THREE+":"+chongzhis[2].replaceAll("\"", ""));
 				
 				tv_nickName.setText(PreferenceUtils.getNickName());
 				
-				tv_rcmd_gold.setText(yuer+"金币");
-				tv_rcmd_gold_total.setText(recommendIncome+"金币");
+				tv_rcmd_gold.setText(jiner+"金币");
+				tv_rcmd_gold_total.setText((jiner+cash)+"金币");
 				tv_rcmd_gold_convert.setText(cash+"金币");
 				
 				if(!TextUtils.isEmpty(avator_path))

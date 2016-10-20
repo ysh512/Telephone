@@ -125,7 +125,12 @@ public class Calling extends Activity{
 				super.handleMessage(msg);
 				tv_count.setText(i+"秒");
 				i++;
-				
+				if(i==21)
+				{
+					m_running  = false;
+					finish();
+					return ;
+				}
 				iv_loading.setImageResource(0);
 				switch(i%5){
 				case 2:

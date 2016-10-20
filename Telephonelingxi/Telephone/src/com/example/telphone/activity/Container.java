@@ -1247,6 +1247,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			
+			int pages = 0;
 			if(result)
 			{
 				AsyncImageView views[] = new AsyncImageView[pics.size()];
@@ -1257,6 +1258,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 					views[i].setScaleType(ScaleType.FIT_XY);
 				}
 				vp_menu_ad.setAdapter(new MenuAdAdapter(views));
+				pages = pics.size();
 			}else
 			{
 				int resIds[]= {R.drawable.ad30,R.drawable.ad32};
@@ -1267,7 +1269,10 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 					mImageViews[i].setImageResource(resIds[i]);
 				}
 				vp_menu_ad.setAdapter(new MenuAdAdapter(mImageViews));
+				pages = 2;
 			}
+			
+			scrollPageViewer(vp_menu_ad, pages);
 		}
 		
 		

@@ -222,6 +222,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	
 	private Drawable orginBg;
 	
+	private List<String> rollingAdPics;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -290,7 +292,29 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		View menuView = inflater.inflate(R.layout.menu, null);
 		views.add(menuView);
 		initMenuview(menuView);
-		viewPager.setAdapter(new ContainerAdapter(views));
+		viewPager.setAdapter(new ContainerAdapter(views,new PageInstatedListener() {
+			
+			@Override
+			public void onInstated(int pageIndex) {
+				Log.d(TAG, "[onInstated] pageIndex:"+pageIndex);
+				if(pageIndex==2)
+				{
+					m_running=true;
+					initRollingAds();
+					scrollPageViewer(vp_menu_ad, rollingAdPics.size());
+				}
+			}
+
+			@Override
+			public void onDestroy(int pageIndex) {
+
+				Log.d(TAG, "[onDestroy] pageIndex:"+pageIndex);
+				if(pageIndex==2)
+				{
+					m_running=false;
+				}
+			}
+		}));
 		viewPager.setOnPageChangeListener(this);
 		
 		String ts = this.getString(R.string.company_name);
@@ -1234,11 +1258,11 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	class UpdateAdTask extends AsyncTask<Void,Void,Boolean>
 	{
 
-		private List<String> pics;
+		
 		
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			pics = new ArrayList<String>();
+			rollingAdPics = new ArrayList<String>();
 			return updateMenuAdPic();
 		}
 
@@ -1250,15 +1274,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			int pages = 0;
 			if(result)
 			{
-				AsyncImageView views[] = new AsyncImageView[pics.size()];
-				for(int i=0;i<pics.size();i++)
-				{
-					views[i] = new AsyncImageView(Container.this);
-					views[i].setImageUrl(pics.get(i));
-					views[i].setScaleType(ScaleType.FIT_XY);
-				}
-				vp_menu_ad.setAdapter(new MenuAdAdapter(views));
-				pages = pics.size();
+				initRollingAds();
+				pages = rollingAdPics.size();
 			}else
 			{
 				int resIds[]= {R.drawable.ad30,R.drawable.ad32};
@@ -1274,6 +1291,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			
 			scrollPageViewer(vp_menu_ad, pages);
 		}
+
+
 		
 		
 		private String getQueryResult(String getUrl) {
@@ -1312,7 +1331,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 				{
 					JSONObject sub = array.getJSONObject(i);
 					String imageUrl = sub.getString("imgurl");
-					pics.add(imageUrl);
+					rollingAdPics.add(imageUrl);
 				}
 				return true;
 			} catch (Exception e) {
@@ -1323,4 +1342,18 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 		
 	}
 	
+	private void initRollingAds() {
+		AsyncImageView views[] = new AsyncImageView[rollingAdPics.size()];
+		for(int i=0;i<rollingAdPics.size();i++)
+		{
+			views[i] = new AsyncImageView(Container.this);
+			views[i].setImageUrl(rollingAdPics.get(i));
+			views[i].setScaleType(ScaleType.FIT_XY);
+		}
+		vp_menu_ad.setAdapter(new MenuAdAdapter(views));
+	}
+    public interface PageInstatedListener{
+    	void onInstated(int pageIndex);
+    	void onDestroy(int pageIndex);
+    }
 }

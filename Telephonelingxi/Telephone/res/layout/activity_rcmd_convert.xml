@@ -14,6 +14,76 @@
         />
     
 
+    
+     <View
+        android:layout_width="fill_parent"
+        android:layout_height="15.0dip"
+        android:background="@color/transparent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bank_layout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sl_bg_item1"
+        android:paddingBottom="5.0dip"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="15.0dip"
+        android:paddingTop="5.0dip" >
+
+        <ImageView
+            android:id="@+id/iv_bank_image2"
+            android:layout_width="46.0dip"
+            android:layout_height="46.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="15.0dip"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginTop="15.0dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_bank" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_profile" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15.0dip"
+            android:layout_toRightOf="@id/iv_bank_image2"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip" >
+
+            <TextView
+                android:id="@+id/tv_bankname2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="bank"
+                android:textColor="@color/text6_color"
+                android:textSize="@dimen/textsize16" />
+
+            <TextView
+                android:id="@+id/tv_account2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tv_bankname2"
+                android:layout_below="@id/tv_bankname2"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_4dip"
+                android:singleLine="true"
+                android:text="account"
+                android:textColor="@color/text3_color"
+                android:textSize="@dimen/textsize16" />
+        </RelativeLayout>
+    </RelativeLayout>
+    
+    
+    
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/more_item_height"

@@ -30,7 +30,7 @@ public class Constants {
 	
 	public static final String WX_PAY_ORDER="http://60.205.168.68:88/wechat.php?goodsid=%s&money=%s&phone=%s";
 	//提现
-	public static final String CASH_URL="http://60.205.168.68:88/wapb/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=apply&money=%s";
+	public static final String CASH_URL="http://60.205.168.68:88/wapb/CallReqRet.php?UserID=%s&UserPass=%s&CallTo=apply&money=%s&type=%s";
 	public static final String MES="尊敬的%s,欢迎您使用%s，快推荐您的朋友使用并领取丰厚报酬吧您的推荐人是：%s";
 	
     public static final String APP_ID = "wx92a011c881a485e3";

@@ -92,6 +92,9 @@ import com.example.telphone.property.SingleRecord;
 import com.example.telphone.tool.PreferenceUtils;
 import com.example.telphone.tool.Utils;
 import com.example.telphone.tool.Variable;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 @SuppressLint("HandlerLeak")
 public class Container extends BaseActivity implements OnClickListener ,OnPageChangeListener{
@@ -224,6 +227,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	
 	private List<String> rollingAdPics;
 	
+	private AsyncImageView rollingAsyncViews[];
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -300,6 +305,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 				if(pageIndex==2)
 				{
 					m_running=true;
+					Log.d(TAG,"[onInstated] initRollingAds");
 					initRollingAds();
 					scrollPageViewer(vp_menu_ad, rollingAdPics.size());
 				}
@@ -1274,6 +1280,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 			int pages = 0;
 			if(result)
 			{
+				Log.d(TAG, "[onPostExecute] initRollingAds");
 				initRollingAds();
 				pages = rollingAdPics.size();
 			}else
@@ -1343,17 +1350,64 @@ public class Container extends BaseActivity implements OnClickListener ,OnPageCh
 	}
 	
 	private void initRollingAds() {
-		AsyncImageView views[] = new AsyncImageView[rollingAdPics.size()];
+		synchronized(this)  {
+			if(rollingAdPics.size()==0)
+			{
+				return ;
+			}
+			
+			if(null==rollingAsyncViews)
+			{
+				rollingAsyncViews = new AsyncImageView[rollingAdPics.size()];
+			}
+//			for(int i=0;i<rollingAdPics.size();i++)
+//			{
+//				
+//			}
+		}
+		
 		for(int i=0;i<rollingAdPics.size();i++)
 		{
-			views[i] = new AsyncImageView(Container.this);
-			views[i].setImageUrl(rollingAdPics.get(i));
-			views[i].setScaleType(ScaleType.FIT_XY);
+			rollingAsyncViews[i] = new AsyncImageView(Container.this);
+			rollingAsyncViews[i].setScaleType(ScaleType.FIT_XY);
+			rollingAsyncViews[i].setImageUrl(rollingAdPics.get(i));
+			if(null==rollingAsyncViews[i].getTag() || (Boolean)rollingAsyncViews[i].getTag()!=Boolean.TRUE)
+			{
+			ImageLoader.getInstance().displayImage(rollingAdPics.get(i), rollingAsyncViews[i],builder.build(), new SimpleImageLoadingListener(){
+
+				@Override
+				public void onLoadingComplete(String imageUri, View view,
+						Bitmap loadedImage) {
+					Log.d(TAG, "[onLoadingComplete]");
+					super.onLoadingComplete(imageUri, view, loadedImage);
+					view.setTag(Boolean.TRUE);
+					for(int i=0;i<rollingAdPics.size();i++)
+					{
+//						Log.d(TAG,"[onLoadingComplete] view tag:"+(Boolean)rollingAsyncViews[i].getTag());
+						if(null== rollingAsyncViews[i] || null ==rollingAsyncViews[i].getTag() || (Boolean)rollingAsyncViews[i].getTag()==Boolean.FALSE)
+						{
+							return;
+						}
+					}
+					Log.d(TAG, "[onLoadingComplete] vp_menu_ad set adapter");
+					vp_menu_ad.setAdapter(new MenuAdAdapter(rollingAsyncViews));
+				}
+
+				
+			});
+			}
 		}
-		vp_menu_ad.setAdapter(new MenuAdAdapter(views));
+//		vp_menu_ad.setAdapter(new MenuAdAdapter(rollingAsyncViews));
 	}
     public interface PageInstatedListener{
     	void onInstated(int pageIndex);
     	void onDestroy(int pageIndex);
     }
+    
+	private static DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder()
+	.cacheInMemory(true)
+	.cacheOnDisc(true)
+	.considerExifParams(true)
+	.delayBeforeLoading(200)
+	.bitmapConfig(Bitmap.Config.RGB_565);
 }

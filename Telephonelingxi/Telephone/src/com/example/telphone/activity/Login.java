@@ -131,7 +131,7 @@ public class Login extends BaseActivity implements OnClickListener{
 			}
 			else
 			{
-				Toast.makeText(Login.this, "网络连接错误", 5).show();
+				Toast.makeText(Login.this, "登录失败", 5).show();
 			}
 			
 		}

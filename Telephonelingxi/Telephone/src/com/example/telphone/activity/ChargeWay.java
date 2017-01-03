@@ -103,9 +103,9 @@ public class ChargeWay extends Activity implements OnClickListener{
 				String content = EntityUtils.toString(response.getEntity());
 //				String content = new String(buf);
 				Log.e("get server pay params:",content);
-				Looper.prepare();
-				Toast.makeText(ChargeWay.this,"server result:"+content, Toast.LENGTH_SHORT).show();
-				Looper.loop();
+//				Looper.prepare();
+//				Toast.makeText(ChargeWay.this,"server result:"+content, Toast.LENGTH_SHORT).show();
+//				Looper.loop();
 	        	JSONObject json = new JSONObject(content); 
 				if(null != json && !json.has("retcode") ){
 					PayReq req = new PayReq();
@@ -124,30 +124,30 @@ public class ChargeWay extends Activity implements OnClickListener{
 //					Toast.makeText(ChargeWay.this, "正常调起支付", Toast.LENGTH_SHORT).show();
 //					Looper.loop();
 					Boolean b = api.sendReq(req);
-					Looper.prepare();
-					Toast.makeText(ChargeWay.this, "正常调起支付 result: "+b, Toast.LENGTH_SHORT).show();
-					Looper.loop();
+//					Looper.prepare();
+//					Toast.makeText(ChargeWay.this, "正常调起支付 result: "+b, Toast.LENGTH_SHORT).show();
+//					Looper.loop();
 					
 					return Boolean.TRUE;
 				}else{
 		        	Log.d("PAY_GET", "返回错误"+json.getString("retmsg"));
-		        	Looper.prepare();
-		        	Toast.makeText(ChargeWay.this, "返回错误"+json.getString("retmsg"), Toast.LENGTH_SHORT).show();
-		        	Looper.loop();
+//		        	Looper.prepare();
+//		        	Toast.makeText(ChargeWay.this, "返回错误"+json.getString("retmsg"), Toast.LENGTH_SHORT).show();
+//		        	Looper.loop();
 		        	return Boolean.FALSE;
 				}
 			}else{
 	        	Log.d("PAY_GET", "服务器请求错误了");
-	        	Looper.prepare();
-	        	Toast.makeText(ChargeWay.this, "服务器请求错误了", Toast.LENGTH_SHORT).show();
-	        	Looper.loop();
+//	        	Looper.prepare();
+//	        	Toast.makeText(ChargeWay.this, "服务器请求错误了", Toast.LENGTH_SHORT).show();
+//	        	Looper.loop();
 	        	return Boolean.FALSE;
 			}
         }catch(Exception e){
         	Log.e("PAY_GET", "服务器请求错误"+e.getMessage());
-        	Looper.prepare();
-        	Toast.makeText(ChargeWay.this, "异常"+e.getMessage(), Toast.LENGTH_SHORT).show();
-        	Looper.loop();
+//        	Looper.prepare();
+//        	Toast.makeText(ChargeWay.this, "异常"+e.getMessage(), Toast.LENGTH_SHORT).show();
+//        	Looper.loop();
         	return Boolean.FALSE;
         }
 //        payBtn.setEnabled(true);

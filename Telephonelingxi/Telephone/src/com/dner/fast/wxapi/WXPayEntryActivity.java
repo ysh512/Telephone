@@ -56,13 +56,17 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 		Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
 
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+			
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.app_tip);
-			builder.setMessage("支付失败,请稍后重试"+String.valueOf(resp.errCode));
-			builder.show();
-			tv_pay_result.setText("支付失败,请稍后重试");
-		}else{
-			tv_pay_result.setText("支付成功,即将关闭本页面");
+			if(resp.errCode==BaseResp.ErrCode.ERR_OK)
+			{
+				showPayResult(builder,"支付成功，即将关闭本页面");
+			}else
+			{
+				showPayResult(builder,"支付失败，请稍后重试");	
+			}
+			
 		}
 		
 		Handler handler =new Handler();
@@ -74,5 +78,11 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 			}
 			
 		}, 1500);
+	}
+
+	private void showPayResult(AlertDialog.Builder builder,String displayInfo) {
+		builder.setMessage(displayInfo);
+		builder.show();
+		tv_pay_result.setText(displayInfo);
 	}
 }

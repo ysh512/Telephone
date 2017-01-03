@@ -109,7 +109,7 @@ public class ChargeWay extends Activity implements OnClickListener{
 //					Looper.loop();
 					Boolean b = api.sendReq(req);
 					Looper.prepare();
-					Toast.makeText(ChargeWay.this, "正常调起支付 result :"+b, Toast.LENGTH_SHORT).show();
+					Toast.makeText(ChargeWay.this, "正常调起支付 ", Toast.LENGTH_SHORT).show();
 					Looper.loop();
 					return Boolean.TRUE;
 				}else{

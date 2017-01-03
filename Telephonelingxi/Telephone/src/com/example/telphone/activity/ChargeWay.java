@@ -3,6 +3,12 @@ package com.example.telphone.activity;
 import net.sourceforge.simcpux.PayActivity;
 import net.sourceforge.simcpux.Util;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -82,21 +88,29 @@ public class ChargeWay extends Activity implements OnClickListener{
 		}
 		
 		String url = String.format(Constants.WX_PAY_ORDER, "1",money,PreferenceUtils.getPhone());
-//		Button payBtn = (Button) findViewById(R.id.appay_btn);
-//		payBtn.setEnabled(false);
+		url+="&time="+System.currentTimeMillis();
+		Log.d(ChargeWay.this.getClass().getSimpleName(),"[pay url]"+url);
+
+		HttpClient client = new DefaultHttpClient();
+		HttpGet get = new HttpGet(url);  
+        HttpResponse response= null;
 		
         try{
-			byte[] buf = Util.httpGet(url);
-			if (buf != null && buf.length > 0) {
-				String content = new String(buf);
+        	response = client.execute(get);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) 
+				
+			{
+				String content = EntityUtils.toString(response.getEntity());
+//				String content = new String(buf);
 				Log.e("get server pay params:",content);
+				Looper.prepare();
+				Toast.makeText(ChargeWay.this,"server result:"+content, Toast.LENGTH_SHORT).show();
+				Looper.loop();
 	        	JSONObject json = new JSONObject(content); 
 				if(null != json && !json.has("retcode") ){
 					PayReq req = new PayReq();
 					//req.appId = "wxf8b4f85f3a794e77";  // ������appId
 					req.appId			= json.getString("appid");
-					api = WXAPIFactory.createWXAPI(this, req.appId);
-					api.registerApp(req.appId);
 					req.partnerId		= json.getString("partnerid");
 					req.prepayId		= json.getString("prepayid");
 					req.nonceStr		= json.getString("noncestr");
@@ -104,13 +118,16 @@ public class ChargeWay extends Activity implements OnClickListener{
 					req.packageValue	= json.getString("package");
 					req.sign			= json.getString("sign");
 					req.extData			= "app data"; // optional
+					
+					
 //					Looper.prepare();
 //					Toast.makeText(ChargeWay.this, "正常调起支付", Toast.LENGTH_SHORT).show();
 //					Looper.loop();
 					Boolean b = api.sendReq(req);
 					Looper.prepare();
-					Toast.makeText(ChargeWay.this, "正常调起支付 ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(ChargeWay.this, "正常调起支付 result: "+b, Toast.LENGTH_SHORT).show();
 					Looper.loop();
+					
 					return Boolean.TRUE;
 				}else{
 		        	Log.d("PAY_GET", "返回错误"+json.getString("retmsg"));
@@ -178,11 +195,12 @@ public class ChargeWay extends Activity implements OnClickListener{
 		RelativeLayout rlyt_alipay = (RelativeLayout)findViewById(R.id.rlyt_alipay);
 		rlyt_alipay.setOnClickListener(this);
 		
+		api = WXAPIFactory.createWXAPI(this, null);
+		api.registerApp("wx92a011c881a485e3");
+		
 	}
 
 	class WxPayTask extends AsyncTask<Void,Void,Boolean>{
-
-		
 		
 		
 		@Override
@@ -204,7 +222,9 @@ public class ChargeWay extends Activity implements OnClickListener{
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			// TODO Auto-generated method stub
+			
+			Log.d(ChargeWay.this.getClass().getSimpleName(),"[doInBackground]");
+			
 			return wxPay();
 		}
 		

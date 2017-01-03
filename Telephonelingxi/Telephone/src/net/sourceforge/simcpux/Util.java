@@ -35,6 +35,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
@@ -100,14 +101,16 @@ public class Util {
 		}
 		
 		HttpClient httpClient = getNewHttpClient();
-		
+		httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 10000);
+		httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 10000);
+
 		HttpPost httpPost = new HttpPost(url);
 		
 		try {
 			httpPost.setEntity(new StringEntity(entity));
 			httpPost.setHeader("Accept", "application/json");
 			httpPost.setHeader("Content-type", "application/json");
-			
+		
 			HttpResponse resp = httpClient.execute(httpPost);
 			if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
 				Log.e(TAG, "httpGet fail, status code = " + resp.getStatusLine().getStatusCode());
@@ -215,7 +218,7 @@ public class Util {
 		byte[] b = null;
 		try {
 			RandomAccessFile in = new RandomAccessFile(fileName, "r");
-			b = new byte[len]; // ´´½¨ºÏÊÊÎÄ¼þ´óÐ¡µÄÊý×é
+			b = new byte[len]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			in.seek(offset);
 			in.readFully(b);
 			in.close();
